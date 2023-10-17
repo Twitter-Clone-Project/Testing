@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="com.app.listeners.testListener"></listener>
+    </listeners>
+    <!-- TODO change the emulator name and android version -->
+    <parameter name="deviceName" value="MyEmulator"></parameter>
+    <parameter name="platformName" value="Android"></parameter>
+    <parameter name="platformVersion" value="12"></parameter>
+    <!--TODO change the path of the project-->
+    <test verbose="2" preserve-order="true"
+          name="F:/LockD/CMP2025/Third_Year/First_Term/CMP3030_Software_Engineering/Project/Project_git/Appium_template">
+        <classes>
+            <!--TODO put classes of testcases-->
+
+        </classes>
+
+    </test>
+</suite>
