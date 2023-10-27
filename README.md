@@ -148,7 +148,7 @@ Welcome to our Project – your all-in-one solution for ensuring the quality and
 ### Prerequisites
 #### Cypress
 * npm
-* ```sh
+```sh
 npm install -g cypress@9
 ```
 * npx
