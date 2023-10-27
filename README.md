@@ -148,37 +148,37 @@ Welcome to our Project – your all-in-one solution for ensuring the quality and
 ### Prerequisites
 #### Cypress
 * npm
-  ```sh
-  npm install -g cypress@9
-  ```
+* ```sh
+npm install -g cypress@9
+```
 * npx
-  ```sh
-  npx cypress open
-  ```
+```sh
+npx cypress open
+```
 
 #### Appium 
 * Install appium with node.js
-  ```sh
-   npm install -g appium
-  ```
+```sh
+npm install -g appium
+```
 * Check if appium is installed
-  ```sh
-    appium -v
-  ```
-  ```sh
-    where appium
-  ```
+```sh
+appium -v
+```
+```sh
+where appium
+```
   
 * Start appium
-   ```sh
-    appium
-  ```
+```sh
+appium
+```
 
 #### JMeter
 * Check java is installed on your system
-  ```sh
-               java -version
-  ```
+```sh
+java -version
+```
 * Download Jmeter from internet  https://jmeter.apache.org/download_jmeter.cgi
 
 * Unzip and keep Jmeter folder at any location
@@ -186,13 +186,13 @@ Welcome to our Project – your all-in-one solution for ensuring the quality and
 * Start Jmeter (Windows):
   Navigate to the directory that has jmeter.bat file
   ```sh
-      jmeter.bat
+  jmeter.bat
   ```
              
   * Start Jmeter (Mac):
   Navigate to the directory that has jmeter.sh file
   ```sh
-      sh jmeter.sh 
+  sh jmeter.sh 
   ```
 
   ### Installation
