@@ -179,7 +179,7 @@ Welcome to our Project – your all-in-one solution for ensuring the quality and
   ```sh
                java -version
   ```
-* Download Jmeter from internet  http://jmeter.apache.org/download_jme...
+* Download Jmeter from internet  https://jmeter.apache.org/download_jmeter.cgi
 
 * Unzip and keep Jmeter folder at any location
 
