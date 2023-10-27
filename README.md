@@ -120,7 +120,7 @@ Welcome to our Project – your all-in-one solution for ensuring the quality and
 ![WhatsApp Image 2023-10-27 at 04 10 20](https://github.com/Twitter-Clone-Project/Testing/assets/97397431/5b9cc217-c17e-42fe-b623-d88117ef5de5)
 
 
-## Contributors <a name = "Contributors"></a>
+## Contributors
 
 <table>
   <tr>
