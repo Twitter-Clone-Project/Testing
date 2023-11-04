@@ -89,10 +89,8 @@ describe("signUp", () => {
         cy.get(selectors.monthSelector).select(userData.selectedMonth);
         cy.get(selectors.daySelector).select(userData.selectedDay);
         cy.get(selectors.yearSelector).select(userData.selectedYear);
+        cy.get(selectors.nextButtonStep1).contains("Next").click();
         cy.get(selectors.nextButtonStep1)
-          .contains("Next")
-          .click();
-          cy.get(selectors.nextButtonStep1)
           .contains("Next")
           .click()
           .then(() => {
@@ -236,9 +234,9 @@ describe("signUp", () => {
   });
 
   //10.Valid Case
-  it("make sure that the code is sent", () => {
+  it.only("make sure that the code is sent", () => {
     cy.get("@selectors").then((selectors) => {
-      cy.get("@userData").then((userData) => {
+      cy.readFile("cypress/fixtures/userData.json").then((userData) => {
         cy.get(selectors.userNameTextField).type(userData.userName, {
           delay: 100,
         });
@@ -291,10 +289,55 @@ describe("signUp", () => {
               });
           });
         cy.get(selectors.signUpButtonStep3).click();
-        //go to gmail to make sure that the email is sent
+        cy.pause();
+        cy.get(selectors.nextButtonVerificationCode).click();
+        cy.get(selectors.passwordInputField).type(
+          userData.twitterInvalidPassword,
+          { delay: 100 }
+        );
+        cy.get(selectors.shortPasswordMessage).should(
+          "have.text",
+          "Your password needs to be at least 8 characters. Please enter a longer one."
+        );
+
+        cy.get(selectors.passwordInputField)
+          .invoke("val")
+          .then((text) => {
+            cy.log(text);
+            expect(text).to.equal(userData.twitterInvalidPassword);
+          });
+        cy.get(selectors.passwordInputField).clear();
+        cy.get(selectors.passwordInputField).type(
+          userData.twitterValidPassword,
+          { delay: 100 }
+        );
+        cy.contains("Next").click();
+        cy.wait(100);
+        cy.contains("Skip for now").click();
+        cy.wait(100);
+        cy.contains("Skip for now").click();
+        cy.wait(100);
+        cy.get("Skip for now").eq(1).click();
+        cy.wait(100);
+        cy.contains("Next").click();
+        cy.wait(100);
+        cy.get(selectors.entertainmentTopic).click();
+
+        // cy.get(selectors.nextButtonTopics).should("be.disabled");
+        cy.get(selectors.technoTopic).click();
+        cy.wait(100);
+        cy.get(selectors.animationTopic).click();
+        // cy.get(selectors.nextButtonTopics).should("be.enabled");
+        cy.contains("Next").click();
+        cy.wait(100);
+        cy.contains("Next").click();
+        cy.wait(100);
+        cy.contains("Next").should("be.disabled");
+        cy.get(selectors.followOne);
+        cy.contains("Next").should("be.enabled");
+        cy.contains("Next").click();
+        cy.url().should("contain", "https://twitter.com/home");
       });
     });
   });
-
-
 });

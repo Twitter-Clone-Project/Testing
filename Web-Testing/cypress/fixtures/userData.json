@@ -1,11 +1,15 @@
 {
-    "userName":"menna",
+    "userName":"testing",
     "invalidUserName":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "existingEmail":"menamohamed0207@gmail.com",
-    "invalidEmail":"menna",
-    "validEmail":"mennaabdelbaset208@gmail.com",
+    "invalidEmail":"testing",
+    "validEmail":"m61181539@gmail.com",
     "selectedMonth":"February",
     "selectedDay":"7",
     "selectedYear":"2002",
-    "passwordGoogle":"oppo reno4pro"
+    "passwordGoogle":"why do i make this to myself",
+    "passwordOfTestin":"twitter_clone",
+    "verificationCode":"150733",
+    "twitterValidPassword":"010testinge2e123",
+    "twitterInvalidPassword":"1234567"
 }
