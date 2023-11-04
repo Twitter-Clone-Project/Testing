@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Appium framework">
+    <listeners>
+        <listener class-name="com.twitter.listeners.TestListener"></listener>
+    </listeners>
+    <test thread-count="5" name="Android">
+        <parameter name="deviceName" value="Emu"></parameter>
+        <parameter name="platformName" value="Android"></parameter>
+        <parameter name="platformVersion" value="12"></parameter>
+        <classes>
+            <class name="com.twitter.testcases.Login"></class>
+        </classes>
+    </test>
+</suite>
