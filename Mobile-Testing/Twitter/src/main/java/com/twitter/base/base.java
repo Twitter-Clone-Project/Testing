@@ -13,11 +13,11 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Properties;
 
-public class Base {
+public class base {
     protected FileInputStream inputStream;
     protected Properties prop;
     protected static AndroidDriver driver;
-    public Base (){
+    public base(){
         PageFactory.initElements(new AppiumFieldDecorator(driver),this);
     }
 
