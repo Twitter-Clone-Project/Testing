@@ -1,14 +1,14 @@
 {
-    "userName":"testing",
+    "userName":"testing72",
     "invalidUserName":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "existingEmail":"menamohamed0207@gmail.com",
-    "invalidEmail":"testing",
-    "validEmail":"m61181539@gmail.com",
+    "invalidEmail":"k@n",
+    "validEmail":"menna@gmail.com",
     "selectedMonth":"February",
     "selectedDay":"7",
     "selectedYear":"2002",
     "passwordGoogle":"why do i make this to myself",
-    "passwordOfTestin":"twitter_clone",
+    "passwordOfTesting":"twitter_clone",
     "verificationCode":"150733",
     "twitterValidPassword":"010testinge2e123",
     "twitterInvalidPassword":"1234567"

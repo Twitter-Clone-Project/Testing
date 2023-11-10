@@ -81,6 +81,7 @@ describe("signUp", () => {
   });
 
   //5.Press create account button and then press Next and fill the data and then go back is the data will remain the same
+  //will not be valid for our case
   it("Fill the data and then go back and the data will remain", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
