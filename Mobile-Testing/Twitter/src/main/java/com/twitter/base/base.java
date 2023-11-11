@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
@@ -22,25 +24,25 @@ public class base {
     }
 
     @Parameters({"deviceName", "platformName", "platformVersion"})
-    @BeforeClass
+    @Test
     public void beforeClass(String deviceName, String platformName, String platformVersion) throws Exception {
 
         File propFile = new File("src\\main\\resources\\config\\config.properties");
         inputStream = new FileInputStream(propFile);
         prop = new Properties();
         prop.load(inputStream);
-//        File app = new File(prop.getProperty("androidAppPath"));
+        File app = new File(prop.getProperty("androidAppPath"));
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, platformName);
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
         caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, prop.getProperty("androidAutomationName"));
-//        caps.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+        caps.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
         driver = new AndroidDriver(new URL(prop.getProperty("appiumServer")), caps);
 
     }
-    @AfterClass
-    public void afterClass(){
-        driver.quit();
-    }
+//    @AfterClass
+//    public void afterClass(){
+//        driver.quit();
+//    }
 }
