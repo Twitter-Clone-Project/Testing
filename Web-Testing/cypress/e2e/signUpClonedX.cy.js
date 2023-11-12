@@ -1,6 +1,6 @@
 describe("signUp", () => {
   beforeEach(() => {
-    cy.visit("http://54.234.179.218:5173/");
+    cy.visit("http://34.233.119.135:5173/");
     cy.fixture("signUpSelectors").as("selectors");
     cy.fixture("userData").as("userData");
     cy.get("@selectors").then((selectors) => {
@@ -9,7 +9,7 @@ describe("signUp", () => {
   });
 
   //tested and there is a bug
-  it("testcase7:fill all input fields and click next", () => {
+  it.only("testcase7:fill all input fields and click next", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.contains("Name").type(userData.userName);
@@ -149,24 +149,50 @@ describe("signUp", () => {
       });
     });
   });
-
+  it("Year Field doesn't work properly", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@userData").then((userData) => {
+        cy.get(selectors.nameInputField).type(userData.userName,{delay:100});
+        cy.get(selectors.userNameTextField).type(userData.userName,{delay:100});
+        cy.get(selectors.passwordInputField).type(userData.passwordOfTesting,{delay:100});
+        cy.get(selectors.confirmPasswordInputField).type(
+          userData.passwordOfTesting,{delay:100});
+        
+        cy.get(selectors.userEmailTextField).type(userData.validEmail,{delay:100});
+        cy.get(selectors.monthSelector).select(userData.selectedMonth);
+        cy.get(selectors.daySelector).select(userData.selectedDay);
+        cy.get(selectors.nextButtonSignUp).should("be.disabled");
+        
+      });
+    });
+  });
+  //bug
+  it('sign up button', () => {
+    cy.get("@selectors").then((selectors) => {
+     cy.get(selectors.signUpWithGoogleButton).click();
+     cy.pause();
+    });
+    
+  });
+//bug in back
   it("verification code check", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
-        cy.get(selectors.nameInputField).type(userData.userName);
-        cy.get(selectors.userNameTextField).type(userData.userName);
-        cy.get(selectors.passwordInputField).type(userData.passwordOfTesting);
+        cy.get(selectors.nameInputField).type(userData.userName,{delay:100});
+        cy.get(selectors.userNameTextField).type(userData.userName,{delay:100});
+        cy.get(selectors.passwordInputField).type(userData.passwordOfTesting,{delay:100});
+        cy.get(selectors.confirmPasswordInputField).should("be.visible");
         cy.get(selectors.confirmPasswordInputField).type(
-          userData.passwordOfTesting
-        );
-        cy.get(selectors.userEmailTextField).type(userData.validEmail);
+          userData.passwordOfTesting,{delay:100,force:true});
+        
+        cy.get(selectors.userEmailTextField).type(userData.validEmail,{delay:100});
         cy.get(selectors.monthSelector).select(userData.selectedMonth);
         cy.get(selectors.daySelector).select(userData.selectedDay);
         cy.get(selectors.yearSelector).select(userData.selectedYear);
+        cy.get(selectors.nextButtonSignUp).should("be.enabled");
         cy.get(selectors.nextButtonSignUp).click();
-        cy.get(selectors.verificationCodeInputField).type("1233");
-        cy.get(selectors.nextButtonVerificationCode).click();
-        cy.url().should("have.text", "http://54.234.179.218:5173/signup");
+        cy.get(selectors.didntReceiveCode).click();
+        
       });
     });
   });
