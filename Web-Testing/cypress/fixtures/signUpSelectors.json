@@ -9,15 +9,17 @@
   "userEmailTextField":"[type='email']",
   "alreadyExistEmailMessage":".absolute.left-2.top-14.text-sm.text-warning",
   "passwordInputField":":nth-child(1) > :nth-child(3) > .relative > .peer",
-  "confirmPasswordInputField":"[for='Confirm Password']",
+  "confirmPasswordInputField":"[data-testid='Confirm Password']",
   "whatIsYourNameMessage":".top-14",
   "userNameTextField":":nth-child(1) > :nth-child(2) > .relative > .peer",
   "nameInputField":".p-3 > :nth-child(1) > :nth-child(1) > .relative > .peer",
   "nextButtonSignUp":"[data-testid='Next']",
   "verificationCodeInputField":"#Normal",
   "nextButtonVerificationCode":".justify-self-end > .relative > .cursor-pointer",
-  "closeButton":".bg-gray-300 > svg",
+  "closeButton":"[data-testid='close-btn']",
   "popUp":".go3958317564",
   "didntReceiveCode":".text-blue.hover:underline",
-  "signUpWithGoogleButton":"[data-testid='Sign Up with Google']"
+  "signUpWithGoogleButton":"[data-testid='Sign Up with Google']",
+  "errorEmailMessage":"[data-testid='email-error']",
+  "confirmPasswordEye":"[data-testid='Confirm Password-showIcon']"
 }
