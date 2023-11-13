@@ -231,6 +231,26 @@ public class login extends base {
 
         Assert.assertTrue(forgetPassScreens.otpAssertionElement.isDisplayed(),"Element is not displayed.");
     }
+    @Test
+    public void forgetPasswordFalseOTPForm() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen = new loginInputsScreen();
+        loginInputsScreen.clickOnForgetPass();
+        forgetPassScreens=new forgetPassScreens();
+        forgetPassScreens.clickOnEmail();
+        forgetPassScreens.typeEmail("rawanmostafa401@gmail.com");
+        driver.hideKeyboard();
+        forgetPassScreens.clickOnNext();
+
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(120));
+        wait.until(ExpectedConditions.visibilityOf(forgetPassScreens.otpAssertionElement2));
+
+        Assert.assertTrue(forgetPassScreens.otpAssertionElement2.isDisplayed(),"Element is not displayed.");
+    }
     /////////////////BUG///////////////////////Fixed////////////////////////
     @Test
     public void forgetPasswordResendOTPNew() throws InterruptedException {

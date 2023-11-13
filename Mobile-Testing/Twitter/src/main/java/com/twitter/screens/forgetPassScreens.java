@@ -23,7 +23,8 @@ public class forgetPassScreens extends base {
 
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Incorrect OTP\"]")
     public WebElement otpAssertionElement;
-
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Invalid input data: Invalid value\"]")
+    public WebElement otpAssertionElement2;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Password and confirmation should be same\"]")
     public WebElement mismatchAssertionElement;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Email cannot be empty\"]")
