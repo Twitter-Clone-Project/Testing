@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
@@ -24,7 +22,7 @@ public class base {
     }
 
     @Parameters({"deviceName", "platformName", "platformVersion"})
-    @Test
+    @BeforeClass
     public void beforeClass(String deviceName, String platformName, String platformVersion) throws Exception {
 
         File propFile = new File("src\\main\\resources\\config\\config.properties");
@@ -41,8 +39,8 @@ public class base {
         driver = new AndroidDriver(new URL(prop.getProperty("appiumServer")), caps);
 
     }
-//    @AfterClass
-//    public void afterClass(){
-//        driver.quit();
-//    }
+    @AfterClass
+    public void afterClass(){
+        driver.quit();
+    }
 }
