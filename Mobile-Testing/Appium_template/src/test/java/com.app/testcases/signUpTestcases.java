@@ -2,6 +2,12 @@ package com.app.testcases;
 
 import com.app.base.base;
 import com.app.screens.signUP;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,182 +15,238 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 
 public class signUpTestcases extends base {
     signUP signScreen;
     protected Properties props;
 
-    //@Test
-    public void checkEmailAlreadyExist() throws InterruptedException, IOException {
+//    @Test
+    //faild -->bug
+    public void didntwriteOTP() throws InterruptedException, IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
         props=new Properties();
         props.load(inputfile);
         signScreen=new signUP();
-        signScreen.icon.click();
-
-        signScreen.nagvDrawer.click();
-        signScreen.createAccountButtonDrawer.click();
-        signScreen.createAccountButton.click();
-        signScreen.nextButtonLanguage.click();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
         signScreen.nameInputField.sendKeys(props.getProperty("validName"));
-        signScreen.emailInputField.sendKeys(props.getProperty("existedEmail"));
-        String actualMessage=signScreen.emailErrorMessage.getText();
-        Assert.assertEquals(actualMessage,"Email has already been taken.");
-
-
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.emailInputField.click();
+        signScreen.emailInputField.sendKeys(props.getProperty("validEmail"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.birthdayInputField.click();
+        signScreen.okButtonDate.click();
+        signScreen.passwordInputField.click();
+        signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.signUpButton.click();
+        Wait<AndroidDriver> notRobotWait=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(2))
+                .withTimeout(Duration.ofSeconds(40))
+                .ignoring(NoSuchElementException.class);
+        notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.signUpButton.click();
+        notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
+        Assert.assertNotNull(signScreen.otpInputField);
 
     }
 
-    //@Test
+//    @Test
+    //passed
     public void checkEmailIsValid() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
         props=new Properties();
         props.load(inputfile);
         signScreen=new signUP();
-        signScreen.icon.click();
 
-        signScreen.nagvDrawer.click();
-        signScreen.createAccountButtonDrawer.click();
-        signScreen.createAccountButton.click();
-        signScreen.nextButtonLanguage.click();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
         signScreen.nameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.emailInputField.click();
         signScreen.emailInputField.sendKeys(props.getProperty("invalidEmail"));
-        String actualMessage=signScreen.emailErrorMessage.getText();
-        Assert.assertEquals(actualMessage,"Please enter a valid email.");
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.birthdayInputField.click();
+        signScreen.okButtonDate.click();
+        signScreen.passwordInputField.click();
+        signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.signUpButton.click();
+        Assert.assertNotNull(signScreen.notValidEmailMessage);
     }
-    //@Test
+//    @Test
+    //passed
     public void checkInvalidName() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
         props=new Properties();
         props.load(inputfile);
         signScreen=new signUP();
-        signScreen.icon.click();
-
-        signScreen.nagvDrawer.click();
-        signScreen.createAccountButtonDrawer.click();
-        signScreen.createAccountButton.click();
-        signScreen.nextButtonLanguage.click();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
         signScreen.nameInputField.sendKeys(props.getProperty("invalidName"));
-        String Errorname=signScreen.nameErrorMessage.getText();
-        Assert.assertEquals(Errorname,"Must be 50 characters or fewer.");
-
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        String name=signScreen.nameInputField.getText();
+        Assert.assertEquals(name.length(),50);
     }
-    //@Test
+//    @Test
+    //passed
     public void closeAndCheckDataIsEmpty() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
         props=new Properties();
         props.load(inputfile);
         signScreen=new signUP();
-        signScreen.icon.click();
-
-        signScreen.nagvDrawer.click();
-        signScreen.createAccountButtonDrawer.click();
-        signScreen.createAccountButton.click();
-        signScreen.nextButtonLanguage.click();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
         signScreen.nameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.emailInputField.click();
         signScreen.emailInputField.sendKeys(props.getProperty("validEmail"));
-        signScreen.backButton.click();
-        signScreen.nextButtonLanguage.click();
-        String content=signScreen.nameInputField.getText();
-        Assert.assertEquals(content,"Name");
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.birthdayInputField.click();
+        signScreen.okButtonDate.click();
+        signScreen.passwordInputField.click();
+        signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.cancelButton.click();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        String name =signScreen.nameInputField.getText();
+        System.out.println(name);
+        Assert.assertEquals(name,"");
 
 
     }
-    //    @Test
-    public void checkIfDataConsistent() throws IOException {
+
+//        @Test
+    //passed
+    public  void checkIfEmailExisted() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
         props=new Properties();
         props.load(inputfile);
         signScreen=new signUP();
-        signScreen.icon.click();
-
-        signScreen.nagvDrawer.click();
-        signScreen.createAccountButtonDrawer.click();
-        signScreen.createAccountButton.click();
-        signScreen.nextButtonLanguage.click();
-
-        signScreen.nameInputField.sendKeys(props.getProperty("validName"));
-        signScreen.emailInputField.sendKeys(props.getProperty("validEmail"));
-        signScreen.birthdayInputField.click();
-        signScreen.selectedYear.click();
-        signScreen.nextButtonInput.click();
-        signScreen.nextButtonInput.click();
-        String nameSignUp=signScreen.nameFieldSignUp.getText();
-        String emailSignUp=signScreen.emailFieldSignUp.getText();
-        Assert.assertEquals(nameSignUp,props.getProperty("validName"));
-        Assert.assertEquals(emailSignUp,props.getProperty("validEmail"));
-
-
-    }
-    //    @Test
-    public  void checkOnNextButtonIfDisabled() throws IOException {
-        File propsFile=new File("src/test/resources/testData/userData.properties");
-        inputfile=new FileInputStream(propsFile);
-        props=new Properties();
-        props.load(inputfile);
-        signScreen=new signUP();
-        signScreen.icon.click();
-
-        signScreen.nagvDrawer.click();
-        signScreen.createAccountButtonDrawer.click();
-        signScreen.createAccountButton.click();
-        signScreen.nextButtonLanguage.click();
-        signScreen.nameInputField.sendKeys(props.getProperty("invalidName"));
-        signScreen.emailInputField.sendKeys(props.getProperty("invalidEmail"));
-        signScreen.birthdayInputField.click();
-        signScreen.selectedYear.click();
-        signScreen.nextButtonInput.click();
-        boolean isDisabled= !signScreen.nextButtonInput.isEnabled();
-        Assert.assertEquals(isDisabled,true);
-
-
+            signScreen.signUpButtonWhatsHappeningPage.click();
+            signScreen.nameInputField.click();
+            signScreen.nameInputField.sendKeys(props.getProperty("validName"));
+            signScreen.userNameInputField.click();
+            signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+            signScreen.emailInputField.click();
+            signScreen.emailInputField.sendKeys(props.getProperty("existedEmail"));
+            driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+            signScreen.birthdayInputField.click();
+            signScreen.okButtonDate.click();
+            signScreen.passwordInputField.click();
+            signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+            driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+            signScreen.signUpButton.click();
+            Wait<AndroidDriver> notRobotWait=new FluentWait<AndroidDriver>(driver)
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .withTimeout(Duration.ofSeconds(40))
+                    .ignoring(NoSuchElementException.class);
+            notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
+            notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
+            Assert.assertNotNull(signScreen.otpInputField);
 
     }
-    //    @Test
+//        @Test
+        //passed
     public void checkIfEmptyDataPassed() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
         props=new Properties();
         props.load(inputfile);
         signScreen=new signUP();
-        signScreen.icon.click();
-
-        signScreen.nagvDrawer.click();
-        signScreen.createAccountButtonDrawer.click();
-        signScreen.createAccountButton.click();
-        signScreen.nextButtonLanguage.click();
-        boolean isDisabled= !signScreen.nextButtonInput.isEnabled();
-        Assert.assertEquals(isDisabled,true);
+        signScreen.signUpButtonWhatsHappeningPage.click();
+       signScreen.signUpButton.click();
+       Assert.assertNotNull(signScreen.emptyNameMessage,"Name cannot be empty");
+       Assert.assertNotNull(signScreen.emptyUserNameMessage,"Username cannot be empty");
+       Assert.assertNotNull(signScreen.emptyEmailMessage,"Email cannot be empty");
+       Assert.assertNotNull(signScreen.emptyDateMessage,"Date of birth cannot be empty");
+       Assert.assertNotNull(signScreen.emptyPasswordMessage,"Password cannot be empty");
     }
-    @Test
-    public void checkValidCase() throws IOException {
+//    @Test
+    //failed it is invalid
+    public void checkBackButtonIAmNotRobot() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
         props=new Properties();
         props.load(inputfile);
         signScreen=new signUP();
-        signScreen.icon.click();
-
-        signScreen.nagvDrawer.click();
-        signScreen.createAccountButtonDrawer.click();
-        signScreen.createAccountButton.click();
-        signScreen.nextButtonLanguage.click();
-
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
         signScreen.nameInputField.sendKeys(props.getProperty("validName"));
-        signScreen.emailInputField.sendKeys(props.getProperty("validEmail"));
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.emailInputField.click();
+        signScreen.emailInputField.sendKeys(props.getProperty("existedEmail"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
         signScreen.birthdayInputField.click();
-        signScreen.selectedYear.click();
-        signScreen.nextButtonInput.click();
-        signScreen.nextButtonInput.click();
-        signScreen.nextButtonInput.click();
+        signScreen.okButtonDate.click();
+        signScreen.passwordInputField.click();
+        signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.signUpButton.click();
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        Assert.assertNull(signScreen.iAmNotRobot);
+    }
+    @Test
+    public void checkValidCasePartOne() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        signScreen=new signUP();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
+        signScreen.nameInputField.sendKeys(props.getProperty("validName"));
+        Thread.sleep(1000); // Sleep for 1 seconds
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        Thread.sleep(1000); // Sleep for 1 seconds
+        signScreen.emailInputField.click();
+        signScreen.emailInputField.sendKeys(props.getProperty("validEmail"));
+        Thread.sleep(1000); // Sleep for 1 seconds
+
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.birthdayInputField.click();
+        signScreen.okButtonDate.click();
+        signScreen.passwordInputField.click();
+        signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+        Thread.sleep(1000); // Sleep for 1 seconds
+
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.signUpButton.click();
+        Wait<AndroidDriver> notRobotWait=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(2))
+                .withTimeout(Duration.ofSeconds(40))
+                .ignoring(NoSuchElementException.class);
+        notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
+        notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
+    }
+    @Test
+    public void checkValidCasePartTwo() throws IOException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        signScreen=new signUP();
+
+        Assert.assertNull(signScreen.otpInputField);
+
 
     }
+
 
 
 }

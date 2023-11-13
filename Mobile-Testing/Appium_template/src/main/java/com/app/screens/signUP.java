@@ -8,50 +8,56 @@ import org.openqa.selenium.support.PageFactory;
 
 public class signUP extends base {
 
-    @AndroidFindBy(accessibility = "X")
-    public WebElement icon;
+    @AndroidFindBy(accessibility = "SignUp")
+    public WebElement signUpButtonWhatsHappeningPage;
 
-    @AndroidFindBy(accessibility = "Show navigation drawer")
-    public WebElement nagvDrawer;
-
-    @AndroidFindBy(xpath = "(//android.view.View)[1]")
-    public WebElement createAccountButtonDrawer;
-
-    @AndroidFindBy(xpath = "(//android.widget.Button)[2]")
-    public WebElement createAccountButton;
-    @AndroidFindBy(xpath = "(//android.view.ViewGroup)[4]")
-    public WebElement nextButtonLanguage;
-    @AndroidFindBy(id = "com.twitter.android:id/name_edit_text")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[1]")
     public WebElement nameInputField;
-    @AndroidFindBy (id = "com.twitter.android:id/phone_or_email_edit_text")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[2]")
+    public WebElement userNameInputField;
+    @AndroidFindBy (xpath = "(//android.widget.EditText)[3]")
     public WebElement emailInputField;
-    @AndroidFindBy (id = "com.twitter.android:id/birthday_edit_text")
+    @AndroidFindBy (xpath = "(//android.widget.EditText)[4]")
     public WebElement birthdayInputField;
+    @AndroidFindBy (accessibility = "OK")
+    public WebElement okButtonDate;
 
-    //next button and sign up button
-    @AndroidFindBy (id = "com.twitter.android:id/cta_button")
-    public WebElement nextButtonInput;
+    @AndroidFindBy (xpath = "(//android.widget.EditText)[5]")
+    public WebElement passwordInputField;
 
-    @AndroidFindBy(id = "com.twitter.android:id/textinput_error")
-    public WebElement emailErrorMessage;
+    @AndroidFindBy (accessibility = "Sign up")
+    public WebElement signUpButton;
 
-    @AndroidFindBy(id = "com.twitter.android:id/textinput_error")
-    public WebElement nameErrorMessage;
+    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Terms\"]/android.widget.TextView")
+    public WebElement iAmNotRobot;
 
-    @AndroidFindBy(id ="com.twitter.android:id/back_button")
-    public WebElement backButton;
+    @AndroidFindBy (accessibility = "Email is not valid")
+    public WebElement notValidEmailMessage;
 
-    @AndroidFindBy (xpath = "(//android.widget.Button)[2]")
-    public WebElement selectedYear;
+    @AndroidFindBy (accessibility = "Cancel")
+    public WebElement cancelButton;
+    @AndroidFindBy (xpath = "(//android.widget.EditText)[1]")
+    public WebElement otpInputField;
 
-    @AndroidFindBy (id = "com.twitter.android:id/name_edit_text")
-    public WebElement nameFieldSignUp;
+    @AndroidFindBy (accessibility = "Invalid input data: Invalid value")
+    public WebElement invalidOTPMessage;
+    @AndroidFindBy(accessibility = "Incorrect OTP")
+    public WebElement incorrectOTPMessage;
 
-    @AndroidFindBy(id = "com.twitter.android:id/phone_or_email_edit_text")
-    public WebElement emailFieldSignUp;
+    @AndroidFindBy(accessibility = "Name cannot be empty")
+    public WebElement emptyNameMessage;
 
+    @AndroidFindBy(accessibility = "Username cannot be empty")
+    public WebElement emptyUserNameMessage;
 
+    @AndroidFindBy(accessibility = "Email cannot be empty")
+    public WebElement emptyEmailMessage;
 
+    @AndroidFindBy(accessibility = "Date of birth cannot be empty")
+    public WebElement emptyDateMessage;
+
+    @AndroidFindBy(accessibility = "Password cannot be empty")
+    public WebElement emptyPasswordMessage;
 
 
 
