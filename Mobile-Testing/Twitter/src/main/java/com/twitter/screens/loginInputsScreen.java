@@ -17,6 +17,15 @@ public class loginInputsScreen extends base {
     public WebElement emailAssertionElement;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Wrong Password\"]")
     public WebElement passAssertionElement;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Email cannot be empty\"]")
+    public WebElement emptyEmailAssertion;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Email is not valid\"]")
+    public WebElement emailFormAssertion;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Password length should be 6 or more\"]")
+    public WebElement passFormAssertion;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Password cannot be empty\"]")
+    public WebElement emptyPassAssertion;
+
     public void typeEmail(String email){
         emailInput.sendKeys(email);
     }

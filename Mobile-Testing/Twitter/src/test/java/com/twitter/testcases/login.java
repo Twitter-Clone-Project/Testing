@@ -18,7 +18,7 @@ public class login extends base {
     homeScreen homeScreen;
     forgetPassScreens forgetPassScreens;
 
-    //////////////////////////BUG///////////////////////
+    //////////////////////////BUG////////////////Fixed////////////////
     @Test
     public void correctLogin() throws InterruptedException {
         synchronized (driver) {
@@ -35,6 +35,34 @@ public class login extends base {
         loginInputsScreen.clickOnLogin();
         Assert.assertTrue(homeScreen.assertionElement.isDisplayed(), "Element is not displayed.");
     }
+    @Test
+    public void loginEmptyEmail() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        loginInputsScreen = new loginInputsScreen();
+        homeScreen=new homeScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen.clickOnPassInput();
+        loginInputsScreen.typePass("test1234");
+        loginInputsScreen.clickOnLogin();
+        Assert.assertTrue(loginInputsScreen.emptyEmailAssertion.isDisplayed(), "Element is not displayed.");
+    }
+    @Test
+    public void loginEmptyPass() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        loginInputsScreen = new loginInputsScreen();
+        homeScreen=new homeScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen.clickOnEmailInput();
+        loginInputsScreen.typeEmail("rawanmostafa401@gmail.com");
+        loginInputsScreen.clickOnLogin();
+        Assert.assertTrue(loginInputsScreen.emptyPassAssertion.isDisplayed(), "Element is not displayed.");
+    }
 
     @Test
     public void falseEmail() throws InterruptedException {
@@ -50,6 +78,37 @@ public class login extends base {
         loginInputsScreen.typePass("test1234");
         loginInputsScreen.clickOnLogin();
         Assert.assertTrue(loginInputsScreen.emailAssertionElement.isDisplayed(), "Element is displayed.");
+    }
+    @Test
+    public void falseEmailForm() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        loginInputsScreen = new loginInputsScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen.clickOnEmailInput();
+//        loginInputsScreen.typeEmail("ra@g");
+        loginInputsScreen.typeEmail("ra.com");
+        loginInputsScreen.clickOnPassInput();
+        loginInputsScreen.typePass("test1234");
+        loginInputsScreen.clickOnLogin();
+        Assert.assertTrue(loginInputsScreen.emailFormAssertion.isDisplayed(), "Element is displayed.");
+    }
+    @Test
+    public void falsePassForm() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        loginInputsScreen = new loginInputsScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen.clickOnEmailInput();
+        loginInputsScreen.typeEmail("rawanmostafa401@gmail.com");
+        loginInputsScreen.clickOnPassInput();
+        loginInputsScreen.typePass("test");
+        loginInputsScreen.clickOnLogin();
+        Assert.assertTrue(loginInputsScreen.passFormAssertion.isDisplayed(), "Element is displayed.");
     }
 
     @Test
@@ -90,7 +149,16 @@ public class login extends base {
         forgetPassScreens.clickOnRetypeNewPassInput();
         forgetPassScreens.retypeNewPass("test1234");
         forgetPassScreens.clickOnDone();
-        //assert
+
+
+        homeScreen=new homeScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen.clickOnEmailInput();
+        loginInputsScreen.typeEmail("rawanmostafa401@gmail.com");
+        loginInputsScreen.clickOnPassInput();
+        loginInputsScreen.typePass("test1234");
+        loginInputsScreen.clickOnLogin();
+        Assert.assertTrue(homeScreen.assertionElement.isDisplayed(), "Element is not displayed.");
     }
 
     @Test
@@ -109,6 +177,39 @@ public class login extends base {
         forgetPassScreens.clickOnNext();
         Assert.assertTrue(forgetPassScreens.emailAssertionElement.isDisplayed(),"Element is not displayed.");
 
+    }
+    @Test
+    public void forgetPasswordEmptyEmail() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen = new loginInputsScreen();
+        loginInputsScreen.clickOnForgetPass();
+        forgetPassScreens=new forgetPassScreens();
+        forgetPassScreens.clickOnNext();
+        Assert.assertTrue(forgetPassScreens.emptyEmailAssertion.isDisplayed(),"Element is not displayed.");
+
+    }
+
+    @Test
+    public void forgetPasswordEmptyOTP() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen = new loginInputsScreen();
+        loginInputsScreen.clickOnForgetPass();
+        forgetPassScreens=new forgetPassScreens();
+        forgetPassScreens.clickOnEmail();
+        forgetPassScreens.typeEmail("rawanmostafa401@gmail.com");
+        driver.hideKeyboard();
+        forgetPassScreens.clickOnNext();
+        forgetPassScreens.clickOnVerifyOtp();
+
+        Assert.assertTrue(forgetPassScreens.emptyOtpAssertion.isDisplayed(),"Element is not displayed.");
     }
     @Test
     public void forgetPasswordFalseOTP() throws InterruptedException {
@@ -130,9 +231,9 @@ public class login extends base {
 
         Assert.assertTrue(forgetPassScreens.otpAssertionElement.isDisplayed(),"Element is not displayed.");
     }
-    /////////////////BUG///////////////////////
+    /////////////////BUG///////////////////////Fixed////////////////////////
     @Test
-    public void forgetPasswordResendOTP() throws InterruptedException {
+    public void forgetPasswordResendOTPNew() throws InterruptedException {
         synchronized (driver) {
             driver.wait(10000);
         }
@@ -149,6 +250,27 @@ public class login extends base {
         wait.until(ExpectedConditions.visibilityOf(forgetPassScreens.resendOtpBtn));
         forgetPassScreens.clickOnResendOtp();
         wait.until(ExpectedConditions.visibilityOf(forgetPassScreens.waitElement));
+        Assert.assertTrue(forgetPassScreens.waitElement.isDisplayed(), "Element is not displayed.");
+    }
+    @Test
+    public void forgetPasswordResendOTPOld() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen = new loginInputsScreen();
+        loginInputsScreen.clickOnForgetPass();
+        forgetPassScreens=new forgetPassScreens();
+        forgetPassScreens.clickOnEmail();
+        forgetPassScreens.typeEmail("rawanmostafa401@gmail.com");
+        driver.hideKeyboard();
+        forgetPassScreens.clickOnNext();
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(130));
+        wait.until(ExpectedConditions.visibilityOf(forgetPassScreens.resendOtpBtn));
+        forgetPassScreens.clickOnResendOtp();
+        wait.until(ExpectedConditions.visibilityOf(forgetPassScreens.otpAssertionElement));
+        Assert.assertTrue(forgetPassScreens.otpAssertionElement.isDisplayed(),"Element is not displayed.");
     }
     @Test
     public void forgetPasswordMismatch() throws InterruptedException {
