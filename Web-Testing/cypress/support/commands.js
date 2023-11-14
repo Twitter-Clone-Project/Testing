@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import MailSlurp from "mailslurp-client";
+
+const apiKey =
+  "a6857723b2990d0f5b10018b4e2c5f392a98ab889b1521b23e73a6b0fdf7b848";
+
+if (!apiKey) {
+  throw new Error("MAILSLURP_API_KEY not found in environment variables.");
+}
+
+const mailslurp = new MailSlurp({ apiKey });
+
+Cypress.Commands.add("mailslurp", () => {
+  return cy.wrap(mailslurp);
+});

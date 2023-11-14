@@ -1,0 +1,44 @@
+{
+  "name": "cypress-mailslurp",
+  "author": "mailslurp",
+  "description": "Cypress email plugin for MailSlurp. Create test email accounts to send and receive emails in Cypress tests",
+  "version": "1.7.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --testPathPattern=test/.+",
+    "lint": "tsdx lint --fix src test cypress",
+    "cypress": "cypress run",
+    "cypress-open": "cypress open",
+    "readme": "node scripts/readme.js"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "module": "dist/cypress-mailslurp.esm.js",
+  "devDependencies": {
+    "cypress": "^12.8.1",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "jest-diff": "^29.5.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "mailslurp-client": "^15.17.0"
+  }
+}

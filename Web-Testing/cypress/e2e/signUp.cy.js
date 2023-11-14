@@ -1,4 +1,4 @@
-describe("signUp", () => {
+    describe("signUp", () => {
   beforeEach(() => {
     cy.visit("https://twitter.com/");
     cy.fixture("signUpSelectors").as("selectors");

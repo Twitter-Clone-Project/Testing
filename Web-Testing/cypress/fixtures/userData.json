@@ -1,10 +1,10 @@
 {
-    "userName":"testing72100",
+    "userName":"testingcypress",
     "invalidUserName":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "existingEmail":"menamohamed0207@gmail.com",
+    "existingEmail":"mena@gmail.com",
     "invalidEmail":"k@n",
     "invalidEmailPassed":"menna",
-    "validEmail":"hixica9378@mainmile.com",
+    "validEmail":"menna.ibrahim02@eng-st.cu.edu.eg",
     "selectedMonth":"February",
     "selectedDay":"7",
     "selectedYear":"2002",
@@ -12,5 +12,6 @@
     "passwordOfTesting":"twitter_clone",
     "verificationCode":"150733",
     "twitterValidPassword":"010testinge2e123",
-    "twitterInvalidPassword":"1234567"
+    "twitterInvalidPassword":"1234567",
+    "surpMail":"4113c8ce-5a59-4b30-879a-301408731187@mailslurp.com"
 }

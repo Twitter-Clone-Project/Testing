@@ -14,12 +14,15 @@
   "userNameTextField":":nth-child(1) > :nth-child(2) > .relative > .peer",
   "nameInputField":".p-3 > :nth-child(1) > :nth-child(1) > .relative > .peer",
   "nextButtonSignUp":"[data-testid='Next']",
-  "verificationCodeInputField":"#Normal",
   "nextButtonVerificationCode":".justify-self-end > .relative > .cursor-pointer",
   "closeButton":"[data-testid='close-btn']",
   "popUp":".go3958317564",
   "didntReceiveCode":".text-blue.hover:underline",
   "signUpWithGoogleButton":"[data-testid='Sign Up with Google']",
   "errorEmailMessage":"[data-testid='email-error']",
-  "confirmPasswordEye":"[data-testid='Confirm Password-showIcon']"
+  "confirmPasswordEye":"[data-testid='Confirm Password-showIcon']",
+  "verificationCodeInputField":"[data-testid='Code']",
+  "verificationCodeButton":"[data-testid='Next']",
+  "emailExitedErrorMessage":"[data-testid='email-error']",
+  "userNameExistedErrorMessage":"[data-testid='Username-err']"
 }

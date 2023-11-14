@@ -1,5 +1,10 @@
 {
   "devDependencies": {
-    "cypress": "^13.3.3"
+    "cypress": "^13.5.0",
+    "cypress-mailslurp": "^1.7.0"
+  },
+  "dependencies": {
+    "@cypress/instrument-cra": "^1.4.0",
+    "mailslurp": "^0.0.1-security"
   }
 }
