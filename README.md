@@ -83,7 +83,7 @@
   
 ## About The Project
 
-Welcome to our Project – your all-in-one solution for ensuring the quality and performance of your Twitter clone app. In this repository, we employ cutting-edge testing methodologies and tools to conduct end-to-end testing of web and mobile applications, along with intense stress testing for your Twitter clone app.
+Welcome to our Project – the all-in-one solution for ensuring the quality and performance of our Twitter clone app. In this repository, we employ cutting-edge testing methodologies and tools to conduct end-to-end testing of web and mobile applications, along with intense stress testing for our Twitter clone app.
 
 ### Key Features
 
