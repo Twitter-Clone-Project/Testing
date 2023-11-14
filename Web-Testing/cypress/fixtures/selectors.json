@@ -8,5 +8,6 @@
   "newPassInput": "[data-testid='Enter a new password']",
   "confirmPassInput": "[data-testid='Confirm your password']",
   "changePassBtn": "[data-testid='Change password']",
-  "resendOtpBtn": "[data-testid='resend-code']"
+  "resendOtpBtn": "[data-testid='resend-code']",
+  "otpInput": "[data-testid='Code']"
 }

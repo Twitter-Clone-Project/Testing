@@ -11,6 +11,10 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.4.0",
+    "cypress-mailslurp": "^1.7.0",
     "cypress-social-logins": "^1.14.1"
+  },
+  "dependencies": {
+    "mailslurp-client": "^15.17.3"
   }
 }
