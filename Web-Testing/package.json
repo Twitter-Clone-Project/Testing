@@ -1,7 +1,13 @@
 {
+  "scripts": {
+    "test": "nyc mocha"
+  },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.12.9",
     "cypress": "^13.5.0",
-    "cypress-mailslurp": "^1.7.0"
+    "cypress-mailslurp": "^1.7.0",
+    "nyc": "^15.1.0",
+    "vite-plugin-istanbul": "^5.0.0"
   },
   "dependencies": {
     "@cypress/instrument-cra": "^1.4.0",

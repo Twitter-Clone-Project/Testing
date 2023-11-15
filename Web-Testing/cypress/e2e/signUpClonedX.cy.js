@@ -1,6 +1,6 @@
 describe("signUp", () => {
   beforeEach(() => {
-    cy.visit("http://18.212.103.71:5173/");
+    cy.visit("http://localhost:3000/");
     cy.fixture("signUpSelectors").as("selectors");
     cy.fixture("userData").as("userData");
     cy.get("@selectors").then((selectors) => {
@@ -38,11 +38,11 @@ describe("signUp", () => {
       });
     });
   });
-  it.only("username existed and the email not ", () => {
+  it("username existed and the email not ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
-        cy.contains("Name").type(userData.userName);
-        cy.get(selectors.userNameTextField).type(userData.userName);
+        cy.contains("Name").type(userData.existedUserName);
+        cy.get(selectors.userNameTextField).type(userData.existedUserName);
         cy.get(selectors.passwordInputField).type(userData.passwordOfTesting);
         cy.get(selectors.confirmPasswordInputField).type(
           userData.passwordOfTesting
