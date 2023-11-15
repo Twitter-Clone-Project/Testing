@@ -9,10 +9,24 @@ describe("Should be able to login correctly", () => {
     cy.get("@credentials").then((cred) => {
       cy.get("@selectors").then((sel) => {
         cy.get(sel.startScreenLoginBtn).click({ force: true });
-        cy.get(sel.loginEmailInput).type(cred.email);
+        cy.get(sel.loginEmailInput).type(cred.mailSlurpEmail);
         cy.get(sel.loginPassInput).type(cred.password);
         cy.get(sel.loginBtn).click();
         cy.url().should("contain", "/home");
+      });
+    });
+  });
+  it("test password eye", () => {
+    cy.get("@credentials").then((cred) => {
+      cy.get("@selectors").then((sel) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.mailSlurpEmail);
+        cy.get(sel.loginPassInput).type(cred.password);
+        cy.get(sel.loginPassInput).should("have.attr", "type", "password");
+        cy.get(sel.showPass).click();
+        cy.get(sel.loginPassInput).should("have.attr", "type", "text");
+        cy.get(sel.hidePass).click();
+        cy.get(sel.loginPassInput).should("have.attr", "type", "password");
       });
     });
   });
@@ -22,7 +36,7 @@ describe("should not login", () => {
     cy.get("@credentials").then((cred) => {
       cy.get("@selectors").then((sel) => {
         cy.get(sel.startScreenLoginBtn).click({ force: true });
-        cy.get(sel.loginEmailInput).type(cred.email);
+        cy.get(sel.loginEmailInput).type(cred.mailSlurpEmail);
         cy.get(sel.loginPassInput).type(cred.wrongPassword);
         cy.get(sel.loginBtn).click();
         cy.url().should("contain", "/login");
@@ -34,7 +48,7 @@ describe("should not login", () => {
     cy.get("@credentials").then((cred) => {
       cy.get("@selectors").then((sel) => {
         cy.get(sel.startScreenLoginBtn).click({ force: true });
-        cy.get(sel.loginEmailInput).type(cred.email);
+        cy.get(sel.loginEmailInput).type(cred.mailSlurpEmail);
         cy.get(sel.loginPassInput).type(cred.shortPassword);
         cy.get(sel.loginBtn).click();
         cy.url().should("contain", "/login");
@@ -48,7 +62,7 @@ describe("should not login", () => {
     cy.get("@credentials").then((cred) => {
       cy.get("@selectors").then((sel) => {
         cy.get(sel.startScreenLoginBtn).click({ force: true });
-        cy.get(sel.loginEmailInput).type(cred.email);
+        cy.get(sel.loginEmailInput).type(cred.mailSlurpEmail);
         cy.get(sel.loginBtn).should("be.disabled");
         cy.url().should("contain", "/login");
       });
@@ -83,16 +97,15 @@ describe("should not login", () => {
       });
     });
   });
-  /////////////////BUG////////////////////
+  /////////////////BUG////////////Fixed/////////////
   it("wrong email form", () => {
     cy.get("@credentials").then((cred) => {
       cy.get("@selectors").then((sel) => {
         cy.get(sel.startScreenLoginBtn).click({ force: true });
         cy.get(sel.loginEmailInput).type("k@g");
         cy.get(sel.loginPassInput).type(cred.password);
-        cy.get(sel.loginBtn).click();
+        cy.get('[data-testid="email-error"]').should("be.visible");
         cy.url().should("contain", "/login");
-        cy.get("div").contains("No User With Email").should("be.visible");
       });
     });
   });
@@ -137,6 +150,52 @@ describe("should be able to forget password", () => {
         });
 
         // cy.pause();
+      });
+    });
+  });
+  it("test password eye", () => {
+    cy.get("@credentials").then((cred) => {
+      cy.get("@selectors").then((sel) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.forgotPassBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.mailSlurpEmail);
+        cy.get(sel.nextBtn).click();
+        cy.wait(5000);
+        cy.mailslurp().then((mailslurp) => {
+          return mailslurp
+            .waitForLatestEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa")
+            .then((email) => {
+              const codeRegex = /Your OTP is ([0-9a-zA-Z]+)/;
+              const match = codeRegex.exec(email.body);
+              const code = match ? match[1] : null;
+              expect(code).to.not.be.null;
+              // cy.log(code);
+              cy.get(sel.otpInput).type(code);
+              cy.get(sel.nextBtn).click();
+              cy.get(sel.newPassInput, { timeout: 6000 }).type(cred.password);
+              cy.get(sel.confirmPassInput).type(cred.password);
+
+              cy.get(sel.newPassInput).should("have.attr", "type", "password");
+              cy.get(sel.confirmPassInput).should(
+                "have.attr",
+                "type",
+                "password"
+              );
+
+              cy.get(sel.showPassNew).click();
+              cy.get(sel.newPassInput).should("have.attr", "type", "text");
+              cy.get(sel.showPassConfirm).click();
+              cy.get(sel.confirmPassInput).should("have.attr", "type", "text");
+              cy.get(sel.hidePassNew).click();
+              cy.get(sel.newPassInput).should("have.attr", "type", "password");
+              cy.get(sel.hidePassConfirm).click();
+              cy.get(sel.confirmPassInput).should(
+                "have.attr",
+                "type",
+                "password"
+              );
+            });
+        });
       });
     });
   });

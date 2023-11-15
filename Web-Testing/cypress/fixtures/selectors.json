@@ -9,5 +9,11 @@
   "confirmPassInput": "[data-testid='Confirm your password']",
   "changePassBtn": "[data-testid='Change password']",
   "resendOtpBtn": "[data-testid='resend-code']",
-  "otpInput": "[data-testid='Code']"
+  "otpInput": "[data-testid='Code']",
+  "showPass": "[data-testid='Password-showIcon']",
+  "hidePass": "[data-testid='Password-hideIcon']",
+  "showPassNew": "[data-testid='Enter a new password-showIcon']",
+  "showPassConfirm": "[data-testid='Confirm your password-showIcon']",
+  "hidePassNew": "[data-testid='Enter a new password-hideIcon']",
+  "hidePassConfirm": "[data-testid='Confirm your password-hideIcon']"
 }

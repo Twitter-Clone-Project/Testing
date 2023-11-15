@@ -3,6 +3,11 @@
   "env": {
     "MAILSLURP_API_KEY": "4733deadf031edf026ec0cbf1b3cacbab0faa0b7e7707ec6b27e54a0ab17ff73"
   },
+
+  "component": {
+    "componentFolder": "E:\\CMP3\\first_semester\\Software Engineering\\project\\front\\Front-End-Login\\src\\components"
+  },
+
   "defaultCommandTimeout": 30000,
   "responseTimeout": 30000,
   "requestTimeout": 30000
