@@ -1,17 +1,15 @@
 describe("signUp", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit(" http://localhost:3000/");
     cy.fixture("signUpSelectors").as("selectors");
     cy.fixture("userData").as("userData");
-    cy.get("@selectors").then((selectors) => {
-      cy.get(selectors.createAccountButton).click();
-    });
   });
   //i want to get the eye that get disappeared but i could not YET
   it("check on the other eye", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.passwordInputField).type("1", { delay: 100 });
-      cy.pause();
+      cy.get(selectors.createAccountButton).click();
+     
       cy.get(selectors.passwordInputField).should(
         "have.attr",
         "type",
@@ -24,6 +22,7 @@ describe("signUp", () => {
   it("testcase7:fill all input fields and click next", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.contains("Name").type(userData.userName);
         cy.get(selectors.userNameTextField).type(userData.userName);
         cy.get(selectors.passwordInputField).type(userData.passwordOfTesting);
@@ -41,6 +40,7 @@ describe("signUp", () => {
   it("username existed and the email not ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.contains("Name").type(userData.existedUserName);
         cy.get(selectors.userNameTextField).type(userData.existedUserName);
         cy.get(selectors.passwordInputField).type(userData.passwordOfTesting);
@@ -59,6 +59,7 @@ describe("signUp", () => {
   it("testcase2:enter invalid user name", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.nameInputField).type(userData.invalidUserName);
         cy.get(selectors.userEmailTextField).type(userData.validEmail);
         cy.get(selectors.nameInputField)
@@ -75,6 +76,7 @@ describe("signUp", () => {
   it("testcase6:what is your name ? message", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.nameInputField).type(userData.userName);
         cy.get(selectors.nameInputField).clear();
         cy.get(selectors.whatIsYourNameMessage).should(
@@ -88,6 +90,7 @@ describe("signUp", () => {
   it("testcase9:fill the confirmed password before password", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.nameInputField).type(userData.userName);
         cy.get(selectors.userNameTextField).type(userData.userName);
         cy.get(selectors.confirmPasswordInputField).type(
@@ -107,6 +110,7 @@ describe("signUp", () => {
   it("testcase1:enter invalid email", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.nameInputField).type(userData.userName);
         cy.get(selectors.userNameTextField).type(userData.userName);
         cy.get(selectors.passwordInputField).type(userData.passwordOfTesting);
@@ -126,6 +130,7 @@ describe("signUp", () => {
   it("testcase10:enter another invalid email", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.nameInputField).type(userData.userName);
         cy.get(selectors.userNameTextField).type(userData.userName);
         cy.get(selectors.passwordInputField).type(userData.passwordOfTesting);
@@ -145,6 +150,7 @@ describe("signUp", () => {
     cy.viewport(1920, 1080);
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.userNameTextField).type(userData.userName);
         cy.get(selectors.userEmailTextField).type(userData.validEmail);
         cy.get(selectors.monthSelector).select(userData.selectedMonth);
@@ -167,6 +173,7 @@ describe("signUp", () => {
   it("testcase5:empty email and user name and then click on the button it will be clickable", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.userNameTextField).type(userData.userName);
         cy.get(selectors.userEmailTextField).type(userData.validEmail);
         cy.get(selectors.monthSelector).select(userData.selectedMonth);
@@ -182,6 +189,7 @@ describe("signUp", () => {
   it("Year Field doesn't work properly", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.nameInputField).type(userData.userName, {
           delay: 100,
         });
@@ -207,15 +215,62 @@ describe("signUp", () => {
   });
 
   // bug
-  it.skip("sign up button", () => {
+  it("sign up button", () => {
+    cy.get(selectors.createAccountButton).click();
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.signUpWithGoogleButton).click();
-      cy.pause();
+      cy.url().should("not.eql", "http://18.212.103.71:5173/");
     });
   });
+
+  it("Password do not match", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
+        cy.get(selectors.nameInputField).type(userData.userName, {
+          delay: 100,
+        });
+        cy.get(selectors.userNameTextField).type(userData.userName, {
+          delay: 100,
+        });
+        cy.get(selectors.passwordInputField).type(userData.passwordOfTesting, {
+          delay: 100,
+        });
+        cy.get(selectors.confirmPasswordInputField).type(
+          userData.passwordDoNotMatch,
+          { delay: 100 }
+        );
+        cy.get(selectors.userEmailTextField).type(userData.validEmail, {
+          delay: 100,
+        });
+        cy.get(selectors.monthSelector).select(userData.selectedMonth);
+        cy.get(selectors.daySelector).select(userData.selectedDay);
+        cy.get(selectors.yearSelector).select(userData.selectedYear);
+        cy.get(selectors.passwordDoNotMatchError).should("be.visible");
+        cy.get(selectors.nextButtonSignUp).should("be.disabled");
+      });
+    });
+  });
+  it("Eye Password Icon", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.createAccountButton).click();
+      cy.get(selectors.passwordInputField).type(userData.passwordOfTesting, {
+        delay: 100,
+      });
+      cy.get(selectors.passwordInputField).should(
+        "have.attr",
+        "type",
+        "password"
+      );
+      cy.get(selectors.eyeShowPassword).click();
+      cy.get(selectors.passwordInputField).should("have.attr", "type", "text");
+    });
+  });
+
   it("enter existed email", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.nameInputField).type(userData.userName, {
           delay: 100,
         });
@@ -241,6 +296,7 @@ describe("signUp", () => {
     });
   });
   it("Empty Data", () => {
+    cy.get(selectors.createAccountButton).click();
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.nextButtonSignUp).should("be.disabled");
     });
@@ -249,6 +305,7 @@ describe("signUp", () => {
   it("verification code check", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
         cy.get(selectors.nameInputField).type(userData.userName, {
           delay: 100,
         });
@@ -292,5 +349,37 @@ describe("signUp", () => {
         });
       });
     });
+  });
+  it('Check on February month 29 days', () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
+        cy.get(selectors.nameInputField).type(userData.userName, {
+          delay: 100,
+        });
+        cy.get(selectors.userNameTextField).type(userData.userName, {
+          delay: 100,
+        });
+        cy.get(selectors.passwordInputField).type(userData.passwordOfTesting, {
+          delay: 100,
+        });
+        cy.get(selectors.confirmPasswordInputField).type(
+          userData.passwordOfTesting,
+          { delay: 100 }
+        );
+        //try to select wrong date like day 29 in feburary in 2021
+        cy.get(selectors.userEmailTextField).type(userData.validEmail, {
+          delay: 100,
+        })
+        cy.get(selectors.monthSelector).select("February");
+        cy.get(selectors.daySelector).select("29");
+        cy.get(selectors.yearSelector).select("2021");
+        //assert the selected date was the wrong date or it was changed
+        cy.get(selectors.daySelector).should("have.value", "");
+
+
+      });
+    });
+    
   });
 });

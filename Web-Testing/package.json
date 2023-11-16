@@ -4,7 +4,7 @@
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.12.9",
-    "cypress": "^13.5.0",
+    "cypress": "^13.5.1",
     "cypress-mailslurp": "^1.7.0",
     "nyc": "^15.1.0",
     "vite-plugin-istanbul": "^5.0.0"

@@ -24,5 +24,7 @@
   "verificationCodeInputField":"[data-testid='Code']",
   "verificationCodeButton":"[data-testid='Next']",
   "emailExitedErrorMessage":"[data-testid='email-error']",
-  "userNameExistedErrorMessage":"[data-testid='Username-err']"
+  "userNameExistedErrorMessage":"[data-testid='Username-err']",
+  "passwordDoNotMatchError":"[data-testid='Confirm Password-err']",
+  "eyeShowPassword":"[data-testid='Password-showIcon']"
 }
