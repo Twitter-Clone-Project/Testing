@@ -1,5 +1,5 @@
 // ***********************************************************
-// This example support/e2e.js is processed and
+// This example support/component.js is processed and
 // loaded automatically before your test files.
 //
 // This is a great place to put global configuration and
@@ -14,9 +14,14 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import "./commands";
-import "@cypress/code-coverage/support";
-// import { MailSlurp } from "mailslurp-client";
+import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+import { mount } from 'cypress/react'
+
+Cypress.Commands.add('mount', mount)
+
+// Example use:
+// cy.mount(<MyComponent />)

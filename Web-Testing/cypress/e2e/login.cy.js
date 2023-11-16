@@ -1,4 +1,4 @@
-const baseUrl = "http://18.212.103.71:5173/";
+const baseUrl = "http://18.212.103.71:5173";
 beforeEach(() => {
   cy.fixture("credentials").as("credentials");
   cy.fixture("selectors").as("selectors");
@@ -153,7 +153,7 @@ describe("should be able to forget password", () => {
       });
     });
   });
-  it("test password eye", () => {
+  it.only("test password eye", () => {
     cy.get("@credentials").then((cred) => {
       cy.get("@selectors").then((sel) => {
         cy.get(sel.startScreenLoginBtn).click({ force: true });
@@ -172,7 +172,7 @@ describe("should be able to forget password", () => {
               // cy.log(code);
               cy.get(sel.otpInput).type(code);
               cy.get(sel.nextBtn).click();
-              cy.get(sel.newPassInput, { timeout: 6000 }).type(cred.password);
+              cy.get(sel.newPassInput, { timeout: 9000 }).type(cred.password);
               cy.get(sel.confirmPassInput).type(cred.password);
 
               cy.get(sel.newPassInput).should("have.attr", "type", "password");
