@@ -36,6 +36,20 @@ public class login extends base {
         Assert.assertTrue(homeScreen.assertionElement.isDisplayed(), "Element is not displayed.");
     }
     @Test
+    public void passwordEyeTest() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        seeWhatsHappeningScreen = new seeWhatsHappeningScreen();
+        seeWhatsHappeningScreen.clickOnLogin();
+        loginInputsScreen=new loginInputsScreen();
+        loginInputsScreen.clickOnPassInput();
+        loginInputsScreen.typePass("test");
+        Assert.assertEquals(loginInputsScreen.passInput.getAttribute("password"),"true", "should be hidden");
+        loginInputsScreen.clickOnPassEye();
+        Assert.assertEquals(loginInputsScreen.passInput.getAttribute("password"),"false", "should be hidden");
+    }
+    @Test
     public void loginEmptyEmail() throws InterruptedException {
         synchronized (driver) {
             driver.wait(10000);

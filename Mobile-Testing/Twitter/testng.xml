@@ -11,7 +11,7 @@
         <classes>
             <class name="com.twitter.testcases.login">
                 <methods>
-                    <include name="forgetPasswordFalseOTPForm"></include>
+                    <include name="passwordEyeTest"></include>
                 </methods>
             </class>
         </classes>

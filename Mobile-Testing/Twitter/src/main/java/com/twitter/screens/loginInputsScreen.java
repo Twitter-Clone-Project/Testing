@@ -8,11 +8,13 @@ public class loginInputsScreen extends base {
     @AndroidFindBy(xpath = "//(android.widget.EditText)[1]")
     private WebElement emailInput;
     @AndroidFindBy(xpath = "//(android.widget.EditText)[2]")
-    private WebElement passInput;
+    public WebElement passInput;
     @AndroidFindBy (xpath="//android.view.View[@content-desc=\"Login\"]")
     private WebElement loginBtn;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Forgot Password?\"]")
     private WebElement forgetPassBtn;
+    @AndroidFindBy(xpath = "//android.widget.EditText[2]/android.widget.Button")
+    private WebElement passEye;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"No User With Email\"]")
     public WebElement emailAssertionElement;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Wrong Password\"]")
@@ -45,4 +47,5 @@ public class loginInputsScreen extends base {
     public void clickOnPassInput(){
         passInput.click();
     }
+    public void clickOnPassEye(){passEye.click();}
 }
