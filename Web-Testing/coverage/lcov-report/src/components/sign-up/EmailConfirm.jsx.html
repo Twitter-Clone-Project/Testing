@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.51% </span>
+                <span class="strong">12.82% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/37</span>
+                <span class='fraction'>5/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.12% </span>
+                <span class="strong">14.28% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/31</span>
+                <span class='fraction'>5/35</span>
             </div>
         
             
@@ -196,7 +196,13 @@
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
 <a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,7 +218,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -255,7 +262,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -266,6 +274,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -316,19 +330,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
@@ -340,9 +352,10 @@ import OwnToaster from '../OwnToaster';
 import NewPassword from '../login-page/NewPassword';
 import { useAuth } from '../../hooks/AuthContext';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >EmailConfirm<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>{</span> email, type = <span class="branch-0 cbranch-no" title="branch not covered" >'reset', u</span>ser = <span class="branch-0 cbranch-no" title="branch not covered" >null }</span>) <span class="cstat-no" title="statement not covered" >{</span></span>
+function <span class="fstat-no" title="function not covered" >EmailConfirm<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>{</span> email, type = <span class="branch-0 cbranch-no" title="branch not covered" >'reset' }</span>) <span class="cstat-no" title="statement not covered" >{</span></span>
   const [code, setCode] = <span class="cstat-no" title="statement not covered" >useState('');</span>
   const [err, setError] = <span class="cstat-no" title="statement not covered" >useState('');</span>
+  const [resetUser, setResetUser] = <span class="cstat-no" title="statement not covered" >useState(null);</span>
   const [isLoading, setIsLoading] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
   const [resetPasswordOpen, setResetPasswordOpen] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
   const { dispatch } = <span class="cstat-no" title="statement not covered" >useAuth();</span>
@@ -388,9 +401,10 @@ function <span class="fstat-no" title="function not covered" >EmailConfirm<span 
 &nbsp;
       const data = <span class="cstat-no" title="statement not covered" >await res.json();</span>
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (data.status === false) <span class="cstat-no" title="statement not covered" >throw new Error(data.message);</span></span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (type === 'reset') <span class="cstat-no" title="statement not covered" >setResetPasswordOpen(true);</span></span>
-      else <span class="cstat-no" title="statement not covered" >dispatch({ type: 'LOGIN', payload: user });</span>
+<span class="cstat-no" title="statement not covered" >      if (type === 'reset') {</span>
+<span class="cstat-no" title="statement not covered" >        setResetUser(data.data.user);</span>
+<span class="cstat-no" title="statement not covered" >        setResetPasswordOpen(true);</span>
+      } else <span class="cstat-no" title="statement not covered" >dispatch({ type: 'LOGIN', payload: data.data.user });</span>
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >      toast(error.message);</span>
     } finally {
@@ -398,7 +412,13 @@ function <span class="fstat-no" title="function not covered" >EmailConfirm<span 
     }
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (resetPasswordOpen) <span class="cstat-no" title="statement not covered" >return &lt;NewPassword email={email} /&gt;;</span></span>
+<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (resetPasswordOpen)</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;NewPassword
+        email={email}
+        user={type === 'reset' ? resetUser : null}
+      /&gt;
+    );
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="confirm mx-auto flex min-h-full w-full flex-1 flex-col items-center justify-center text-lg text-black dark:bg-border-gray dark:text-white"&gt;
@@ -453,13 +473,11 @@ function <span class="fstat-no" title="function not covered" >EmailConfirm<span 
 &nbsp;
 EmailConfirm.defaultProps = {
   type: 'reset',
-  user: null,
 };
 &nbsp;
 EmailConfirm.propTypes = {
   email: PropTypes.string.isRequired,
   type: PropTypes.string,
-  user: PropTypes.objectOf(),
 };
 export default EmailConfirm;
 &nbsp;</pre></td></tr></table></pre>
@@ -469,7 +487,7 @@ export default EmailConfirm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-16T21:34:29.293Z
+                at 2023-11-23T22:40:10.729Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

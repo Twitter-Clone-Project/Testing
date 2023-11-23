@@ -2,6 +2,7 @@
     "userName":"mennaAbdelbaset",
     "existedUserName":"testingcypress",
     "invalidUserName":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "invalidName":"menna1234",
     "existingEmail":"mena@gmail.com",
     "invalidEmail":"k@n",
     "invalidEmailPassed":"menna",
@@ -14,5 +15,8 @@
     "verificationCode":"150733",
     "twitterValidPassword":"010testinge2e123",
     "twitterInvalidPassword":"1234567",
-    "surpMail":"4113c8ce-5a59-4b30-879a-301408731187@mailslurp.com"
+    "surpMail":"4113c8ce-5a59-4b30-879a-301408731187@mailslurp.com",
+    "invalidLengthName":"m",
+    "invalidLengthUserName":"me"
+
 }

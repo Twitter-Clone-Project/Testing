@@ -26,5 +26,6 @@
   "emailExitedErrorMessage":"[data-testid='email-error']",
   "userNameExistedErrorMessage":"[data-testid='Username-err']",
   "passwordDoNotMatchError":"[data-testid='Confirm Password-err']",
-  "eyeShowPassword":"[data-testid='Password-showIcon']"
+  "eyeShowPassword":"[data-testid='Password-showIcon']",
+  "whatIsUserNameMessage":"[data-testid='Username-err']"
 }

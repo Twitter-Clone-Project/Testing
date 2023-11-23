@@ -4,12 +4,13 @@ describe("signUp", () => {
     cy.fixture("signUpSelectors").as("selectors");
     cy.fixture("userData").as("userData");
   });
-  //i want to get the eye that get disappeared but i could not YET
-  it("check on the other eye", () => {
+  //Bug: using edge makes another eye appear
+  it("testcase1: check on the eye", () => {
     cy.get("@selectors").then((selectors) => {
-      cy.get(selectors.passwordInputField).type("1", { delay: 100 });
+
       cy.get(selectors.createAccountButton).click();
-     
+      cy.get(selectors.passwordInputField).type("1", { delay: 100 });
+
       cy.get(selectors.passwordInputField).should(
         "have.attr",
         "type",
@@ -18,8 +19,8 @@ describe("signUp", () => {
     });
   });
 
-  //tested and there is a bug
-  it("testcase7:fill all input fields and click next", () => {
+  //Bug: when pressing on the label it focuses on the email input field
+  it("testcase2: fill all input fields and click next", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -37,7 +38,8 @@ describe("signUp", () => {
       });
     });
   });
-  it("username existed and the email not ", () => {
+  //passes
+  it("testcase3: username existed and the email not ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -52,11 +54,12 @@ describe("signUp", () => {
         cy.get(selectors.daySelector).select(userData.selectedDay);
         cy.get(selectors.yearSelector).select(userData.selectedYear);
         cy.get(selectors.userNameExistedErrorMessage).should("be.visible");
+        cy.get(selectors.nextButtonSignUp).should("be.disabled");
       });
     });
   });
-  //tested and it is okay
-  it("testcase2:enter invalid user name", () => {
+  //passes
+  it("testcase4:enter invalid user name longer than 50 character ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -72,8 +75,8 @@ describe("signUp", () => {
       });
     });
   });
-  //tested and it is okay
-  it("testcase6:what is your name ? message", () => {
+  //passes
+  it("testcase5: what is your name ? message", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -83,11 +86,30 @@ describe("signUp", () => {
           "have.text",
           "What's your  name?"
         );
+        cy.get(selectors.nameInputField).type(userData.userName);
+        cy.get(selectors.whatIsYourNameMessage).should("not.exist");
       });
     });
   });
-  //there is a bug when fill confirm password before password
-  it("testcase9:fill the confirmed password before password", () => {
+
+  it("testcase20: What's your username?  message", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
+        cy.get(selectors.userNameTextField).type(userData.userName);
+        cy.get(selectors.userNameTextField).clear();
+        cy.get(selectors.whatIsUserNameMessage).should(
+          "have.text",
+          "What's your username?"
+        );
+        cy.get(selectors.userNameTextField).type(userData.userName);
+        cy.get(selectors.whatIsUserNameMessage).should("not.exist");
+      });
+    });
+  });
+
+  // Bug: when fill confirm password before password
+  it("testcase6: fill the confirmed password before password", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -107,7 +129,7 @@ describe("signUp", () => {
   });
 
   //passes
-  it("testcase1:enter invalid email", () => {
+  it("testcase7: enter invalid email", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -127,7 +149,8 @@ describe("signUp", () => {
       });
     });
   });
-  it("testcase10:enter another invalid email", () => {
+  //passes
+  it("testcase8: enter another invalid email", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -146,7 +169,7 @@ describe("signUp", () => {
     });
   });
   //passes
-  it("testcase3:Fill Data and then press close", () => {
+  it("testcase9: Fill Data and then press close", () => {
     cy.viewport(1920, 1080);
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
@@ -170,7 +193,7 @@ describe("signUp", () => {
   });
 
   //passes
-  it("testcase5:empty email and user name and then click on the button it will be clickable", () => {
+  it("testcase10: empty email and user name and then click on the button it will be clickable", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -186,7 +209,8 @@ describe("signUp", () => {
       });
     });
   });
-  it("Year Field doesn't work properly", () => {
+  //Bug: the next button is not clickable
+  it("testcase11: Year Field doesn't work properly", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -214,16 +238,16 @@ describe("signUp", () => {
     });
   });
 
-  // bug
-  it("sign up button", () => {
+  // bug it gives nothing
+  it("testcase12: sign up button", () => {
     cy.get(selectors.createAccountButton).click();
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.signUpWithGoogleButton).click();
       cy.url().should("not.eql", "http://18.212.103.71:5173/");
     });
   });
-
-  it("Password do not match", () => {
+  //passes
+  it("testcase13: Password do not match", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -251,7 +275,8 @@ describe("signUp", () => {
       });
     });
   });
-  it("Eye Password Icon", () => {
+  //passes
+  it("testcase14: Eye Password Icon Fuction", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.createAccountButton).click();
       cy.get(selectors.passwordInputField).type(userData.passwordOfTesting, {
@@ -266,8 +291,8 @@ describe("signUp", () => {
       cy.get(selectors.passwordInputField).should("have.attr", "type", "text");
     });
   });
-
-  it("enter existed email", () => {
+  //passes
+  it("testcase15: enter existed email", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -295,14 +320,15 @@ describe("signUp", () => {
       });
     });
   });
-  it("Empty Data", () => {
+  //passes
+  it("testcase16: Empty Data", () => {
     cy.get(selectors.createAccountButton).click();
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.nextButtonSignUp).should("be.disabled");
     });
   });
-  //bug in back
-  it("verification code check", () => {
+  //bug: it gives error message
+  it("testcase17: verification code check", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -350,7 +376,8 @@ describe("signUp", () => {
       });
     });
   });
-  it('Check on February month 29 days', () => {
+  //bug data validation is missed
+  it("testcase18: Check on February month 29 days", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -370,16 +397,104 @@ describe("signUp", () => {
         //try to select wrong date like day 29 in feburary in 2021
         cy.get(selectors.userEmailTextField).type(userData.validEmail, {
           delay: 100,
-        })
+        });
         cy.get(selectors.monthSelector).select("February");
         cy.get(selectors.daySelector).select("29");
         cy.get(selectors.yearSelector).select("2021");
         //assert the selected date was the wrong date or it was changed
         cy.get(selectors.daySelector).should("have.value", "");
-
-
       });
     });
-    
   });
+  //bug : name validation is missed
+  it.only("testcase19: Check on Name validation", () => {
+    cy.wait(30000);
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
+        cy.get(selectors.nameInputField).type(userData.invalidName, {
+          delay: 100,
+        });
+        cy.get(selectors.userNameTextField).type(userData.userName, {
+          delay: 100,
+        });
+        cy.get(selectors.passwordInputField).type(userData.passwordOfTesting, {
+          delay: 100,
+        });
+        cy.get(selectors.confirmPasswordInputField).type(
+          userData.passwordOfTesting,
+          { delay: 100 }
+        );
+        //try to select wrong date like day 29 in feburary in 2021
+        cy.get(selectors.userEmailTextField).type(userData.validEmail, {
+          delay: 100,
+        });
+        cy.get(selectors.monthSelector).select(userData.selectedMonth);
+        cy.get(selectors.daySelector).select(userData.selectedDay);
+        cy.get(selectors.yearSelector).select(userData.selectedYear);
+        cy.wait(60000)
+        cy.get(selectors.nextButtonSignUp).should("be.disabled");
+      });
+    });
+  });
+  it.only("testcase21: missing name length validation", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
+        cy.get(selectors.nameInputField).type(userData.invalidLengthName, {
+          delay: 100,
+        });
+        cy.get(selectors.userNameTextField).type(userData.userName, {
+          delay: 100,
+        });
+        cy.get(selectors.passwordInputField).type(userData.passwordOfTesting, {
+          delay: 100,
+        });
+        cy.get(selectors.confirmPasswordInputField).type(
+          userData.passwordOfTesting,
+          { delay: 100 }
+        );
+        //try to select wrong date like day 29 in feburary in 2021
+        cy.get(selectors.userEmailTextField).type(userData.validEmail, {
+          delay: 100,
+        });
+        cy.get(selectors.monthSelector).select(userData.selectedMonth);
+        cy.get(selectors.daySelector).select(userData.selectedDay);
+        cy.get(selectors.yearSelector).select(userData.selectedYear);
+        cy.wait(60000)
+        cy.get(selectors.nextButtonSignUp).should("be.disabled");
+      });
+    });
+  });
+
+  it.only("testcase22: missing username length validation", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@userData").then((userData) => {
+        cy.get(selectors.createAccountButton).click();
+        cy.get(selectors.nameInputField).type(userData.userName, {
+          delay: 100,
+        });
+        cy.get(selectors.userNameTextField).type(userData.invalidLengthUserName, {
+          delay: 100,
+        });
+        cy.get(selectors.passwordInputField).type(userData.passwordOfTesting, {
+          delay: 100,
+        });
+        cy.get(selectors.confirmPasswordInputField).type(
+          userData.passwordOfTesting,
+          { delay: 100 }
+        );
+        //try to select wrong date like day 29 in feburary in 2021
+        cy.get(selectors.userEmailTextField).type(userData.validEmail, {
+          delay: 100,
+        });
+        cy.get(selectors.monthSelector).select(userData.selectedMonth);
+        cy.get(selectors.daySelector).select(userData.selectedDay);
+        cy.get(selectors.yearSelector).select(userData.selectedYear);
+        cy.wait(60000)
+        cy.get(selectors.nextButtonSignUp).should("be.disabled");
+      });
+    });
+  });
+
 });

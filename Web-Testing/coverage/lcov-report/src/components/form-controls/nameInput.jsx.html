@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>6/11</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
@@ -139,20 +139,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5468x</span>
-<span class="cline-any cline-yes">5468x</span>
+<span class="cline-any cline-yes">460x</span>
+<span class="cline-any cline-yes">460x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5468x</span>
-<span class="cline-any cline-yes">395x</span>
-<span class="cline-any cline-yes">395x</span>
-<span class="cline-any cline-yes">395x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">393x</span>
+<span class="cline-any cline-yes">460x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5468x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">460x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -202,9 +200,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 &nbsp;
@@ -216,9 +216,9 @@ function NameInput({ title, error, setError, Name, setName, maxLength }) {
   const handleInputChange = (event) =&gt; {
     setName(event.target.value);
     if (max &lt; event.target.value.length) setMax(event.target.value.length);
-    if (event.target.value.length === 0 &amp;&amp; max !== 0) {
-      const errorMessage = `What's your  ${title.toLowerCase()}?`;
-      setError(errorMessage);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (event.target.value.length === 0 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >max !== 0) {</span>
+      const errorMessage = `<span class="cstat-no" title="statement not covered" >What's your  ${title.toLowerCase()}?`;</span>
+<span class="cstat-no" title="statement not covered" >      setError(errorMessage);</span>
     } else setError('');
   };
   return (
@@ -239,7 +239,7 @@ function NameInput({ title, error, setError, Name, setName, maxLength }) {
         dark:text-white
         ${
           error !== ''
-            ? 'outline-warning focus:outline-warning'
+            ? <span class="branch-0 cbranch-no" title="branch not covered" >'outline-warning focus:outline-warning'</span>
             : 'outline-light-gray focus:outline-blue '
         }`}
       /&gt;
@@ -254,7 +254,7 @@ function NameInput({ title, error, setError, Name, setName, maxLength }) {
         peer-[:not(:placeholder-shown)]:text-xs 
           ${
             error !== ''
-              ? 'text-warning peer-focus:text-warning'
+              ? <span class="branch-0 cbranch-no" title="branch not covered" >'text-warning peer-focus:text-warning'</span>
               : 'text-dark-gray peer-focus:text-blue'
           }`}
       &gt;
@@ -264,7 +264,7 @@ function NameInput({ title, error, setError, Name, setName, maxLength }) {
         {Name.length} / {maxLength}
       &lt;/span&gt;
       {error !== '' &amp;&amp; (
-        &lt;span
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;span</span>
           data-testid={`${title}-err`}
           className=" absolute left-2 top-14 text-sm text-warning"
         &gt;
@@ -283,7 +283,7 @@ export default NameInput;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-16T21:34:29.293Z
+                at 2023-11-23T22:40:10.729Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
