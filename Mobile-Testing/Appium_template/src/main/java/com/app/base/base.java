@@ -5,6 +5,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
@@ -46,4 +47,9 @@ public class base {
         driver = new AndroidDriver(url, cap);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+//    @AfterClass
+//    public void AfterEach()
+//    {
+//        driver.quit();
+//    }
 }

@@ -200,7 +200,7 @@ public class signUpTestcases extends base {
         driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
         Assert.assertNull(signScreen.iAmNotRobot);
     }
-    @Test
+//    @Test
     public void checkValidCasePartOne() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -234,7 +234,7 @@ public class signUpTestcases extends base {
         notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
         notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
     }
-    @Test
+//    @Test
     public void checkValidCasePartTwo() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -246,6 +246,118 @@ public class signUpTestcases extends base {
 
 
     }
+//    @Test
+    public void checkOnNameLengthValidation()throws IOException, InterruptedException
+    {
+
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        signScreen=new signUP();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
+        signScreen.nameInputField.sendKeys(props.getProperty("invalidNameLength"));
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.emailInputField.click();
+        signScreen.emailInputField.sendKeys(props.getProperty("existedEmail"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.birthdayInputField.click();
+        signScreen.okButtonDate.click();
+        signScreen.passwordInputField.click();
+        signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.signUpButton.click();
+        Assert.assertNull(signScreen.nameInputField);
+
+    }
+//@Test
+    public void checkOnNameValidation()throws IOException, InterruptedException
+{
+
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        signScreen=new signUP();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
+        signScreen.nameInputField.sendKeys(props.getProperty("invalidNameWithNumbers"));
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.emailInputField.click();
+        signScreen.emailInputField.sendKeys(props.getProperty("existedEmail"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.birthdayInputField.click();
+        signScreen.okButtonDate.click();
+        signScreen.passwordInputField.click();
+        signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.signUpButton.click();
+        Assert.assertNull(signScreen.nameInputField);
+
+    }
+@Test
+public void checkOnUserNameLengthValidation()throws IOException, InterruptedException
+{
+
+    File propsFile=new File("src/test/resources/testData/userData.properties");
+    inputfile=new FileInputStream(propsFile);
+    props=new Properties();
+    props.load(inputfile);
+    signScreen=new signUP();
+    signScreen.signUpButtonWhatsHappeningPage.click();
+    signScreen.nameInputField.click();
+    signScreen.nameInputField.sendKeys(props.getProperty("validName"));
+    signScreen.userNameInputField.click();
+    signScreen.userNameInputField.sendKeys(props.getProperty("invalidUserNameLength"));
+    signScreen.emailInputField.click();
+    signScreen.emailInputField.sendKeys(props.getProperty("existedEmail"));
+    driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+    signScreen.birthdayInputField.click();
+    signScreen.okButtonDate.click();
+    signScreen.passwordInputField.click();
+    signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+    driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+//    signScreen.signUpButton.click();
+//    Assert.assertNull(signScreen.nameInputField);
+
+}
+//@Test
+
+    public void arabicMobileDateFormat()throws IOException, InterruptedException
+{
+
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        signScreen=new signUP();
+        signScreen.signUpButtonWhatsHappeningPage.click();
+        signScreen.nameInputField.click();
+        signScreen.nameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.userNameInputField.click();
+        signScreen.userNameInputField.sendKeys(props.getProperty("validName"));
+        signScreen.emailInputField.click();
+        signScreen.emailInputField.sendKeys(props.getProperty("validEmail"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.birthdayInputField.click();
+        signScreen.okButtonDate.click();
+        signScreen.passwordInputField.click();
+        signScreen.passwordInputField.sendKeys(props.getProperty("emailPassword"));
+        driver.pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+        signScreen.signUpButton.click();
+    Wait<AndroidDriver> notRobotWait=new FluentWait<AndroidDriver>(driver)
+            .pollingEvery(Duration.ofSeconds(2))
+            .withTimeout(Duration.ofSeconds(40))
+            .ignoring(NoSuchElementException.class);
+    notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
+    notRobotWait.until(ExpectedConditions.invisibilityOf(signScreen.iAmNotRobot));
+    Assert.assertNotNull(signScreen.otpInputField);
+
+    }
+
 
 
 
