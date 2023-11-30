@@ -1,0 +1,9 @@
+{
+    "signInButton":"[href='/login']",
+    "emailInputField":"[data-testid='Email']",
+    "passwordInputField":"[data-testid='Password']",
+    "logInButton":"[data-testid='Log in']",
+    "postInputField":".DraftEditor-root",
+    "postButton":"#post",
+    "postButtonTimeLine":"[data-testid='Post']"
+}

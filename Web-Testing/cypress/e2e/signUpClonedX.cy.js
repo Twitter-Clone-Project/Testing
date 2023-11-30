@@ -1,6 +1,6 @@
 describe("signUp", () => {
   beforeEach(() => {
-    cy.visit(" http://localhost:3000/");
+    cy.visit(" http://localhost:5173/");
     cy.fixture("signUpSelectors").as("selectors");
     cy.fixture("userData").as("userData");
   });
@@ -407,8 +407,8 @@ describe("signUp", () => {
     });
   });
   //bug : name validation is missed
-  it.only("testcase19: Check on Name validation", () => {
-    cy.wait(30000);
+  it("testcase19: Check on Name validation", () => {
+    
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -432,12 +432,12 @@ describe("signUp", () => {
         cy.get(selectors.monthSelector).select(userData.selectedMonth);
         cy.get(selectors.daySelector).select(userData.selectedDay);
         cy.get(selectors.yearSelector).select(userData.selectedYear);
-        cy.wait(60000)
+      
         cy.get(selectors.nextButtonSignUp).should("be.disabled");
       });
     });
   });
-  it.only("testcase21: missing name length validation", () => {
+  it("testcase21: missing name length validation", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -461,13 +461,13 @@ describe("signUp", () => {
         cy.get(selectors.monthSelector).select(userData.selectedMonth);
         cy.get(selectors.daySelector).select(userData.selectedDay);
         cy.get(selectors.yearSelector).select(userData.selectedYear);
-        cy.wait(60000)
+       
         cy.get(selectors.nextButtonSignUp).should("be.disabled");
       });
     });
   });
 
-  it.only("testcase22: missing username length validation", () => {
+  it("testcase22: missing username length validation", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@userData").then((userData) => {
         cy.get(selectors.createAccountButton).click();
@@ -491,10 +491,37 @@ describe("signUp", () => {
         cy.get(selectors.monthSelector).select(userData.selectedMonth);
         cy.get(selectors.daySelector).select(userData.selectedDay);
         cy.get(selectors.yearSelector).select(userData.selectedYear);
-        cy.wait(60000)
+        
         cy.get(selectors.nextButtonSignUp).should("be.disabled");
       });
     });
   });
+it.only('testcase23: email is not case sensitve', () => {
+  cy.get("@selectors").then((selectors) => {
+    cy.get("@userData").then((userData) => {
+      cy.get(selectors.createAccountButton).click();
+      cy.get(selectors.nameInputField).type(userData.userName, {
+        delay: 100,
+      });
+      cy.get(selectors.userNameTextField).type(userData.userName, {
+        delay: 100,
+      });
+      cy.get(selectors.passwordInputField).type(userData.passwordOfTesting, {
+        delay: 100,
+      });
+      cy.get(selectors.confirmPasswordInputField).type(
+        userData.passwordOfTesting,
+        { delay: 100 }
+      );
 
+      cy.get(selectors.userEmailTextField).type(userData.emailNotCaseSensitive, {
+        delay: 100,
+      });
+      cy.get(selectors.monthSelector).select(userData.selectedMonth);
+      cy.get(selectors.daySelector).select(userData.selectedDay);
+      cy.get(selectors.emailExitedErrorMessage).should("be.visible");
+      cy.get(selectors.nextButtonSignUp).should("be.disabled");
+    });
+  });
+});
 });
