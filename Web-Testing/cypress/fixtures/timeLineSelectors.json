@@ -6,8 +6,10 @@
     "postInputField":".DraftEditor-root",
     "postButton":"#post",
     "postButtonTimeLine":"[data-testid='Post']",
-    "AddMediaButton":".cursor-pointer > .h-\\[18\\.75px\\]",
+    "AddEmojiButton":".relative > .h-\\[18\\.75px\\]",
     "imageIdentifier":"[alt='media']",
     "uploadImageSelector":"[type='file']",
-    "imagesUploaded":"[alt='media']"
+    "imagesUploaded":"[alt='media']",
+    "closeImageButton":".absolute > svg",
+    "emojiPicker":"em-emoji-picker"
 }

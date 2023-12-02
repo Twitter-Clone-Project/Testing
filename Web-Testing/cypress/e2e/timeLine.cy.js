@@ -61,7 +61,7 @@ describe("Time Line", () => {
     });
   });
 //Failed -->Invalid
-  it.only('6.Add more than 4 images to insure it does not ', () => {
+  it('6.Add more than 4 images to insure it does not ', () => {
     cy.get("@selectors").then((selectors) => {
       
       cy.get(selectors.uploadImageSelector).attachFile(["image1.jpg","image2.jpg","image3.jpg","image4.jpg"]);
@@ -77,11 +77,52 @@ describe("Time Line", () => {
     
   });
   //Failed-->BUG
-  it.only("7.add video", () => {
+  it("7.add video", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.uploadImageSelector).attachFile("Sample Video.mp4");
       cy.get("video").should("be.visible");
     });
   });
+//Failed -->BUG
+it('too long text for tweet', () => {
+  cy.get("@selectors").then((selectors) => {
+    cy.get("@timeLineData").then((Data) => {
+      cy.get(selectors.postInputField).type(Data.tooLongText);
+      cy.get(selectors.postButton).click();
+      cy.contains(Data.tooLongText).should("be.visible");
+    });
+  });
+  
+});
+//Passes
+  it.only("8.Add a post(text&emoji) with an image ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.postText);
+        cy.get(selectors.AddEmojiButton).click();
+        cy.get(selectors.emojiPicker).click();
+        cy.get(selectors.uploadImageSelector).attachFile("image1.jpg");
+        cy.get(selectors.postButton).click();
+        cy.contains(Data.postText).should("be.visible");
+      });
+    });
+  });
+  //Passes
+  it("9.clear an image", () => {
+    cy.get("@selectors").then((selectors) => {
+      
+      cy.get(selectors.uploadImageSelector).attachFile("image1.jpg");
+     cy.get(selectors.closeImageButton).click();
+     cy.get(selectors.imagesUploaded).should("have.length", 0);
+    });
+  });
 
+  it("10.like and unlike and like what is the count then", () => {});
+
+  // i need to understand the repost first
+  it("11.repost and then clear repost ", () => {});
+  //post and then repost elpost
+  it("12.post and then log out and then go the other email and make sure that the post that i have repost it appear", () => {});
+
+  
 });
