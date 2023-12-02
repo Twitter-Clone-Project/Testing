@@ -1,7 +1,7 @@
 describe("Time Line", () => {
   beforeEach(() => {
     cy.viewport(1920, 1080);
-    cy.visit("http://localhost:5173/");
+    cy.visit("http://127.0.0.1:5173/");
     cy.fixture("timeLineSelectors").as("selectors");
     cy.fixture("userData").as("userData");
     cy.fixture("timeLineData").as("timeLineData");
@@ -13,11 +13,13 @@ describe("Time Line", () => {
     });
   });
 
-  it("Reload Page", () => {
+  //Passes
+  it("1.Reload Page", () => {
     cy.reload();
     cy.url().should("contains", "/home");
   });
-  it("Add tweet", () => {
+  //Passes
+  it("2.Add tweet of text", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).type(Data.postText);
@@ -27,13 +29,14 @@ describe("Time Line", () => {
     });
   });
 
-  it("Post Button should be enabled", () => {
+  //Post Button in the nav bar should be functional
+  it("3.Post Button should be enabled", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.postButtonTimeLine).click();
     });
   });
-
-  it("Validation of post input field", () => {
+  //Faild -->BUG
+  it("4.Validation of post input field", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).click();
@@ -42,4 +45,43 @@ describe("Time Line", () => {
       });
     });
   });
+  //Faild -->Invalid
+  it("5.Add  4 images in a tweet", () => {
+    cy.get("@selectors").then((selectors) => {
+      let count = 0;
+      cy.get(selectors.uploadImageSelector).attachFile("image1.jpg");
+      cy.get(selectors.uploadImageSelector).attachFile("image2.jpg");
+      cy.get(selectors.uploadImageSelector).attachFile("image3.jpg");
+      cy.get(selectors.uploadImageSelector).attachFile("image4.jpg");
+      cy.get(selectors.imagesUploaded).then(($elements) => {
+        count = $elements.length;
+        cy.log(`Number of elements: ${count}`);
+        expect(count).to.equal(4);
+      });
+    });
+  });
+//Failed -->Invalid
+  it.only('6.Add more than 4 images to insure it does not ', () => {
+    cy.get("@selectors").then((selectors) => {
+      
+      cy.get(selectors.uploadImageSelector).attachFile(["image1.jpg","image2.jpg","image3.jpg","image4.jpg"]);
+      cy.get(selectors.uploadImageSelector).should("be.disabled");
+      cy.get(selectors.uploadImageSelector).attachFile("image5.jpg");
+      cy.get(selectors.imagesUploaded).then(($elements) => {
+        const count = $elements.length;
+        cy.log(`Number of elements: ${count}`);
+      });
+      cy.get(selectors.imagesUploaded).should("have.length", 4);
+
+    });
+    
+  });
+  //Failed-->BUG
+  it.only("7.add video", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.uploadImageSelector).attachFile("Sample Video.mp4");
+      cy.get("video").should("be.visible");
+    });
+  });
+
 });

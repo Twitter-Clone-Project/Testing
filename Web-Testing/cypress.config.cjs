@@ -5,6 +5,7 @@ module.exports = defineConfig({
   // the e2e or component configuration
   e2e: {
     pageLoadTimeout:60000,
+    experimentalStudio:true,
     
     setupNodeEvents(on, config) {
       require('@cypress/code-coverage/task')(on, config)

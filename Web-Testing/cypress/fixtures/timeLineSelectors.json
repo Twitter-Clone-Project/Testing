@@ -5,5 +5,9 @@
     "logInButton":"[data-testid='Log in']",
     "postInputField":".DraftEditor-root",
     "postButton":"#post",
-    "postButtonTimeLine":"[data-testid='Post']"
+    "postButtonTimeLine":"[data-testid='Post']",
+    "AddMediaButton":".cursor-pointer > .h-\\[18\\.75px\\]",
+    "imageIdentifier":"[alt='media']",
+    "uploadImageSelector":"[type='file']",
+    "imagesUploaded":"[alt='media']"
 }

@@ -25,6 +25,8 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import MailSlurp from "mailslurp-client";
+import 'cypress-file-upload';
+
 
 const apiKey =
   "a6857723b2990d0f5b10018b4e2c5f392a98ab889b1521b23e73a6b0fdf7b848";
