@@ -1,0 +1,6 @@
+{
+  "startScreenLoginBtn": "[href='/login']",
+  "loginEmailInput": "[data-testid='Email']",
+  "loginPassInput": "[data-testid='Password']",
+  "loginBtn": "[data-testid='Log in']"
+}
