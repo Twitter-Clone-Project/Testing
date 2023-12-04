@@ -11,5 +11,14 @@
     "uploadImageSelector":"[type='file']",
     "imagesUploaded":"[alt='media']",
     "closeImageButton":".absolute > svg",
-    "emojiPicker":"em-emoji-picker"
+    "emojiPicker":"em-emoji-picker",
+    "profileIcon":"[alt='profileImage']",
+    "likeButton":"[data-testid='like']",
+    "replyButton":"[data-testid='reply']",
+    "repostButton":"[data-testid='repost']",
+    "tweet":":nth-child(1) > .rightColumn > .caption",
+    "goBackLikersList":"[aria-hidden='true']",
+    "numOfReplies":"p",
+    "replyInputField":"[placeholder='Post your reply']",
+    "AddReplyButton":"[data-testid='add-reply'] > .h-\\[30px\\]"
 }

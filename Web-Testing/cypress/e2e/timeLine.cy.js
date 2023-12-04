@@ -18,12 +18,13 @@ describe("Time Line", () => {
     cy.reload();
     cy.url().should("contains", "/home");
   });
-  //Passes
+  //Passes then failed
   it("2.Add tweet of text", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).type(Data.postText);
         cy.get(selectors.postButton).click();
+        cy.get(selectors.postInputField).should("not.have.text", Data.postText);
         cy.contains(Data.postText).should("be.visible");
       });
     });
@@ -60,11 +61,15 @@ describe("Time Line", () => {
       });
     });
   });
-//Failed -->Invalid
-  it('6.Add more than 4 images to insure it does not ', () => {
+  //Failed -->Invalid
+  it("6.Add more than 4 images to insure it does not ", () => {
     cy.get("@selectors").then((selectors) => {
-      
-      cy.get(selectors.uploadImageSelector).attachFile(["image1.jpg","image2.jpg","image3.jpg","image4.jpg"]);
+      cy.get(selectors.uploadImageSelector).attachFile([
+        "image1.jpg",
+        "image2.jpg",
+        "image3.jpg",
+        "image4.jpg",
+      ]);
       cy.get(selectors.uploadImageSelector).should("be.disabled");
       cy.get(selectors.uploadImageSelector).attachFile("image5.jpg");
       cy.get(selectors.imagesUploaded).then(($elements) => {
@@ -72,9 +77,7 @@ describe("Time Line", () => {
         cy.log(`Number of elements: ${count}`);
       });
       cy.get(selectors.imagesUploaded).should("have.length", 4);
-
     });
-    
   });
   //Failed-->BUG
   it("7.add video", () => {
@@ -83,19 +86,18 @@ describe("Time Line", () => {
       cy.get("video").should("be.visible");
     });
   });
-//Failed -->BUG
-it('too long text for tweet', () => {
-  cy.get("@selectors").then((selectors) => {
-    cy.get("@timeLineData").then((Data) => {
-      cy.get(selectors.postInputField).type(Data.tooLongText);
-      cy.get(selectors.postButton).click();
-      cy.contains(Data.tooLongText).should("be.visible");
+  //Failed -->BUG
+  it("too long text for tweet", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.tooLongText);
+        cy.get(selectors.postButton).click();
+        cy.contains(Data.tooLongText).should("be.visible");
+      });
     });
   });
-  
-});
-//Passes
-  it.only("8.Add a post(text&emoji) with an image ", () => {
+  //Passes
+  it("8.Add a post(text&emoji) with an image ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).type(Data.postText);
@@ -110,19 +112,61 @@ it('too long text for tweet', () => {
   //Passes
   it("9.clear an image", () => {
     cy.get("@selectors").then((selectors) => {
-      
       cy.get(selectors.uploadImageSelector).attachFile("image1.jpg");
-     cy.get(selectors.closeImageButton).click();
-     cy.get(selectors.imagesUploaded).should("have.length", 0);
+      cy.get(selectors.closeImageButton).click();
+      cy.get(selectors.imagesUploaded).should("have.length", 0);
     });
   });
 
-  it("10.like and unlike and like what is the count then", () => {});
+  it("10.like and unlike and like what is the count then", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.likeButton).click();
+        cy.get(selectors.likedButton).should("be.visible");
+        cy.get(selectors.likeButton).click();
+        cy.get(selectors.likedButton).should("not.be.visible");
+      });
+    });
+  });
 
-  // i need to understand the repost first
-  it("11.repost and then clear repost ", () => {});
-  //post and then repost elpost
-  it("12.post and then log out and then go the other email and make sure that the post that i have repost it appear", () => {});
+  //Failed -->BUG
+  it("Add Like ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.likeButton).first().click();
+        // cy.get(selectors.likedButton).should("be.visible");
+        cy.url().should("contain", "/home");
+      });
+    });
+  });
+  //Failed-->BUG
+  it(" profile icon", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.profileIcon).click({ force: true });
+      cy.url().should("contain", "profile");
+    });
+  });
+  //Failed-->BUG
+  it("Reply Icon ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.tweet).click();
+      cy.get(selectors.goBackLikersList).click();
+      cy.get(selectors.replyButton).click();
+      cy.get(selectors.numOfReplies).should("not.be.visible");
+    });
+  });
 
-  
+  //Failed -->BUG
+  it.only("Add reply", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+        cy.get(selectors.goBackLikersList).click();
+        cy.get(selectors.replyButton).click();
+        cy.get(selectors.replyInputField).type(Data.replyText);
+        cy.get(selectors.AddReplyButton).click();
+        cy.contains(Data.postText).should("be.visible");
+      });
+    });
+  });
 });

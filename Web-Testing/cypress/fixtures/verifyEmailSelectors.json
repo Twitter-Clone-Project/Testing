@@ -1,7 +1,0 @@
-{
-    "emailSentGmail":"[email='info@x.com']",
-    "emailGoogleInputField":"#identifierId",
-    "passwordGoogleInputField":"[type='password']",
-    "nextButtonEmailGoogle":"[jsname='LgbsSe']",
-    "nextButtonPasswordGoogle":"[jsname='V67aGc']"
-}
