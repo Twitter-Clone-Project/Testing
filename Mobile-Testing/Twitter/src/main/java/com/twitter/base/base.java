@@ -5,9 +5,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
@@ -22,7 +21,7 @@ public class base {
     }
 
     @Parameters({"deviceName", "platformName", "platformVersion"})
-    @BeforeClass
+    @BeforeMethod
     public void beforeClass(String deviceName, String platformName, String platformVersion) throws Exception {
 
         File propFile = new File("src\\main\\resources\\config\\config.properties");
@@ -39,7 +38,8 @@ public class base {
         driver = new AndroidDriver(new URL(prop.getProperty("appiumServer")), caps);
 
     }
-    @AfterClass
+
+    @AfterMethod
     public void afterClass(){
         driver.quit();
     }
