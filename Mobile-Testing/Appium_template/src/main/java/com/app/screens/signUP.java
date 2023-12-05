@@ -28,7 +28,7 @@ public class signUP extends base {
     @AndroidFindBy (accessibility = "Sign up")
     public WebElement signUpButton;
 
-    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Terms\"]/android.widget.TextView")
+    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Privacy\"]/android.widget.TextView")
     public WebElement iAmNotRobot;
 
     @AndroidFindBy (accessibility = "Email is not valid")
