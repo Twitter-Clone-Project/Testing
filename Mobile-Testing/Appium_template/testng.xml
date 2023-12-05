@@ -5,7 +5,7 @@
         <listener class-name="com.app.listeners.testListener"></listener>
     </listeners>
     <!-- TODO change the emulator name and android version -->
-    <parameter name="deviceName" value="MyEmulator"></parameter>
+    <parameter name="deviceName" value="OPPO Reno4 Pro"></parameter>
     <parameter name="platformName" value="Android"></parameter>
     <parameter name="platformVersion" value="12"></parameter>
     <!--TODO change the path of the project-->
@@ -14,7 +14,8 @@
         <classes>
             <!--TODO put classes of testcases-->
 
-            <class name="com.app.testcases.signUpTestcases"></class>
+           <!-- <class name="com.app.testcases.signUpTestcases"></class> -->
+            <class name="com.app.testcases.timelineTestcases"></class>
 
         </classes>
 

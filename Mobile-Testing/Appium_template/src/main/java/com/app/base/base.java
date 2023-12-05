@@ -47,9 +47,9 @@ public class base {
         driver = new AndroidDriver(url, cap);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
-    @AfterClass
-    public void AfterEach()
-    {
-        driver.quit();
-    }
+//    @AfterClass
+//    public void AfterEach()
+//    {
+//        driver.quit();
+//    }
 }
