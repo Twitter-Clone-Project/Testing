@@ -2,5 +2,15 @@
   "startScreenLoginBtn": "[href='/login']",
   "loginEmailInput": "[data-testid='Email']",
   "loginPassInput": "[data-testid='Password']",
-  "loginBtn": "[data-testid='Log in']"
+  "loginBtn": "[data-testid='Log in']",
+  "sideBarProfile": "[data-testid='Profile-text'] > .px-4",
+  "postInputField": ".DraftEditor-root",
+  "postButton": "#post",
+  "lastestTweetContent": ":nth-child(1) > .rightColumn > .caption",
+  "beforeLastestTweetContent": ":nth-child(2) > .rightColumn > .caption",
+  "latestTweetLike": "[data-testid='like']",
+  "likesBtn": ".text-light-thin > .relative > span",
+  "latestTweetContentLikes": "[data-testid='likes-list'] > :nth-child(1) > :nth-child(1)",
+  "noLikes": "[data-testid=' There are No Likes yet']",
+  "likesList": "[data-testid='likes-list']"
 }
