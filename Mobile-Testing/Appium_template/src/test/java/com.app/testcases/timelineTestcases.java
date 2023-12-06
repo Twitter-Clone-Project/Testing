@@ -49,9 +49,9 @@ public class timelineTestcases extends base {
    timelinepage =new timeline();
        timelinepage.loginBtn.click();
         timelinepage.emailInput.click();
-        timelinepage.emailInput.sendKeys("menamohamed0207@gmail.com");
+        timelinepage.emailInput.sendKeys("menna.ibrahim02@eng-st.cu.edu.eg");
         timelinepage.passInput.click();
-        timelinepage.passInput.sendKeys("12345678");
+        timelinepage.passInput.sendKeys("147258369");
         timelinepage.loginBtn.click();
     }
 
@@ -60,7 +60,7 @@ public class timelineTestcases extends base {
 //    {
 //        driver.quit();
 //    }
-//    @Test
+    @Test
     public  void addLike() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -69,6 +69,35 @@ public class timelineTestcases extends base {
         timelinepage =new timeline();
         timelinepage.firstTweetLikeBefore.click();
         Assert.assertNotNull(timelinepage.firstTweetLikeAfter);
+        timelinepage.firstTweetLikeAfter.click();
+
+    }
+
+    @Test
+    public  void addRepost() throws IOException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+        timelinepage.firstTweetRepostBefore.click();
+        Assert.assertNotNull(timelinepage.firstTweetRepostAfter);
+        timelinepage.firstTweetRepostAfter.click();
+
+    }
+    @Test
+    //Failed
+    public void addReplyByClickingOnIcon() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+        timelinepage.firstTweetReply.click();
+        timelinepage.addReplyInputField.click();
+        timelinepage.addReplyInputField.sendKeys(props.getProperty("showedReplyText"));
+        timelinepage.addReplyInputButton.click();
+        Assert.assertNotNull(timelinepage.showedReply);
 
     }
     @Test
@@ -80,12 +109,14 @@ public class timelineTestcases extends base {
         timelinepage =new timeline();
         timelinepage.tweet.click();
         timelinepage.addReplyInputField.click();
+        timelinepage.addReplyInputField.click();
         timelinepage.addReplyInputField.sendKeys(props.getProperty("showedReplyText"));
-       timelinepage.addReplyInputButton.click();
-       Assert.assertNotNull(timelinepage.showedReply);
+        timelinepage.addReplyInputButton.click();
+        Assert.assertNotNull(timelinepage.showedReply);
 
     }
-    @Test
+
+        @Test
     public void addLongReply() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -95,22 +126,12 @@ public class timelineTestcases extends base {
         timelinepage =new timeline();
         timelinepage.tweet.click();
         timelinepage.addReplyInputField.click();
+        timelinepage.addReplyInputField.click();
         timelinepage.addReplyInputField.sendKeys(props.getProperty("longReplyText"));
         boolean checkIfDisabled=timelinepage.addReplyInputButton.isDisplayed();
         Assert.assertTrue(checkIfDisabled);
     }
-    @Test
-    public  void addRepost() throws IOException {
-        File propsFile=new File("src/test/resources/testData/userData.properties");
-        inputfile=new FileInputStream(propsFile);
-        props=new Properties();
-        props.load(inputfile);
-        timelinepage =new timeline();
-        timelinepage.firstTweetRepostBefore.click();
-        Assert.assertNotNull(timelinepage.firstTweetRepostAfter);
-
-    }
-    @Test
+        @Test
     public  void checkRepliesWithoutAddingReply() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -121,5 +142,4 @@ public class timelineTestcases extends base {
         Assert.assertNotNull(timelinepage.showedReply);
 
     }
-
 }

@@ -14,14 +14,14 @@ public class timeline extends base {
     public WebElement passInput;
 
 
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"0\"])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[1]")
     public  WebElement firstTweetRepostBefore;
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[2]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"2\"])[2]")
     public WebElement firstTweetRepostAfter;
 
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"2\"])[1]")
     public WebElement firstTweetReply;
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[3]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[2]")
     public WebElement firstTweetLikeBefore;
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"0\"])[1]")
