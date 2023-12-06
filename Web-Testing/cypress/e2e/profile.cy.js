@@ -1,5 +1,5 @@
 /// <reference types="cypress"/>
-const baseUrl = "https://twitter-clone.onthewifi.com/";
+const baseUrl = "http://127.0.0.1:5173/";
 beforeEach(() => {
   cy.fixture("credentials_profile").as("credentials");
   cy.fixture("selectors_profile").as("selectors");
@@ -23,7 +23,7 @@ describe("posts", () => {
       cy.get(sel.lastestTweetContent, { timeout: 20000 })
         .invoke("text")
         .then((text) => {
-          expect(text).to.equal(" NEW TWEET ");
+          expect(text).to.equal("NEW TWEET ");
         });
     });
   });
@@ -37,12 +37,12 @@ describe("posts", () => {
       cy.get(sel.lastestTweetContent, { timeout: 40000 })
         .invoke("text")
         .then((text) => {
-          expect(text).to.equal(" SECOND NEW TWEET ");
+          expect(text).to.equal("SECOND NEW TWEET ");
         });
       cy.get(sel.beforeLastestTweetContent, { timeout: 40000 })
         .invoke("text")
         .then((text) => {
-          expect(text).to.equal(" FIRST NEW TWEET ");
+          expect(text).to.equal("FIRST NEW TWEET ");
         });
     });
   });
@@ -277,6 +277,56 @@ describe("followers&following", () => {
                         .then((href2) => {
                           cy.log(href, href2);
                           expect(href).to.eq(href2);
+                        });
+                    });
+                });
+            });
+        });
+    });
+  });
+  it("click on user in following-->go to user profile", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile, { timeout: 6000 })
+        .click()
+        .then(() => {
+          cy.get(sel.followingListBtn, { timeout: 6000 })
+            .click()
+            .then(() => {
+              cy.get(sel.latestfollowingUsername, { timeout: 6000 })
+                .contains("@")
+                .click()
+                .invoke("text")
+                .then((text) => {
+                  cy.url().should("contain", text.slice(1));
+                });
+            });
+        });
+    });
+  });
+});
+describe("block", () => {
+  it("block user from following-->home shouldn't have tweets from this user", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile, { timeout: 6000 })
+        .click()
+        .then(() => {
+          cy.get(sel.followingListBtn, { timeout: 6000 })
+            .click()
+            .then(() => {
+              cy.get(sel.latestfollowingUsername, { timeout: 6000 })
+                .contains("@")
+                .click()
+                .invoke("text")
+                .then((text) => {
+                  cy.get(sel.userActions).click();
+                  cy.get(sel.blockUser).click();
+                  cy.get(sel.sideBarHome, { timeout: 60000 })
+                    .click()
+                    .then(() => {
+                      cy.get(sel.lastestTweetContent, { timeout: 600000 })
+                        .invoke("text")
+                        .then((txt) => {
+                          cy.get("span").should("not.contain", text);
                         });
                     });
                 });

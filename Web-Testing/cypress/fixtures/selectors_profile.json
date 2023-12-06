@@ -4,6 +4,7 @@
   "loginPassInput": "[data-testid='Password']",
   "loginBtn": "[data-testid='Log in']",
   "sideBarProfile": "[data-testid='Profile-text'] > .px-4",
+  "sideBarHome": ".sm\\:contents > :nth-child(1) > [data-testid='Home'] > [data-testid='Home-text'] > .px-4",
   "postInputField": ".DraftEditor-root",
   "postButton": "#post",
   "lastestTweetContent": ":nth-child(1) > .rightColumn > .caption",
@@ -43,5 +44,8 @@
   "followersFromInside": ".text-light-thin > .relative > span",
   "followingFromInside": ".list-nav-active > .relative > span",
   "latestFollowerUsername": "[data-testid='FollowerList_2'] > :nth-child(1) a",
-  "latestfollowingUsername": "[data-testid='FollowingList_2'] > :nth-child(1) a"
+  "latestfollowingUsername": "[data-testid='FollowingList_2'] > :nth-child(1) a",
+  "userActions": "[data-testid='undefined-UserActios-2']",
+  "muteUser": "[data-testid='undefined-UserActios-4']",
+  "blockUser": "[data-testid='undefined-UserActios-6']"
 }
