@@ -21,7 +21,7 @@ public class timeline extends base {
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"4\"])[1]")
     public WebElement firstTweetReply;
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[4]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[6]")
     public WebElement firstTweetLikeBefore;
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"2\"])[1]")

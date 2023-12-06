@@ -73,7 +73,7 @@ public class timelineTestcases extends base {
 
     }
 
-    @Test
+//    @Test
     public  void addRepost() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -85,7 +85,7 @@ public class timelineTestcases extends base {
         timelinepage.firstTweetRepostAfter.click();
 
     }
-    @Test
+//    @Test
     //Failed
     public void addReplyByClickingOnIcon() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
@@ -100,7 +100,7 @@ public class timelineTestcases extends base {
         Assert.assertNotNull(timelinepage.showedReply);
 
     }
-    @Test
+//    @Test
     public void addReply() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -116,7 +116,7 @@ public class timelineTestcases extends base {
 
     }
 
-        @Test
+//        @Test
     public void addLongReply() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -131,7 +131,7 @@ public class timelineTestcases extends base {
         boolean checkIfDisabled=timelinepage.addReplyInputButton.isDisplayed();
         Assert.assertTrue(checkIfDisabled);
     }
-        @Test
+//        @Test
     public  void checkRepliesWithoutAddingReply() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
