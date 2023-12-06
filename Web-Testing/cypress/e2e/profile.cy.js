@@ -255,9 +255,8 @@ describe("edit profile", () => {
     });
   });
 });
-//not finished
 describe("followers&following", () => {
-  it.only("follers list-->follow-->check on it in following list", () => {
+  it("followers list-->follow-->check on it in following list", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile, { timeout: 6000 })
         .click()
@@ -266,34 +265,23 @@ describe("followers&following", () => {
           cy.get(sel.followLatestUserInFollowersList, { timeout: 6000 })
             .click()
             .then(() => {
-              cy.get(".w-min.text-light-thin")
-                .last()
-                .invoke("text")
-                .then((text1) => {
-                  cy.get(sel.followingFromInside).click();
-                  cy.get(".w-min.text-light-thin", { timeout: 6000 })
-                    .invoke("text")
-                    .then((text2) => {
-                      expect(text1).to.eq(text2);
+              cy.get(sel.latestFollowerUsername)
+                .invoke("attr", "href")
+                .then((href) => {
+                  cy.get(sel.followingFromInside, { timeout: 10000 })
+                    .click()
+                    .then(() => {
+                      cy.wait(3000);
+                      cy.get(sel.latestfollowingUsername)
+                        .invoke("attr", "href")
+                        .then((href2) => {
+                          cy.log(href, href2);
+                          expect(href).to.eq(href2);
+                        });
                     });
                 });
             });
         });
     });
   });
-  // it.only("following list-->unfollow-->follow again", () => {
-  //   cy.get("@selectors").then((sel) => {
-  //     cy.get(sel.sideBarProfile, { timeout: 6000 })
-  //       .click()
-  //       .then(() => {
-  //         cy.get(sel.followingListBtn).click();
-  //         cy.get(sel.followingLatestUserBtn, { timeout: 6000 })
-  //           .click()
-  //           .then(() => {
-  //             cy.get(sel.followLatestUserBtn).should("be.visible");
-  //             cy.get(sel.followingLatestUserBtn).should("not.be.visible");
-  //           });
-  //       });
-  //   });
-  // });
 });

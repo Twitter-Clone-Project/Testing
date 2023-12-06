@@ -39,6 +39,9 @@
   "followingLatestUserBtn": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Following']",
   "followLatestUserBtn": "[data-testid='Follow']",
   "followLatestUserInFollowersList": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Follow']",
-  "followersFromInside": ".list-nav-active > .relative > span",
-  "followingFromInside": ".text-light-thin > .relative > span"
+  "unfollowLatestUserInFollowingList": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Following']",
+  "followersFromInside": ".text-light-thin > .relative > span",
+  "followingFromInside": ".list-nav-active > .relative > span",
+  "latestFollowerUsername": "[data-testid='FollowerList_2'] > :nth-child(1) a",
+  "latestfollowingUsername": "[data-testid='FollowingList_2'] > :nth-child(1) a"
 }
