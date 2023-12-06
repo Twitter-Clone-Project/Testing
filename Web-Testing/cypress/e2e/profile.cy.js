@@ -7,10 +7,9 @@ beforeEach(() => {
   cy.get("@credentials").then((cred) => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.startScreenLoginBtn).click({ force: true });
-      cy.get(sel.loginEmailInput).type(cred.email1);
-      cy.get(sel.loginPassInput).type(cred.password);
+      cy.get(sel.loginEmailInput).type(cred.confirmedEmail3);
+      cy.get(sel.loginPassInput).type(cred.confirmedPass3);
       cy.get(sel.loginBtn).click();
-      // cy.wait(5000);
     });
   });
   cy.viewport("macbook-16");
@@ -223,7 +222,7 @@ describe("edit profile", () => {
     });
   });
   //bug
-  it.only("check on input sizes", () => {
+  it("check on input sizes", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
       cy.get(sel.editProfile).click();
@@ -255,4 +254,46 @@ describe("edit profile", () => {
         );
     });
   });
+});
+//not finished
+describe("followers&following", () => {
+  it.only("follers list-->follow-->check on it in following list", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile, { timeout: 6000 })
+        .click()
+        .then(() => {
+          cy.get(sel.followersListBtn).click();
+          cy.get(sel.followLatestUserInFollowersList, { timeout: 6000 })
+            .click()
+            .then(() => {
+              cy.get(".w-min.text-light-thin")
+                .last()
+                .invoke("text")
+                .then((text1) => {
+                  cy.get(sel.followingFromInside).click();
+                  cy.get(".w-min.text-light-thin", { timeout: 6000 })
+                    .invoke("text")
+                    .then((text2) => {
+                      expect(text1).to.eq(text2);
+                    });
+                });
+            });
+        });
+    });
+  });
+  // it.only("following list-->unfollow-->follow again", () => {
+  //   cy.get("@selectors").then((sel) => {
+  //     cy.get(sel.sideBarProfile, { timeout: 6000 })
+  //       .click()
+  //       .then(() => {
+  //         cy.get(sel.followingListBtn).click();
+  //         cy.get(sel.followingLatestUserBtn, { timeout: 6000 })
+  //           .click()
+  //           .then(() => {
+  //             cy.get(sel.followLatestUserBtn).should("be.visible");
+  //             cy.get(sel.followingLatestUserBtn).should("not.be.visible");
+  //           });
+  //       });
+  //   });
+  // });
 });
