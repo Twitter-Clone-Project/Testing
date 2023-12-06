@@ -33,5 +33,12 @@
   "succEditsMsg": "Your data has been updated successfully!",
   "month": "[data-testid='Month']",
   "day": "[data-testid='Day']",
-  "year": "[data-testid='Year']"
+  "year": "[data-testid='Year']",
+  "followersListBtn": "[data-testid='followers-btn'] > [data-testid='folllowing-count'] > .text-light-thin",
+  "followingListBtn": "[data-testid='following-btn'] > [data-testid='folllowing-count'] > .text-light-thin",
+  "followingLatestUserBtn": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Following']",
+  "followLatestUserBtn": "[data-testid='Follow']",
+  "followLatestUserInFollowersList": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Follow']",
+  "followersFromInside": ".list-nav-active > .relative > span",
+  "followingFromInside": ".text-light-thin > .relative > span"
 }
