@@ -93,7 +93,7 @@ public class timelineTestcases extends base {
         props=new Properties();
         props.load(inputfile);
         timelinepage =new timeline();
-        timelinepage.firstTweetReply.click();
+        timelinepage.clickOnReplyIcon.click();
         timelinepage.addReplyInputField.click();
         timelinepage.addReplyInputField.sendKeys(props.getProperty("showedReplyText"));
         timelinepage.addReplyInputButton.click();
