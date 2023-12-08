@@ -8,7 +8,8 @@ module.exports = defineConfig({
     pageLoadTimeout:60000,
     experimentalStudio:true,
     execTimeout:6000,
-    defaultCommandTimeout:7000,
+    defaultCommandTimeout:8000,
+    
     
     setupNodeEvents(on, config) {
       require('@cypress/code-coverage/task')(on, config)

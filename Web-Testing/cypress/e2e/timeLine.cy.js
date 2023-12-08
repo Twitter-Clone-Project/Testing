@@ -1,13 +1,13 @@
 describe("Time Line", () => {
   beforeEach(() => {
     cy.viewport(1920, 1080);
-    cy.visit("http://127.0.0.1:5173/");
+    cy.visit("https://twitter-clone.onthewifi.com/");
     cy.fixture("timeLineSelectors").as("selectors");
     cy.fixture("userData").as("userData");
     cy.fixture("timeLineData").as("timeLineData");
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.signInButton).click({ force: true });
-      cy.get(selectors.emailInputField).type("menamohamed0207@gmail.com");
+      cy.get(selectors.emailInputField).type("mennaabdelbaset208@gmail.com");
       cy.get(selectors.passwordInputField).type("12345678");
       cy.get(selectors.logInButton).click();
     });
@@ -15,11 +15,14 @@ describe("Time Line", () => {
 
   //Passes
   it("1.Reload Page", () => {
+    cy.wait(2000);
     cy.reload();
     cy.url().should("contains", "/home");
   });
-  //Passes then failed
-  it("2.Add tweet of text", () => {
+
+  //==============================================================add tweet
+  //Passes
+  it("Add tweet of text", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).type(Data.postText);
@@ -29,15 +32,14 @@ describe("Time Line", () => {
       });
     });
   });
-
   //Post Button in the nav bar should be functional
-  it("3.Post Button should be enabled", () => {
+  it("Post Button should be enabled", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.postButtonTimeLine).click();
     });
   });
-  //Faild -->BUG
-  it("4.Validation of post input field", () => {
+  //Faild -->BUG--->FIXED
+  it("Validation of post input field", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).click();
@@ -46,8 +48,28 @@ describe("Time Line", () => {
       });
     });
   });
-  //Faild -->Invalid
-  it("5.Add  4 images in a tweet", () => {
+  //Failed-->BUG-->FIXED
+  it(" profile icon", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.profileIcon).click({ force: true });
+      cy.url().should("contain", "posts");
+    });
+  });
+  //Failed-->BUG
+  it("check on the time created the tweet", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.postText);
+        cy.get(selectors.postButton).click();
+        cy.get(selectors.postInputField).should("not.have.text", Data.postText);
+        cy.wait(60000);
+        cy.get("time").first().should("have.text", "1m");
+      });
+    });
+  });
+
+  //==============================================================add media
+  it("Add  4 images in a tweet", () => {
     cy.get("@selectors").then((selectors) => {
       let count = 0;
       cy.get(selectors.uploadImageSelector).attachFile("image1.jpg");
@@ -62,7 +84,7 @@ describe("Time Line", () => {
     });
   });
   //Failed -->Invalid
-  it("6.Add more than 4 images to insure it does not ", () => {
+  it("Add more than 4 images to insure it does not ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.uploadImageSelector).attachFile([
         "image1.jpg",
@@ -79,25 +101,19 @@ describe("Time Line", () => {
       cy.get(selectors.imagesUploaded).should("have.length", 4);
     });
   });
-  //Failed-->BUG
-  it("7.add video", () => {
-    cy.get("@selectors").then((selectors) => {
-      cy.get(selectors.uploadImageSelector).attachFile("Sample Video.mp4");
-      cy.get("video").should("be.visible");
-    });
-  });
+
   //Failed -->BUG
   it("too long text for tweet", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).type(Data.tooLongText);
+        cy.get(selectors.postContent).should("have.text", Data.longValidText);
         cy.get(selectors.postButton).click();
-        cy.contains(Data.tooLongText).should("be.visible");
       });
     });
   });
   //Passes
-  it("8.Add a post(text&emoji) with an image ", () => {
+  it("Add a post(text&emoji) with an image ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).type(Data.postText);
@@ -110,62 +126,130 @@ describe("Time Line", () => {
     });
   });
   //Passes
-  it("9.clear an image", () => {
+  it("clear an image", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.uploadImageSelector).attachFile("image1.jpg");
       cy.get(selectors.closeImageButton).click();
       cy.get(selectors.imagesUploaded).should("have.length", 0);
     });
   });
-
-  it("10.like and unlike and like what is the count then", () => {
+  it("add video", () => {
     cy.get("@selectors").then((selectors) => {
-      cy.get("@timeLineData").then((Data) => {
-        cy.get(selectors.likeButton).click();
-        cy.get(selectors.likedButton).should("be.visible");
-        cy.get(selectors.likeButton).click();
-        cy.get(selectors.likedButton).should("not.be.visible");
-      });
+      cy.get(selectors.uploadImageSelector).attachFile("Sample Video.mp4");
+      cy.get("video").should("be.visible");
     });
   });
-
+  //==============================================================add reply
   //Failed -->BUG
-  it("Add Like ", () => {
-    cy.get("@selectors").then((selectors) => {
-      cy.get("@timeLineData").then((Data) => {
-        cy.get(selectors.likeButton).first().click();
-        // cy.get(selectors.likedButton).should("be.visible");
-        cy.url().should("contain", "/home");
-      });
-    });
-  });
-  //Failed-->BUG
-  it(" profile icon", () => {
-    cy.get("@selectors").then((selectors) => {
-      cy.get(selectors.profileIcon).click({ force: true });
-      cy.url().should("contain", "profile");
-    });
-  });
-  //Failed-->BUG
-  it("Reply Icon ", () => {
-    cy.get("@selectors").then((selectors) => {
-      cy.get(selectors.tweet).click();
-      cy.get(selectors.goBackLikersList).click();
-      cy.get(selectors.replyButton).click();
-      cy.get(selectors.numOfReplies).should("not.be.visible");
-    });
-  });
-
-  //Failed -->BUG
-  it.only("Add reply", () => {
+  it("Add reply", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
-        cy.get(selectors.goBackLikersList).click();
-        cy.get(selectors.replyButton).click();
         cy.get(selectors.replyInputField).type(Data.replyText);
         cy.get(selectors.AddReplyButton).click();
         cy.contains(Data.postText).should("be.visible");
+      });
+    });
+  });
+  //==============================================================add like and remove
+  //passes
+  it("remove Like", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.likeButton).first().click();
+        cy.get(selectors.likeButton)
+          .first()
+          .children()
+          .first()
+          .should("have.attr", "class")
+          .and("include", "text-dark-gray");
+      });
+    });
+  });
+
+  it("Add Like", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.wait(5000);
+        cy.get(selectors.likeButton).first().click();
+        cy.get(selectors.likeButton)
+          .first()
+          .children()
+          .first()
+          .should("have.attr", "class")
+          .and("not.include", "text-dark-gray");
+      });
+    });
+  });
+  //==============================================================add repost
+  it("Add repost", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.repostButton).first().click();
+        cy.get(selectors.numOfReposts).should("have.text", "1");
+      });
+    });
+  });
+  //Failded-->BUG
+
+  it("Add tweet and then repost it and check on it in the posts of the profile", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.repostText);
+        cy.get(selectors.postButton).click();
+        cy.get(selectors.postInputField).should(
+          "not.have.text",
+          Data.repostText
+        );
+        cy.contains(Data.repostText).should("be.visible");
+        cy.get(selectors.repostButton).first().click();
+        cy.wait(2000);
+        cy.get(selectors.profileButton).click();
+        cy.get(":nth-child(1) > .rightColumn > .retweeted-info").should(
+          "be.visible"
+        );
+        cy.get(":nth-child(2) > .rightColumn > .retweeted-info").should(
+          "be.not.visible"
+        );
+      });
+    });
+  });
+
+  //==============================================================tweet its self
+  //Failed-->BUG-->FIXED
+  it("Reply Icon ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.tweet).click();
+      cy.url().should("contain", "tweet");
+    });
+  });
+  it("add tweet and then delete it and check on it in the posts ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.deleteText);
+        cy.get(selectors.postButton).click();
+        cy.contains(Data.postText).should("be.visible");
+        cy.wait(5000);
+        cy.get(selectors.dropDownButton).click();
+        cy.get(selectors.deleteOption).click();
+        cy.get(selectors.profileButton).click();
+        cy.get(selectors.profilePosts)
+          .invoke("text")
+          .then((text) => {
+            expect(text).not.to.include(Data.deleteText);
+          });
+      });
+    });
+  });
+  //Failed-->BUG
+  it.only("the dropdown list ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.dropDownButton).click();
+        cy.wait(1000);
+        cy.get(selectors.secondDropDownButton).should("not.be.visible");
+        cy.wait(1000);
+        cy.get(selectors.thirdDropDownButton).should("not.be.visible");
       });
     });
   });

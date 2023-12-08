@@ -4,6 +4,7 @@
     "passwordInputField":"[data-testid='Password']",
     "logInButton":"[data-testid='Log in']",
     "postInputField":".DraftEditor-root",
+    "postContent":"[data-text='true']",
     "postButton":"#post",
     "postButtonTimeLine":"[data-testid='Post']",
     "AddEmojiButton":".relative > .h-\\[18\\.75px\\]",
@@ -13,12 +14,24 @@
     "closeImageButton":".absolute > svg",
     "emojiPicker":"em-emoji-picker",
     "profileIcon":"[alt='profileImage']",
-    "likeButton":"[data-testid='like']",
+    "likeButton":":nth-child(1) > .rightColumn > .buttons > [data-testid='like']",
     "replyButton":"[data-testid='reply']",
     "repostButton":"[data-testid='repost']",
     "tweet":":nth-child(1) > .rightColumn > .caption",
     "goBackLikersList":"[aria-hidden='true']",
-    "numOfReplies":"p",
+    "numOfReplies":":nth-child(8) > [data-layer='Padding']",
+    "numOfReposts":":nth-child(9) > [data-left='763.875']",
+    "numOfLikes":".px-[8px]",
     "replyInputField":"[placeholder='Post your reply']",
-    "AddReplyButton":"[data-testid='add-reply'] > .h-\\[30px\\]"
+    "AddReplyButton":"[data-testid='add-reply'] > .h-\\[30px\\]",
+    "dropDownButton":":nth-child(1) > .rightColumn > :nth-child(2) > :nth-child(2) > .dropdown > .dropbtn > .h-\\[24px\\]",
+    "secondDropDownButton":":nth-child(2) > .rightColumn > :nth-child(2) > :nth-child(2) > .dropdown > .dropbtn > .h-\\[24px\\]",
+    "thirdDropDownButton":":nth-child(3) > .rightColumn > :nth-child(2) > :nth-child(2) > .dropdown > .dropbtn > .h-\\[24px\\]",
+    "deleteOption":".me",
+    "profilePosts":":nth-child(2) > .rightColumn > .caption",
+    "profileButton":"[data-testid='Profile-text'] > .px-4",
+    "likedPostsProfile":"[data-testid='posts-list']",
+    "captionTweet":".caption"
+
+    
 }
