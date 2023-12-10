@@ -1,5 +1,5 @@
 /// <reference types="cypress"/>
-const baseUrl = "http://127.0.0.1:5173/";
+const baseUrl = "https://twitter-clone.onthewifi.com/";
 beforeEach(() => {
   cy.fixture("credentials_profile").as("credentials");
   cy.fixture("selectors_profile").as("selectors");
@@ -91,7 +91,7 @@ describe("edit profile", () => {
         .selectFile("cypress/fixtures/cover.png", { force: true });
       cy.get("[type='file']")
         .last()
-        .selectFile("cypress/fixtures/profile.jpg", { force: true });
+        .selectFile("cypress/fixtures/user.png", { force: true });
       cy.get(sel.editBio).clear().type("Computer Engineering"); //bio limit
       cy.get(sel.editLocation).clear().type("Mokattam");
       cy.get(sel.editWebsite).clear().type("www.");
@@ -105,7 +105,7 @@ describe("edit profile", () => {
       cy.get(sel.userPhoto).should(
         "have.attr",
         "src",
-        "https://kady-twitter-images.s3.amazonaws.com/profile.jpg"
+        "https://kady-twitter-images.s3.amazonaws.com/user.png"
       );
       cy.get(sel.userCover).should(
         "have.attr",
@@ -120,7 +120,7 @@ describe("edit profile", () => {
       cy.get(sel.editProfile).click();
       cy.get("[type='file']")
         .first()
-        .selectFile("cypress/fixtures/profile.jpg", { force: true });
+        .selectFile("cypress/fixtures/user.png", { force: true });
       cy.get("[type='file']")
         .last()
         .selectFile("cypress/fixtures/cover.png", { force: true });
@@ -138,7 +138,7 @@ describe("edit profile", () => {
       cy.get(sel.userPhoto).should(
         "have.attr",
         "src",
-        "https://kady-twitter-images.s3.amazonaws.com/profile.jpg"
+        "https://kady-twitter-images.s3.amazonaws.com/user.png"
       );
       cy.get(sel.userCover).should(
         "have.attr",
@@ -156,7 +156,7 @@ describe("edit profile", () => {
         .selectFile("cypress/fixtures/cover.png", { force: true });
       cy.get("[type='file']")
         .last()
-        .selectFile("cypress/fixtures/profile.jpg", { force: true });
+        .selectFile("cypress/fixtures/user.png", { force: true });
       cy.get(sel.editBio).clear().type("Computer Engineeringg"); //bio limit
       cy.get(sel.x).click();
       cy.get(sel.cancelBtn).click();
@@ -172,7 +172,7 @@ describe("edit profile", () => {
       cy.get(sel.userPhoto).should(
         "have.attr",
         "src",
-        "https://kady-twitter-images.s3.amazonaws.com/profile.jpg"
+        "https://kady-twitter-images.s3.amazonaws.com/user.png"
       );
       cy.get(sel.userCover).should(
         "have.attr",
@@ -219,6 +219,32 @@ describe("edit profile", () => {
       cy.get(sel.saveEdits).click();
       cy.wait(2000);
       cy.get(sel.userBd).should("contain", "Born August 20, 2002");
+    });
+  });
+  it("put the same profile picture 2 times", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.editProfile).click();
+      cy.get("[type='file']")
+        .last()
+        .selectFile("cypress/fixtures/user.png", { force: true });
+      cy.get(sel.saveEdits).click();
+      cy.get(sel.userPhoto).should(
+        "have.attr",
+        "src",
+        "https://kady-twitter-images.s3.amazonaws.com/user.png"
+      );
+      cy.get(sel.editProfile).click();
+      cy.get("[type='file']")
+        .last()
+        .selectFile("cypress/fixtures/user.png", { force: true });
+      cy.get(sel.saveEdits).click();
+
+      cy.get(sel.userPhoto).should(
+        "have.attr",
+        "src",
+        "https://kady-twitter-images.s3.amazonaws.com/user.png"
+      );
     });
   });
   //bug
@@ -304,6 +330,7 @@ describe("followers&following", () => {
     });
   });
 });
+//bug-->FIXED
 describe("block", () => {
   it("block user from following-->home shouldn't have tweets from this user", () => {
     cy.get("@selectors").then((sel) => {
@@ -323,12 +350,71 @@ describe("block", () => {
                   cy.get(sel.sideBarHome, { timeout: 60000 })
                     .click()
                     .then(() => {
-                      cy.get(sel.lastestTweetContent, { timeout: 600000 })
+                      cy.get(sel.lastestTweetContent, { timeout: 600000 }) //just to wait until the page loads
                         .invoke("text")
                         .then((txt) => {
                           cy.get("span").should("not.contain", text);
                         });
                     });
+                });
+            });
+        });
+    });
+  });
+  it("block user from following-->user removed from followers", () => {
+    //login-profile-following-click on latest username-click on user actions-block-profile-followers-user shouldn't be found
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile, { timeout: 6000 })
+        .click()
+        .then(() => {
+          cy.get(sel.followingListBtn, { timeout: 6000 }).click();
+          // .then(() => {
+          cy.get(sel.latestfollowingUsername, { timeout: 6000 })
+            .contains("@")
+            .click()
+            .invoke("text")
+            .then((text) => {
+              cy.get(sel.userActions).click();
+              cy.get(sel.blockUser).click();
+              cy.get(sel.sideBarProfile, { timeout: 6000 }).click();
+              cy.get(sel.sideBarProfile, { timeout: 6000 }).click();
+              cy.get(sel.sideBarProfile, { timeout: 6000 })
+                .click()
+                .then(() => {
+                  cy.get(sel.followersListBtn, { timeout: 6000 })
+                    .click()
+                    .then(() => {
+                      cy.get(sel.latestFollowerUsername, {
+                        timeout: 600000,
+                      }) //just to wait until the page loads
+                        .invoke("text")
+                        .then((txt) => {
+                          cy.get("span").should("not.contain", text);
+                        });
+                      // });
+                    });
+                });
+            });
+        });
+    });
+  });
+});
+describe("Mute", () => {
+  it("user1 Mute user2->logout->login to user2->add new tweet->logout->login to user1->check that it didn't appear", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile, { timeout: 6000 })
+        .click()
+        .then(() => {
+          cy.get(sel.followingListBtn, { timeout: 6000 })
+            .click()
+            .then(() => {
+              cy.get(sel.latestfollowingUsername, { timeout: 6000 })
+                .contains("@")
+                .click()
+                .invoke("text")
+                .then((text) => {
+                  cy.get(sel.userActions).click();
+                  cy.get(sel.muteUser).click();
                 });
             });
         });
