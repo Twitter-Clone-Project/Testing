@@ -4,5 +4,6 @@
     "longValidText":"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
     "replyText":"This is reply",
     "deleteText":"This is delete",
-    "repostText":"This is retweet"
+    "repostText":"This is retweet",
+    "name":"menna"
 }

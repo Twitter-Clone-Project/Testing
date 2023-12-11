@@ -151,6 +151,20 @@ describe("Time Line", () => {
       });
     });
   });
+  //Failed -->BUG
+  it.only('add Reply Name does not appear', () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+        cy.get(selectors.replyInputField).type(Data.replyText);
+        cy.get(selectors.AddReplyButton).click();
+        cy.get(selectors.userInfoReply).eq(1).children().first().should("have.text",Data.name);
+        cy.get(selectors.userInfoReply).eq(2).children().first().should("have.text",Data.name);
+
+      });
+    });
+    
+  });
   //==============================================================add like and remove
   //passes
   it("remove Like", () => {
@@ -242,7 +256,7 @@ describe("Time Line", () => {
     });
   });
   //Failed-->BUG
-  it.only("the dropdown list ", () => {
+  it("the dropdown list ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.dropDownButton).click();

@@ -31,7 +31,8 @@
     "profilePosts":":nth-child(2) > .rightColumn > .caption",
     "profileButton":"[data-testid='Profile-text'] > .px-4",
     "likedPostsProfile":"[data-testid='posts-list']",
-    "captionTweet":".caption"
+    "captionTweet":".caption",
+    "userInfoReply":".userInfo.flex.flex-row"
 
     
 }

@@ -19,9 +19,9 @@ public class timeline extends base {
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"2\"])[1]")
     public WebElement firstTweetRepostAfter;
 
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"4\"])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"5\"])[1]")
     public WebElement firstTweetReply;
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[6]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[3]")
     public WebElement firstTweetLikeBefore;
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"2\"])[1]")
@@ -43,7 +43,7 @@ public class timeline extends base {
     @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Reply\"]")
     public WebElement showedReply;
 
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[5]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"3\"])[1]")
     public WebElement clickOnReplyIcon;
 
 
