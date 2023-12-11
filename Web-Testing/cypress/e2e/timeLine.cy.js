@@ -165,6 +165,7 @@ describe("Time Line", () => {
     });
     
   });
+
   //==============================================================add like and remove
   //passes
   it("remove Like", () => {
@@ -259,7 +260,7 @@ describe("Time Line", () => {
   it("the dropdown list ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
-        cy.get(selectors.dropDownButton).click();
+        cy.get(selectors.dropDownButton).click()
         cy.wait(1000);
         cy.get(selectors.secondDropDownButton).should("not.be.visible");
         cy.wait(1000);
