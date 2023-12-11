@@ -257,6 +257,7 @@ describe("Time Line", () => {
     });
   });
   //Failed-->BUG
+  
   it("the dropdown list ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
