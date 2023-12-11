@@ -32,7 +32,10 @@
     "profileButton":"[data-testid='Profile-text'] > .px-4",
     "likedPostsProfile":"[data-testid='posts-list']",
     "captionTweet":".caption",
-    "userInfoReply":".userInfo.flex.flex-row"
-
+    "userInfoReply":".userInfo.flex.flex-row",
+    "addPostEmojiSearch":"[type='search']",
+    "animalsEmojiPicker":"[title='Animals & Nature']",
+    "userImageTweet":"[data-testid='profileImage252']",
+    "userNameTweet":"[data-testid='username252']"
     
 }

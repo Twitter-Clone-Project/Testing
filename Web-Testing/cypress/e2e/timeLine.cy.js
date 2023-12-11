@@ -67,6 +67,59 @@ describe("Time Line", () => {
       });
     });
   });
+  //Failed-->BUG
+  it("Emotion Search", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.AddEmojiButton).click();
+        cy.get(selectors.emojiPicker).click(150, 70);
+        cy.get(selectors.emojiPicker).should("be.visible");
+      });
+    });
+  });
+  //Failed-->BUG
+  it("Emotion Category Choose", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.AddEmojiButton).click();
+        cy.get(selectors.emojiPicker).click(150, 20);
+        cy.get(selectors.emojiPicker).should("be.visible");
+      });
+    });
+  });
+  //Passed
+  it("Add arabic text to post ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).click();
+        cy.get(selectors.postInputField).type(Data.arabicData);
+        cy.get(selectors.postInputField)
+          .children()
+          .first()
+          .children()
+          .first()
+          .children()
+          .first()
+          .children()
+          .first()
+          .children()
+          .first()
+          .should("have.class", "public-DraftStyleDefault-rtl");
+      });
+    });
+  });
+
+  it.only("Text post overflow ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).click();
+        cy.get(selectors.postInputField).type(Data.longValidText);
+        cy.get(selectors.postButton).click();
+        //line =24
+        cy.get(selectors.tweet).invoke("height").should('be.greaterThan', 40); // Adjust the threshold as needed
+      });
+    });
+  });
 
   //==============================================================add media
   it("Add  4 images in a tweet", () => {
@@ -152,18 +205,52 @@ describe("Time Line", () => {
     });
   });
   //Failed -->BUG
-  it.only('add Reply Name does not appear', () => {
+  it("add Reply Name does not appear", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
         cy.get(selectors.replyInputField).type(Data.replyText);
         cy.get(selectors.AddReplyButton).click();
-        cy.get(selectors.userInfoReply).eq(1).children().first().should("have.text",Data.name);
-        cy.get(selectors.userInfoReply).eq(2).children().first().should("have.text",Data.name);
-
+        cy.get(selectors.userInfoReply)
+          .eq(1)
+          .children()
+          .first()
+          .should("have.text", Data.name);
+        cy.get(selectors.userInfoReply)
+          .eq(2)
+          .children()
+          .first()
+          .should("have.text", Data.name);
       });
     });
-    
+  });
+
+  //Failed-->Invalid
+
+  it("Writing Arabic in reply input field", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+        cy.get(selectors.replyInputField).type(Data.arabicData);
+        cy.get(selectors.replyInputField).should(
+          "have.class",
+          "public-DraftStyleDefault-rtl"
+        );
+      });
+    });
+  });
+  it.only("Text reply overflow ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+
+        cy.get(selectors.replyInputField).click();
+        cy.get(selectors.replyInputField).type(Data.longValidText);
+        cy.get(selectors.AddReplyButton).click();
+        //line =24
+        cy.get(selectors.tweet).invoke("height").should('be.greaterThan', 40); // Adjust the threshold as needed
+      });
+    });
   });
 
   //==============================================================add like and remove
@@ -229,9 +316,6 @@ describe("Time Line", () => {
       });
     });
   });
-  it('Emotion Search', () => {
-    
-  });
 
   //==============================================================tweet its self
   //Failed-->BUG-->FIXED
@@ -264,7 +348,7 @@ describe("Time Line", () => {
   it("the dropdown list ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
-        cy.get(selectors.dropDownButton).click()
+        cy.get(selectors.dropDownButton).click();
         cy.wait(1000);
         cy.get(selectors.secondDropDownButton).should("not.be.visible");
         cy.wait(1000);
@@ -272,4 +356,21 @@ describe("Time Line", () => {
       });
     });
   });
+
+  it.only("User name in tweet", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.userNameTweet).click();
+        cy.url().should("contain", "posts");
+      });
+    });
+  });
+  // it.only('User Image in tweet', () => {
+  //   cy.viewport("iphone-x")
+  //   cy.get("@selectors").then((selectors) => {
+  //     cy.get("@timeLineData").then((Data) => {
+  //       cy.get("main").scrollIntoView({ duration: 3000 });
+  //     });
+  //   });
+  // });
 });
