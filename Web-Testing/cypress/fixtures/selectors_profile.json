@@ -11,6 +11,7 @@
   "beforeLastestTweetContent": ":nth-child(2) > .rightColumn > .caption",
   "latestTweetLike": ":nth-child(1) > .rightColumn > .buttons > [data-testid='like']",
   "likesBtn": ".text-light-thin > .relative > span",
+  "postsBtn": ".list-nav-active > .relative",
   "latestTweetContentLikes": "[data-testid='likes-list'] > :nth-child(1) > :nth-child(1)",
   "noLikes": "[data-testid=' There are No Likes yet']",
   "likesList": "[data-testid='likes-list']",
@@ -35,9 +36,9 @@
   "month": "[data-testid='Month']",
   "day": "[data-testid='Day']",
   "year": "[data-testid='Year']",
-  "followersListBtn": "[data-testid='followers-btn'] > [data-testid='folllowing-count'] > .text-light-thin",
-  "followingListBtn": "[data-testid='following-btn'] > [data-testid='folllowing-count'] > .text-light-thin",
-  "followingLatestUserBtn": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Following']",
+  "followersListBtn": "[data-testid='followers-btn']",
+  "followingListBtn": "[data-testid='following-btn']",
+  "followingLatestUserBtn": "[data-testid='FollowingList_2'] > :nth-child(1)",
   "followLatestUserBtn": "[data-testid='Follow']",
   "followLatestUserInFollowersList": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Follow']",
   "unfollowLatestUserInFollowingList": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Following']",
@@ -47,5 +48,8 @@
   "latestfollowingUsername": "[data-testid='FollowingList_2'] > :nth-child(1) a",
   "userActions": "[data-testid='undefined-UserActios-2']",
   "muteUser": "[data-testid='undefined-UserActios-4']",
-  "blockUser": "[data-testid='undefined-UserActios-6']"
+  "blockUser": "[data-testid='undefined-UserActios-6']",
+  "followersCount": "[data-testid='folllowers-count']",
+  "followingCount": "[data-testid='following-count']",
+  "postsList": "[data-testid='posts-list']"
 }

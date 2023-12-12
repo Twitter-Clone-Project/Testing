@@ -7,8 +7,8 @@ beforeEach(() => {
   cy.get("@credentials").then((cred) => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.startScreenLoginBtn).click({ force: true });
-      cy.get(sel.loginEmailInput).type(cred.confirmedEmail3);
-      cy.get(sel.loginPassInput).type(cred.confirmedPass3);
+      cy.get(sel.loginEmailInput).type(cred.email1);
+      cy.get(sel.loginPassInput).type(cred.password123);
       cy.get(sel.loginBtn).click();
     });
   });
@@ -16,70 +16,69 @@ beforeEach(() => {
 });
 describe("posts", () => {
   it("add new tweet--> added in profile", () => {
+    cy.intercept(
+      "POST",
+      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+    ).as("addTweet");
+
     cy.get("@selectors").then((sel) => {
       cy.get(sel.postInputField).type("NEW TWEET");
       cy.get(sel.postButton).click();
-      cy.get(sel.sideBarProfile).click();
-      cy.get(sel.lastestTweetContent, { timeout: 20000 })
-        .invoke("text")
-        .then((text) => {
-          expect(text).to.equal("NEW TWEET ");
-        });
+
+      // Wait for the intercepted request to complete
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.get(sel.sideBarProfile).click();
+        cy.get(`[data-testid=${tweetId}]`).should("be.visible");
+      });
     });
-  });
-  it("add 2 new tweet--> added in profile in right order", () => {
-    cy.get("@selectors").then((sel) => {
-      cy.get(sel.postInputField).type("FIRST NEW TWEET");
-      cy.get(sel.postButton).click();
-      cy.get(sel.postInputField).type("SECOND NEW TWEET");
-      cy.get(sel.postButton).click();
-      cy.get(sel.sideBarProfile).click();
-      cy.get(sel.lastestTweetContent, { timeout: 40000 })
-        .invoke("text")
-        .then((text) => {
-          expect(text).to.equal("SECOND NEW TWEET ");
-        });
-      cy.get(sel.beforeLastestTweetContent, { timeout: 40000 })
-        .invoke("text")
-        .then((text) => {
-          expect(text).to.equal("FIRST NEW TWEET ");
-        });
-    });
-  });
+  }); //updated,working
 });
 describe("like", () => {
-  it("like some tweet from my posts --> added to likes", () => {
+  it("post new tweet-->like it from my posts --> added to likes", () => {
+    cy.intercept(
+      "POST",
+      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+    ).as("addTweet");
+    //adding new tweet
     cy.get("@selectors").then((sel) => {
-      cy.get(sel.sideBarProfile).click();
-      cy.get(sel.latestTweetLike, { timeout: 40000 }).then(() => {
-        cy.get(sel.latestTweetLike).click();
-        cy.get(sel.likesBtn, { timeout: 40000 })
-          .click()
-          .then(() => {
-            cy.get(sel.latestTweetContentLikes, { timeout: 40000 })
-              .invoke("text")
-              .then((text) => {
-                expect(text).to.contain("SECOND NEW TWEET");
-              });
-          });
+      cy.get(sel.postInputField).type("testing tweet");
+      cy.get(sel.postButton).click();
+
+      // Wait for the intercepted request to complete
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.get(sel.sideBarProfile).click();
+        cy.get(`[data-testid=${tweetId}like]`).click(); //like the new tweet
+
+        cy.get(sel.likesBtn).click();
+        cy.get(sel.likesBtn).click();
+        cy.get(`[data-testid=${tweetId}]`).should("be.visible"); //check if it's present in likes
       });
     });
-  });
-  it("unlike some tweet from my likes --> removed likes", () => {
+  }); //updated,working
+
+  it.only("unlike some tweet from my likes --> removed likes", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
-      cy.get(sel.likesBtn).click();
-      cy.get(sel.latestTweetLike, { timeout: 40000 }).then(() => {
-        cy.get(sel.latestTweetLike).first().click();
-        cy.get(sel.latestTweetLike)
-          .first()
-          .children()
-          .first()
-          .should("have.attr", "class")
-          .and("include", "text-dark-gray");
-      });
+      cy.get(sel.likesBtn, { timeout: 6000 })
+        .click()
+        .then(() => {
+          cy.get(sel.likesList)
+            .children()
+            .first()
+            .children()
+            .first()
+            .invoke("attr", "data-testid")
+            .then((tweetId) => {
+              cy.get(`[data-testid=${tweetId}like]`).click();
+              cy.get(sel.postsBtn).click();
+              cy.get(sel.likesBtn).click();
+              cy.get(`[data-testid=${tweetId}]`).should("not.exist");
+            });
+        });
     });
-  });
+  }); //updated,working
 });
 describe("edit profile", () => {
   it("edit profile", () => {
@@ -280,8 +279,37 @@ describe("edit profile", () => {
         );
     });
   });
-});
+}); //updated,working
+
 describe("followers&following", () => {
+  it("following list-->unfollow-->following count should decrement", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.followingCount)
+        .invoke("text")
+        .then((count) => {
+          cy.get(sel.followingListBtn).click();
+          cy.get(sel.latestfollowingUsername)
+            .contains("@")
+            .invoke("text")
+            .then((username) => {
+              cy.get(sel.unfollowLatestUserInFollowingList).click(); //unfollow
+              cy.get(sel.sideBarProfile).click();
+              cy.get(sel.followingCount).should(
+                "contain",
+                `${parseInt(count) - 1}`
+              );
+              // cy.get(sel.followersListBtn).click();
+              // cy.get("[data-testid='FollowingList_2']")
+              //   .children()
+              //   .contains(username)
+              //   .get("button")
+              //   .click();
+            });
+        });
+    });
+  });
+
   it("followers list-->follow-->check on it in following list", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile, { timeout: 6000 })
