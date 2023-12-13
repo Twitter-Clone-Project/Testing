@@ -7,7 +7,7 @@
     "postContent":"[data-text='true']",
     "postButton":"#post",
     "postButtonTimeLine":"[data-testid='Post']",
-    "AddEmojiButton":".relative > .h-\\[18\\.75px\\]",
+    "AddEmojiButton":"button > .h-\\[18\\.75px\\]",
     "imageIdentifier":"[alt='media']",
     "uploadImageSelector":"[type='file']",
     "imagesUploaded":"[alt='media']",
@@ -23,9 +23,11 @@
     "numOfReposts":":nth-child(9) > [data-left='763.875']",
     "numOfLikes":".px-[8px]",
     "replyInputField":"[placeholder='Post your reply']",
-    "AddReplyButton":"[data-testid='add-reply'] > .h-\\[30px\\]",
-    "dropDownButton":":nth-child(1) > .rightColumn > :nth-child(2) > :nth-child(2) > .dropdown > .dropbtn > .h-\\[24px\\]",
-    "secondDropDownButton":":nth-child(2) > .rightColumn > :nth-child(2) > :nth-child(2) > .dropdown > .dropbtn > .h-\\[24px\\]",
+    "AddReplyButton":"[data-testid='reply-submit-button']",
+    "dropDownButton":"[data-testid='252menubtn'] > .h-\\[24px\\]",
+    "secondDropDownButton":"[data-testid='251menubtn'] > .h-\\[24px\\]",
+    "firstDropDown":"[data-testid='252menu']",
+    "secondDropDown":"[data-testid='251menu']",
     "thirdDropDownButton":":nth-child(3) > .rightColumn > :nth-child(2) > :nth-child(2) > .dropdown > .dropbtn > .h-\\[24px\\]",
     "deleteOption":".me",
     "profilePosts":":nth-child(2) > .rightColumn > .caption",
@@ -36,6 +38,12 @@
     "addPostEmojiSearch":"[type='search']",
     "animalsEmojiPicker":"[title='Animals & Nature']",
     "userImageTweet":"[data-testid='profileImage252']",
-    "userNameTweet":"[data-testid='username252']"
+    "userNameTweet":"[data-testid='username252']",
+    "logOugButton":"[data-testid='user-btn']",
+    "nameTweetPage":"[data-testid='username252']",
+    "userNameTweetPage":".userName",
+    "menueReplyDeleteLabel":"[data-testid='180-reply-menu']",
+    "deleteButtonDropDown":"[data-testid='180-deletebtn']"
+
     
 }

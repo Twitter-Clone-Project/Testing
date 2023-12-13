@@ -67,7 +67,7 @@ describe("Time Line", () => {
       });
     });
   });
-  //Failed-->BUG
+  //Failed-->BUG-->Passed
   it("Emotion Search", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
@@ -77,7 +77,7 @@ describe("Time Line", () => {
       });
     });
   });
-  //Failed-->BUG
+  //Failed-->BUG--->Passed
   it("Emotion Category Choose", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
@@ -109,14 +109,17 @@ describe("Time Line", () => {
     });
   });
 
-  it.only("Text post overflow ", () => {
+  it("Text post overflow ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).click();
         cy.get(selectors.postInputField).type(Data.longValidText);
         cy.get(selectors.postButton).click();
         //line =24
-        cy.get(selectors.tweet).invoke("height").should('be.greaterThan', 40); // Adjust the threshold as needed
+        cy.get(selectors.captionTweet)
+          .eq(1)
+          .invoke("height")
+          .should("be.greaterThan", 40); // Adjust the threshold as needed
       });
     });
   });
@@ -146,7 +149,6 @@ describe("Time Line", () => {
         "image4.jpg",
       ]);
       cy.get(selectors.uploadImageSelector).should("be.disabled");
-      cy.get(selectors.uploadImageSelector).attachFile("image5.jpg");
       cy.get(selectors.imagesUploaded).then(($elements) => {
         const count = $elements.length;
         cy.log(`Number of elements: ${count}`);
@@ -204,7 +206,7 @@ describe("Time Line", () => {
       });
     });
   });
-  //Failed -->BUG
+  //Failed -->BUG-->FIXED
   it("add Reply Name does not appear", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
@@ -225,20 +227,18 @@ describe("Time Line", () => {
     });
   });
 
-  //Failed-->Invalid
+  //Failed-->Invalid-->FIXED
 
   it("Writing Arabic in reply input field", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
         cy.get(selectors.replyInputField).type(Data.arabicData);
-        cy.get(selectors.replyInputField).should(
-          "have.class",
-          "public-DraftStyleDefault-rtl"
-        );
+        cy.get(selectors.replyInputField).should("have.attr", "dir", "auto");
       });
     });
   });
+  //Failed-->BUG--->Fixed
   it.only("Text reply overflow ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
@@ -248,11 +248,45 @@ describe("Time Line", () => {
         cy.get(selectors.replyInputField).type(Data.longValidText);
         cy.get(selectors.AddReplyButton).click();
         //line =24
-        cy.get(selectors.tweet).invoke("height").should('be.greaterThan', 40); // Adjust the threshold as needed
+        cy.get(selectors.captionTweet)
+          .eq(1)
+          .should("have.text", Data.longValidText);
       });
     });
   });
 
+  it("Go to user profile ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+
+        cy.get(selectors.nameTweetPage).click();
+        cy.url().should("include", Data.userName);
+      });
+    });
+  });
+
+  //faild-->BUG
+  it("username of the tweet owner", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+        cy.get(selectors.userNameTweetPage)
+          .first()
+          .should("have.text", Data.userName);
+      });
+    });
+  });
+  //it passed but not always working
+  it.only("DropDown List of reply", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+        cy.get(selectors.menueReplyDeleteLabel).click();
+        cy.get(selectors.deleteButtonDropDown).should("be.visible");
+      });
+    });
+  });
   //==============================================================add like and remove
   //passes
   it("remove Like", () => {
@@ -317,6 +351,18 @@ describe("Time Line", () => {
     });
   });
 
+  it.only("Add tweet and then retweet it and then remove the retweet from tweet ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.repostText);
+        cy.get(selectors.postButton).click();
+        cy.get(selectors.repostButton).first().click();
+        cy.wait(2000);
+        cy.get(selectors.profileButton).click();
+      });
+    });
+  });
+
   //==============================================================tweet its self
   //Failed-->BUG-->FIXED
   it("Reply Icon ", () => {
@@ -343,21 +389,22 @@ describe("Time Line", () => {
       });
     });
   });
-  //Failed-->BUG
+  //Failed-->BUG--->Passed
 
   it("the dropdown list ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.dropDownButton).click();
         cy.wait(1000);
-        cy.get(selectors.secondDropDownButton).should("not.be.visible");
         cy.wait(1000);
-        cy.get(selectors.thirdDropDownButton).should("not.be.visible");
+        cy.get(selectors.secondDropDownButton).click();
+        cy.wait(1000);
+        cy.get(selectors.secondDropDown).should("be.visible");
       });
     });
   });
 
-  it.only("User name in tweet", () => {
+  it("User name in tweet", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.userNameTweet).click();
@@ -365,6 +412,7 @@ describe("Time Line", () => {
       });
     });
   });
+
   // it.only('User Image in tweet', () => {
   //   cy.viewport("iphone-x")
   //   cy.get("@selectors").then((selectors) => {
@@ -373,4 +421,10 @@ describe("Time Line", () => {
   //     });
   //   });
   // });
+
+  //=====================================================General testcases
+  it("Log out testcase", () => {
+    cy.contains("Log Out").click();
+    cy.url().should("contain", "https://twitter-clone.onthewifi.com/");
+  });
 });
