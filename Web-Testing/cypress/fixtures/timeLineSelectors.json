@@ -16,7 +16,8 @@
     "profileIcon":"[alt='profileImage']",
     "likeButton":":nth-child(1) > .rightColumn > .buttons > [data-testid='like']",
     "replyButton":"[data-testid='reply']",
-    "repostButton":"[data-testid='repost']",
+    "repostButton":"[data-testid='336repost']",
+    "repostButtonNext":"[data-testid='336repost']",
     "tweet":":nth-child(1) > .rightColumn > .caption",
     "goBackLikersList":"[aria-hidden='true']",
     "numOfReplies":":nth-child(8) > [data-layer='Padding']",
@@ -43,7 +44,10 @@
     "nameTweetPage":"[data-testid='username252']",
     "userNameTweetPage":".userName",
     "menueReplyDeleteLabel":"[data-testid='180-reply-menu']",
-    "deleteButtonDropDown":"[data-testid='180-deletebtn']"
+    "deleteButtonDropDown":"[data-testid='180-deletebtn']",
+    "repostIconfirstTweetIcon":"[data-testid='336repost']",
+    "repostIconsecondTweetIcon":"[data-testid='336repost']",
+    "latestTweetLikeIcon":"[data-testid='336like']"
 
     
 }

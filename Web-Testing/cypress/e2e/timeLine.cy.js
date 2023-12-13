@@ -239,7 +239,7 @@ describe("Time Line", () => {
     });
   });
   //Failed-->BUG--->Fixed
-  it.only("Text reply overflow ", () => {
+  it("Text reply overflow ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
@@ -278,7 +278,7 @@ describe("Time Line", () => {
     });
   });
   //it passed but not always working
-  it.only("DropDown List of reply", () => {
+  it("DropDown List of reply", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
@@ -317,6 +317,28 @@ describe("Time Line", () => {
       });
     });
   });
+
+  //Failed -->BUG
+
+  it.only("Add like to a retweet ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.repostText);
+        cy.get(selectors.postButton).click();
+        cy.get(selectors.repostButton).first().click();
+        cy.wait(2000);
+        cy.get(selectors.profileButton).click();
+        cy.wait(5000);
+        cy.get(selectors.latestTweetLikeIcon).first().click();
+        cy.wait(5000);
+        cy.get(selectors.latestTweetLikeIcon)
+          .eq(1)
+          .should("have.attr", "class")
+          .and("not.include", "text-dark-gray");
+       
+      });
+    });
+  });
   //==============================================================add repost
   it("Add repost", () => {
     cy.get("@selectors").then((selectors) => {
@@ -350,8 +372,8 @@ describe("Time Line", () => {
       });
     });
   });
-
-  it.only("Add tweet and then retweet it and then remove the retweet from tweet ", () => {
+  //Failed-->BUG
+  it("Add tweet and then retweet it and then remove the retweet from tweet ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).type(Data.repostText);
@@ -359,6 +381,11 @@ describe("Time Line", () => {
         cy.get(selectors.repostButton).first().click();
         cy.wait(2000);
         cy.get(selectors.profileButton).click();
+        cy.get(selectors.repostIconfirstTweetIcon).first().click();
+        cy.get(selectors.repostIconsecondTweetIcon).eq(1).click();
+        cy.get("div")
+          .contains(" Error in deleting retweet")
+          .should("not.be.visible");
       });
     });
   });
