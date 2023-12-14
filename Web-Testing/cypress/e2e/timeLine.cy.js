@@ -25,17 +25,37 @@ describe("Time Line", () => {
   it("Add tweet of text", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+
         cy.get(selectors.postInputField).type(Data.postText);
         cy.get(selectors.postButton).click();
         cy.get(selectors.postInputField).should("not.have.text", Data.postText);
-        cy.contains(Data.postText).should("be.visible");
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = interception.response.body.data.id;
+          cy.get(`[data-testid=${tweetId}]`).should("be.visible");
+        });
       });
     });
   });
   //Post Button in the nav bar should be functional
   it("Post Button should be enabled", () => {
     cy.get("@selectors").then((selectors) => {
+      cy.intercept(
+        "POST",
+        "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+      ).as("addTweet");
+
       cy.get(selectors.postButtonTimeLine).click();
+      cy.get(selectors.postInputField).type(Data.postText);
+      cy.get(selectors.postButtonCard).click();
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.get(`[data-testid=${tweetId}]`).should("be.visible");
+      });
     });
   });
   //Faild -->BUG--->FIXED
@@ -163,6 +183,11 @@ describe("Time Line", () => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.postInputField).type(Data.tooLongText);
         cy.get(selectors.postContent).should("have.text", Data.longValidText);
+        cy.get(selectors.postInputField)
+          .invoke("val")
+          .then((text) => {
+            expect(text.length).to.be.lessThan(60);
+          });
         cy.get(selectors.postButton).click();
       });
     });
@@ -202,7 +227,7 @@ describe("Time Line", () => {
         cy.get(selectors.tweet).click();
         cy.get(selectors.replyInputField).type(Data.replyText);
         cy.get(selectors.AddReplyButton).click();
-        cy.contains(Data.postText).should("be.visible");
+        cy.contains(Data.replyText).should("be.visible");
       });
     });
   });
@@ -292,50 +317,109 @@ describe("Time Line", () => {
   it("remove Like", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
-        cy.get(selectors.likeButton).first().click();
-        cy.get(selectors.likeButton)
-          .first()
-          .children()
-          .first()
-          .should("have.attr", "class")
-          .and("include", "text-dark-gray");
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+
+        cy.get(selectors.postInputField).type(Data.postText);
+        cy.get(selectors.postButton).click();
+        cy.get(selectors.postInputField).should("not.have.text", Data.postText);
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = interception.response.body.data.id;
+          cy.intercept(
+            "POST",
+            `https://twitter-clone.onthewifi.com:2023/api/v1/tweets/${tweetId}/addLike`
+          ).as("addLike");
+
+          cy.get(`[data-testid=${tweetId}like]`).click();
+
+          cy.wait("@addLike").then(() => {
+            cy.get(`[data-testid=${tweetId}like]`).click();
+
+            cy.get(selectors.likeButton)
+              .first()
+              .children()
+              .first()
+              .should("have.attr", "class")
+              .and("include", "text-dark-gray");
+          });
+        });
       });
     });
   });
 
-  it("Add Like", () => {
+  it.only("Add Like", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
-        cy.wait(5000);
-        cy.get(selectors.likeButton).first().click();
-        cy.get(selectors.likeButton)
+        cy.intercept(
+          "GET",
+          "https://twitter-clone.onthewifi.com:2023/api/v1//users/1/timeline"
+        ).as("timeline");
+
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+
+        cy.get(selectors.postInputField).type(Data.postText);
+        cy.get(selectors.postButton).click();
+        cy.get(selectors.postInputField).should("not.have.text", Data.postText);
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = interception.response.body.data.id;
+          cy.intercept(
+            "POST",
+            `https://twitter-clone.onthewifi.com:2023/api/v1/tweets/${tweetId}/addLike`
+          ).as("addLike");
+          cy.get(`[data-testid=${tweetId}like]`).click();
+          cy.get(`[data-testid=${tweetId}like]`)
           .first()
           .children()
           .first()
           .should("have.attr", "class")
           .and("not.include", "text-dark-gray");
+
+        });
+       
       });
     });
   });
 
   //Failed -->BUG
 
-  it.only("Add like to a retweet ", () => {
+  it("Add like to a retweet and see if the original tweet got affected ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
-        cy.get(selectors.postInputField).type(Data.repostText);
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+        let username = Data.userName;
+        cy.intercept(
+          "GET",
+          `https://twitter-clone.onthewifi.com:2023/api/v1/profile/${username}`
+        ).as("profile");
+
+        cy.get(selectors.postInputField).type(Data.postText);
         cy.get(selectors.postButton).click();
-        cy.get(selectors.repostButton).first().click();
-        cy.wait(2000);
-        cy.get(selectors.profileButton).click();
-        cy.wait(5000);
-        cy.get(selectors.latestTweetLikeIcon).first().click();
-        cy.wait(5000);
-        cy.get(selectors.latestTweetLikeIcon)
-          .eq(1)
-          .should("have.attr", "class")
-          .and("not.include", "text-dark-gray");
-       
+        cy.get(selectors.postInputField).should("not.have.text", Data.postText);
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = interception.response.body.data.id;
+          cy.get(`[data-testid=${tweetId}repost]`).click();
+          cy.wait(2000);
+          cy.get(selectors.profileButton).click();
+          cy.wait("@profile").then(() => {
+            cy.get(`[data-testid=${tweetId}like]`).first().click();
+            cy.wait(5000);
+            cy.get(`[data-testid=${tweetId}like]`)
+              .eq(1)
+              .should("have.attr", "class")
+              .and("not.include", "text-dark-gray");
+          });
+        });
       });
     });
   });
@@ -343,6 +427,8 @@ describe("Time Line", () => {
   it("Add repost", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.repostText);
+        cy.get(selectors.postButton).click();
         cy.get(selectors.repostButton).first().click();
         cy.get(selectors.numOfReposts).should("have.text", "1");
       });
@@ -376,16 +462,26 @@ describe("Time Line", () => {
   it("Add tweet and then retweet it and then remove the retweet from tweet ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+
         cy.get(selectors.postInputField).type(Data.repostText);
         cy.get(selectors.postButton).click();
-        cy.get(selectors.repostButton).first().click();
-        cy.wait(2000);
-        cy.get(selectors.profileButton).click();
-        cy.get(selectors.repostIconfirstTweetIcon).first().click();
-        cy.get(selectors.repostIconsecondTweetIcon).eq(1).click();
-        cy.get("div")
-          .contains(" Error in deleting retweet")
-          .should("not.be.visible");
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = interception.response.body.data.id;
+          cy.get(`[data-testid=${tweetId}repost]`).click();
+          cy.wait(2000);
+          cy.get(selectors.profileButton).click();
+
+          cy.get(`[data-testid=${tweetId}repost]`).first().click();
+          cy.get(`[data-testid=${tweetId}repost]`).eq(1).click();
+          cy.get("div")
+            .contains(" Error in deleting retweet")
+            .should("not.be.visible");
+        });
       });
     });
   });
@@ -398,35 +494,58 @@ describe("Time Line", () => {
       cy.url().should("contain", "tweet");
     });
   });
+  //passed
   it("add tweet and then delete it and check on it in the posts ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+
         cy.get(selectors.postInputField).type(Data.deleteText);
         cy.get(selectors.postButton).click();
         cy.contains(Data.postText).should("be.visible");
-        cy.wait(5000);
-        cy.get(selectors.dropDownButton).click();
-        cy.get(selectors.deleteOption).click();
-        cy.get(selectors.profileButton).click();
-        cy.get(selectors.profilePosts)
-          .invoke("text")
-          .then((text) => {
-            expect(text).not.to.include(Data.deleteText);
-          });
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = interception.response.body.data.id;
+          cy.get(`[data-testid=${tweetId}menubtn]`).click();
+          cy.wait(5000);
+          cy.get(selectors.deleteOption).click();
+          cy.get(selectors.profileButton).click();
+          cy.get(selectors.profilePosts)
+            .invoke("text")
+            .then((text) => {
+              expect(text).not.to.include(Data.deleteText);
+            });
+        });
       });
     });
   });
   //Failed-->BUG--->Passed
 
-  it("the dropdown list ", () => {
+  it.only("the dropdown list ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
-        cy.get(selectors.dropDownButton).click();
-        cy.wait(1000);
-        cy.wait(1000);
-        cy.get(selectors.secondDropDownButton).click();
-        cy.wait(1000);
-        cy.get(selectors.secondDropDown).should("be.visible");
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+        cy.get(selectors.postInputField).type(Data.deleteText);
+        cy.get(selectors.postButton).click();
+        cy.contains(Data.postText).should("be.visible");
+
+        cy.get(selectors.postInputField).type(Data.deleteText);
+        cy.get(selectors.postButton).click();
+        cy.contains(Data.postText).should("be.visible");
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = parseInt(interception.response.body.data.id, 10);
+          cy.get(`[data-testid=${tweetId}menubtn]`).click();
+          let nextId = tweetId + 1;
+          cy.get(`[data-testid=${nextId}menubtn]`).click();
+          cy.get(`[data-testid=${nextId}menu]`).should("be.visible");
+        });
       });
     });
   });
@@ -451,7 +570,10 @@ describe("Time Line", () => {
 
   //=====================================================General testcases
   it("Log out testcase", () => {
-    cy.contains("Log Out").click();
-    cy.url().should("contain", "https://twitter-clone.onthewifi.com/");
+    cy.get("@selectors").then((selectors) => {
+      cy.contains("Log Out").click();
+      cy.get(selectors.logOutButton).click();
+      cy.url().should("contain", "https://twitter-clone.onthewifi.com/");
+    });
   });
 });

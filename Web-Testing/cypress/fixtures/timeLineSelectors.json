@@ -6,6 +6,7 @@
     "postInputField":".DraftEditor-root",
     "postContent":"[data-text='true']",
     "postButton":"#post",
+    "postButtonCard":"[data-testid='Post']",
     "postButtonTimeLine":"[data-testid='Post']",
     "AddEmojiButton":"button > .h-\\[18\\.75px\\]",
     "imageIdentifier":"[alt='media']",
@@ -47,7 +48,8 @@
     "deleteButtonDropDown":"[data-testid='180-deletebtn']",
     "repostIconfirstTweetIcon":"[data-testid='336repost']",
     "repostIconsecondTweetIcon":"[data-testid='336repost']",
-    "latestTweetLikeIcon":"[data-testid='336like']"
+    "latestTweetLikeIcon":"[data-testid='336like']",
+    "logOutButton":"[data-testid='Log Out']"
 
     
 }
