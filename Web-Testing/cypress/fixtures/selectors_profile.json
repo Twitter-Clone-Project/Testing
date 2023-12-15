@@ -51,5 +51,6 @@
   "blockUser": "[data-testid='undefined-UserActios-6']",
   "followersCount": "[data-testid='folllowers-count']",
   "followingCount": "[data-testid='following-count']",
-  "postsList": "[data-testid='posts-list']"
+  "postsList": "[data-testid='posts-list']",
+  "logOutBtn": "[data-testid='Log Out']"
 }

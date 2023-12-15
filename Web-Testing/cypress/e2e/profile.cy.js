@@ -1,4 +1,5 @@
 /// <reference types="cypress"/>
+
 const baseUrl = "https://twitter-clone.onthewifi.com/";
 beforeEach(() => {
   cy.fixture("credentials_profile").as("credentials");
@@ -28,6 +29,7 @@ describe("posts", () => {
       // Wait for the intercepted request to complete
       cy.wait("@addTweet").then((interception) => {
         const tweetId = interception.response.body.data.id;
+        cy.setTweetId(tweetId);
         cy.get(sel.sideBarProfile).click();
         cy.get(`[data-testid=${tweetId}]`).should("be.visible");
       });
@@ -35,47 +37,34 @@ describe("posts", () => {
   }); //updated,working
 });
 describe("like", () => {
-  it("post new tweet-->like it from my posts --> added to likes", () => {
-    cy.intercept(
-      "POST",
-      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
-    ).as("addTweet");
-    //adding new tweet
+  it("like the tweet added in the prev test it from my posts --> added to likes", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.postInputField).type("testing tweet");
       cy.get(sel.postButton).click();
 
-      // Wait for the intercepted request to complete
-      cy.wait("@addTweet").then((interception) => {
-        const tweetId = interception.response.body.data.id;
-        cy.get(sel.sideBarProfile).click();
-        cy.get(`[data-testid=${tweetId}like]`).click(); //like the new tweet
+      cy.get(sel.sideBarProfile).click();
+      cy.getTweetId().then((Id) => {
+        cy.get(`[data-testid=${Id}like]`).click(); //like the new tweet
 
         cy.get(sel.likesBtn).click();
         cy.get(sel.likesBtn).click();
-        cy.get(`[data-testid=${tweetId}]`).should("be.visible"); //check if it's present in likes
+        cy.get(`[data-testid=${Id}]`).should("be.visible"); //check if it's present in likes
       });
     });
   }); //updated,working
 
-  it.only("unlike some tweet from my likes --> removed likes", () => {
+  it("unlike some tweet from my likes --> removed likes", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
       cy.get(sel.likesBtn, { timeout: 6000 })
         .click()
         .then(() => {
-          cy.get(sel.likesList)
-            .children()
-            .first()
-            .children()
-            .first()
-            .invoke("attr", "data-testid")
-            .then((tweetId) => {
-              cy.get(`[data-testid=${tweetId}like]`).click();
-              cy.get(sel.postsBtn).click();
-              cy.get(sel.likesBtn).click();
-              cy.get(`[data-testid=${tweetId}]`).should("not.exist");
-            });
+          cy.getTweetId().then((Id) => {
+            cy.get(`[data-testid=${Id}like]`).click(); //unlike
+            cy.get(sel.postsBtn).click();
+            cy.get(sel.likesBtn).click();
+            cy.get(`[data-testid=${Id}]`).should("not.exist");
+          });
         });
     });
   }); //updated,working
@@ -279,6 +268,22 @@ describe("edit profile", () => {
         );
     });
   });
+  it.only("invalid name input(spaces)", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.editProfile).click();
+      cy.get(sel.editName).clear().type("   ");
+      cy.get(sel.saveEdits).should("be.disabled");
+    });
+  });
+  it.only("invalid name input(digits)", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.editProfile).click();
+      cy.get(sel.editName).clear().type("666");
+      cy.get(sel.saveEdits).should("be.disabled");
+    });
+  });
 }); //updated,working
 
 describe("followers&following", () => {
@@ -309,7 +314,6 @@ describe("followers&following", () => {
         });
     });
   });
-
   it("followers list-->follow-->check on it in following list", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile, { timeout: 6000 })
