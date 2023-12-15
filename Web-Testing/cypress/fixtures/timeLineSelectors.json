@@ -41,7 +41,7 @@
     "animalsEmojiPicker":"[title='Animals & Nature']",
     "userImageTweet":"[data-testid='profileImage252']",
     "userNameTweet":"[data-testid='username252']",
-    "logOugButton":"[data-testid='user-btn']",
+    "userButton":"[data-testid='user-btn']",
     "nameTweetPage":"[data-testid='username252']",
     "userNameTweetPage":".userName",
     "menueReplyDeleteLabel":"[data-testid='180-reply-menu']",
@@ -49,7 +49,10 @@
     "repostIconfirstTweetIcon":"[data-testid='336repost']",
     "repostIconsecondTweetIcon":"[data-testid='336repost']",
     "latestTweetLikeIcon":"[data-testid='336like']",
-    "logOutButton":"[data-testid='Log Out']"
+    "logOutButton":"[data-testid='Log Out']",
+    "listOfLikers":"[data-testid='likes-list-count']",
+    "listOfRetweeters":"[data-testid='retweets-list-count']",
+    "firstRetweeterOrLiker":"[data-testid='UserItem_0_name']"
 
     
 }

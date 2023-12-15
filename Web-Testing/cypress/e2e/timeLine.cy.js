@@ -350,7 +350,7 @@ describe("Time Line", () => {
     });
   });
 
-  it.only("Add Like", () => {
+  it("Add Like", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.intercept(
@@ -375,14 +375,12 @@ describe("Time Line", () => {
           ).as("addLike");
           cy.get(`[data-testid=${tweetId}like]`).click();
           cy.get(`[data-testid=${tweetId}like]`)
-          .first()
-          .children()
-          .first()
-          .should("have.attr", "class")
-          .and("not.include", "text-dark-gray");
-
+            .first()
+            .children()
+            .first()
+            .should("have.attr", "class")
+            .and("not.include", "text-dark-gray");
         });
-       
       });
     });
   });
@@ -524,7 +522,7 @@ describe("Time Line", () => {
   });
   //Failed-->BUG--->Passed
 
-  it.only("the dropdown list ", () => {
+  it("the dropdown list ", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.intercept(
@@ -559,21 +557,104 @@ describe("Time Line", () => {
     });
   });
 
-  // it.only('User Image in tweet', () => {
-  //   cy.viewport("iphone-x")
-  //   cy.get("@selectors").then((selectors) => {
-  //     cy.get("@timeLineData").then((Data) => {
-  //       cy.get("main").scrollIntoView({ duration: 3000 });
-  //     });
-  //   });
-  // });
-
   //=====================================================General testcases
+  //Passed
   it("Log out testcase", () => {
+    cy.intercept(
+      "GET",
+      "https://twitter-clone.onthewifi.com:2023/api/v1//users/1/timeline"
+    ).as("timeline");
+
     cy.get("@selectors").then((selectors) => {
-      cy.contains("Log Out").click();
-      cy.get(selectors.logOutButton).click();
-      cy.url().should("contain", "https://twitter-clone.onthewifi.com/");
+      cy.get("@timeLineData").then((Data) => {
+        cy.wait("@timeline").then(() => {
+          cy.get(selectors.userButton).click();
+          cy.get("[data-testid='nav-logout-btn']").click();
+          cy.get(selectors.logOutButton).click();
+          cy.url().should("contain", "https://twitter-clone.onthewifi.com/");
+        });
+      });
+    });
+  });
+  //=====================================================List of likers
+  //Failed -->BUG
+  it.only("List of likers", () => {
+    cy.intercept(
+      "GET",
+      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/373"
+    );
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+        cy.url().then((url) => {
+          const match = url.match(/\/(\d+)$/);
+          if (match) {
+            const number = match[1];
+            cy.log(number);
+            cy.intercept(
+              "GET",
+              `https://twitter-clone.onthewifi.com:2023/api/v1/tweets/${number}/likers`
+            ).as("likers");
+
+            cy.get(selectors.listOfLikers).click();
+            cy.url().should("contain", "likes");
+            cy.wait("@likers").then((interception) => {
+              let data = interception.response.body.data[0];
+              let firstLiker;
+              if (data != null) {
+                firstLiker = data.name;
+                cy.log(firstLiker);
+                cy.get(selectors.firstRetweeterOrLiker)
+                  .invoke("text")
+                  .then((text) => {
+                    expect(text).to.equal(firstLiker);
+                  });
+              }
+            });
+          }
+        });
+      });
+    });
+  });
+
+  //Failed -->BUG
+
+  it("List of retweeters", () => {
+    cy.intercept(
+      "GET",
+      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/373"
+    );
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.tweet).click();
+        cy.url().then((url) => {
+          const match = url.match(/\/(\d+)$/);
+          if (match) {
+            const number = match[1];
+            cy.log(number);
+            cy.intercept(
+              "GET",
+              `https://twitter-clone.onthewifi.com:2023/api/v1/tweets/${number}/retweeters`
+            ).as("retweeters");
+
+            cy.get(selectors.listOfRetweeters).click();
+            cy.url().should("contain", "retweets");
+            cy.wait("@retweeters").then((interception) => {
+              let data = interception.response.body.data[0];
+              let firstRetweeter;
+              if (data != null) {
+                firstRetweeter = interception.response.body.data[0].name;
+                cy.log(firstRetweeter);
+                cy.get(selectors.firstRetweeterOrLiker)
+                  .invoke("text")
+                  .then((text) => {
+                    expect(text).to.equal(firstRetweeter);
+                  });
+              } else firstRetweeter = null;
+            });
+          }
+        });
+      });
     });
   });
 });
