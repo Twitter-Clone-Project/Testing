@@ -35,6 +35,19 @@ describe("posts", () => {
       });
     });
   }); //updated,working
+  it("delete tweet", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.getTweetId().then((Id) => {
+        cy.get(`[data-testid=${Id}menubtn]`).click();
+        cy.get(`[data-testid=${Id}menu]`).as("menu");
+        cy.get("@menu").click();
+        cy.get(sel.sideBarProfile).click();
+        cy.wait(1000);
+        cy.get(`[data-testid=${Id}]`).should("not.exist"); //check if it's present in likes
+      });
+    });
+  });
 });
 describe("like", () => {
   it("like the tweet added in the prev test it from my posts --> added to likes", () => {
@@ -268,7 +281,7 @@ describe("edit profile", () => {
         );
     });
   });
-  it.only("invalid name input(spaces)", () => {
+  it("invalid name input(spaces)", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
       cy.get(sel.editProfile).click();
@@ -276,7 +289,7 @@ describe("edit profile", () => {
       cy.get(sel.saveEdits).should("be.disabled");
     });
   });
-  it.only("invalid name input(digits)", () => {
+  it("invalid name input(digits)", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
       cy.get(sel.editProfile).click();
