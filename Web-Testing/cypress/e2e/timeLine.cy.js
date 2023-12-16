@@ -304,12 +304,14 @@ describe("Time Line", () => {
     });
   });
   //it passed but not always working
-  it("DropDown List of reply", () => {
+  it.only("DropDown List of reply", () => {
+    //I have tried the drop down but the dark mode no and it is bug.  //  dark mode but dropdown is light ?
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
         cy.get(selectors.menueReplyDeleteLabel).click();
         cy.get(selectors.deleteButtonDropDown).should("be.visible");
+        cy.get(selectors.deleteButtonDropDown).should("have.class","dark:hover:bg-[#080808]");
       });
     });
   });
