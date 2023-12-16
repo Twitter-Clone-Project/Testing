@@ -41,13 +41,33 @@ describe("posts", () => {
       cy.getTweetId().then((Id) => {
         cy.get(`[data-testid=${Id}menubtn]`).click();
         cy.get(`[data-testid=${Id}menu]`).as("menu");
-        cy.get("@menu").click();
+        cy.get("@menu").click("left");
         cy.get(sel.sideBarProfile).click();
-        cy.wait(1000);
+        cy.get(sel.sideBarProfile).click();
+        cy.wait(2000);
         cy.get(`[data-testid=${Id}]`).should("not.exist"); //check if it's present in likes
       });
     });
   });
+  it("add new tweet--> added in profile", () => {
+    cy.intercept(
+      "POST",
+      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+    ).as("addTweet");
+
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.postInputField).type("NEW TWEET");
+      cy.get(sel.postButton).click();
+
+      // Wait for the intercepted request to complete
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.setTweetId(tweetId);
+        cy.get(sel.sideBarProfile).click();
+        cy.get(`[data-testid=${tweetId}]`).should("be.visible");
+      });
+    });
+  }); //updated,working
 });
 describe("like", () => {
   it("like the tweet added in the prev test it from my posts --> added to likes", () => {
