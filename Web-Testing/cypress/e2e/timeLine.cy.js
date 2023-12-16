@@ -219,6 +219,7 @@ describe("Time Line", () => {
       cy.get("video").should("be.visible");
     });
   });
+
   //==============================================================add reply
   //Failed -->BUG
   it("Add reply", () => {
@@ -576,13 +577,34 @@ describe("Time Line", () => {
       });
     });
   });
+  it.only("Repost-->delete repost -->like", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+        cy.get(selectors.postInputField).type(Data.deleteText);
+        cy.get(selectors.postButton).click();
+        cy.contains(Data.postText).should("be.visible");
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = parseInt(interception.response.body.data.id, 10);
+          cy.get(`[data-testid=${tweetId}repost]`).click();
+          cy.wait(2000);
+          cy.get(`[data-testid=${tweetId}repost]`).click();
+          cy.get(`[data-testid=${tweetId}like]`).click();
+
+          cy.get(`[data-testid=${tweetId}like]`)
+            .should("have.attr", "class")
+            .and("not.include", "text-dark-gray");
+        });
+      });
+    });
+  });
   //=====================================================List of likers
   //Failed -->BUG
   it.only("List of likers", () => {
-    cy.intercept(
-      "GET",
-      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/373"
-    );
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
@@ -620,10 +642,6 @@ describe("Time Line", () => {
   //Failed -->BUG
 
   it("List of retweeters", () => {
-    cy.intercept(
-      "GET",
-      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/373"
-    );
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
@@ -653,6 +671,50 @@ describe("Time Line", () => {
               } else firstRetweeter = null;
             });
           }
+        });
+      });
+    });
+  });
+});
+describe("Time Line smaller view port", () => {
+  beforeEach(() => {
+    cy.viewport("iphone-8");
+    cy.visit("https://twitter-clone.onthewifi.com/");
+    cy.fixture("timeLineSelectors").as("selectors");
+    cy.fixture("userData").as("userData");
+    cy.fixture("timeLineData").as("timeLineData");
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.signInButton).click({ force: true });
+      cy.get(selectors.emailInputField).type("mennaabdelbaset208@gmail.com");
+      cy.get(selectors.passwordInputField).type("12345678");
+      cy.get(selectors.logInButton).click();
+    });
+  });
+
+  it.only("Add emoji in mobile view port", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.AddEmojiButton).click();
+      cy.get("[title='Frequently used']").should("be.visible");
+    });
+  });
+  it.only("delete post from mobile view port", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+
+        cy.get(selectors.postInputField).type(Data.deleteText);
+        cy.get(selectors.postButton).click();
+        cy.contains(Data.postText).should("be.visible");
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = interception.response.body.data.id;
+          cy.get(`[data-testid=${tweetId}menubtn]`).click();
+          cy.wait(5000);
+          cy.get(selectors.deleteOption).should("be.visible");
+          cy.get(selectors.deleteOption).click();
         });
       });
     });
