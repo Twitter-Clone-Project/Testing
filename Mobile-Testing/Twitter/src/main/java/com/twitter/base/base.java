@@ -22,7 +22,7 @@ public class base {
 
     @Parameters({"deviceName", "platformName", "platformVersion"})
     @BeforeMethod
-    public void beforeClass(String deviceName, String platformName, String platformVersion) throws Exception {
+    public void beforeMethod(String deviceName, String platformName, String platformVersion) throws Exception {
 
         File propFile = new File("src\\main\\resources\\config\\config.properties");
         inputStream = new FileInputStream(propFile);

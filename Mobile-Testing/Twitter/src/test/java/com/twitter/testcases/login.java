@@ -29,9 +29,9 @@ public class login extends base {
         homeScreen=new homeScreen();
         seeWhatsHappeningScreen.clickOnLogin();
         loginInputsScreen.clickOnEmailInput();
-        loginInputsScreen.typeEmail("yous.ef.mohamed.rab.ia@gmail.com");
+        loginInputsScreen.typeEmail("areegm32@gmail.com");
         loginInputsScreen.clickOnPassInput();
-        loginInputsScreen.typePass("123456789");
+        loginInputsScreen.typePass("test1234");
         loginInputsScreen.clickOnLogin();
         Assert.assertTrue(homeScreen.assertionElement.isDisplayed(), "Element is not displayed.");
     }
@@ -73,7 +73,7 @@ public class login extends base {
         homeScreen=new homeScreen();
         seeWhatsHappeningScreen.clickOnLogin();
         loginInputsScreen.clickOnEmailInput();
-        loginInputsScreen.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        loginInputsScreen.typeEmail("areegm32@gmail.com");
         loginInputsScreen.clickOnLogin();
         Assert.assertTrue(loginInputsScreen.emptyPassAssertion.isDisplayed(), "Element is not displayed.");
     }
@@ -118,7 +118,7 @@ public class login extends base {
         loginInputsScreen = new loginInputsScreen();
         seeWhatsHappeningScreen.clickOnLogin();
         loginInputsScreen.clickOnEmailInput();
-        loginInputsScreen.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        loginInputsScreen.typeEmail("areegm32@gmail.com");
         loginInputsScreen.clickOnPassInput();
         loginInputsScreen.typePass("test");
         loginInputsScreen.clickOnLogin();
@@ -134,7 +134,7 @@ public class login extends base {
         loginInputsScreen = new loginInputsScreen();
         seeWhatsHappeningScreen.clickOnLogin();
         loginInputsScreen.clickOnEmailInput();
-        loginInputsScreen.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        loginInputsScreen.typeEmail("areegm32@gmail.com");
         loginInputsScreen.clickOnPassInput();
         loginInputsScreen.typePass("test1224");
         loginInputsScreen.clickOnLogin();
@@ -153,7 +153,7 @@ public class login extends base {
         loginInputsScreen.clickOnForgetPass();
         forgetPassScreens=new forgetPassScreens();
         forgetPassScreens.clickOnEmail();
-        forgetPassScreens.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        forgetPassScreens.typeEmail("areegm32@gmail.com");
         driver.hideKeyboard();
         forgetPassScreens.clickOnNext();
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(120));
@@ -168,7 +168,7 @@ public class login extends base {
         homeScreen=new homeScreen();
         seeWhatsHappeningScreen.clickOnLogin();
         loginInputsScreen.clickOnEmailInput();
-        loginInputsScreen.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        loginInputsScreen.typeEmail("areegm32@gmail.com");
         loginInputsScreen.clickOnPassInput();
         loginInputsScreen.typePass("test1234");
         loginInputsScreen.clickOnLogin();
@@ -218,7 +218,7 @@ public class login extends base {
         loginInputsScreen.clickOnForgetPass();
         forgetPassScreens=new forgetPassScreens();
         forgetPassScreens.clickOnEmail();
-        forgetPassScreens.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        forgetPassScreens.typeEmail("areegm32@gmail.com");
         driver.hideKeyboard();
         forgetPassScreens.clickOnNext();
         forgetPassScreens.clickOnVerifyOtp();
@@ -236,7 +236,7 @@ public class login extends base {
         loginInputsScreen.clickOnForgetPass();
         forgetPassScreens=new forgetPassScreens();
         forgetPassScreens.clickOnEmail();
-        forgetPassScreens.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        forgetPassScreens.typeEmail("areegm32@gmail.com");
         driver.hideKeyboard();
         forgetPassScreens.clickOnNext();
 
@@ -256,7 +256,7 @@ public class login extends base {
         loginInputsScreen.clickOnForgetPass();
         forgetPassScreens=new forgetPassScreens();
         forgetPassScreens.clickOnEmail();
-        forgetPassScreens.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        forgetPassScreens.typeEmail("areegm32@gmail.com");
         driver.hideKeyboard();
         forgetPassScreens.clickOnNext();
 
@@ -277,7 +277,7 @@ public class login extends base {
         loginInputsScreen.clickOnForgetPass();
         forgetPassScreens=new forgetPassScreens();
         forgetPassScreens.clickOnEmail();
-        forgetPassScreens.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        forgetPassScreens.typeEmail("areegm32@gmail.com");
         driver.hideKeyboard();
         forgetPassScreens.clickOnNext();
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(130));
@@ -297,7 +297,7 @@ public class login extends base {
         loginInputsScreen.clickOnForgetPass();
         forgetPassScreens=new forgetPassScreens();
         forgetPassScreens.clickOnEmail();
-        forgetPassScreens.typeEmail("9b5c0361-d9ce-4987-9745-f83d3cccdafa@mailslurp.com");
+        forgetPassScreens.typeEmail("areegm32@gmail.com");
         driver.hideKeyboard();
         forgetPassScreens.clickOnNext();
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(130));
@@ -317,7 +317,7 @@ public class login extends base {
         loginInputsScreen.clickOnForgetPass();
         forgetPassScreens=new forgetPassScreens();
         forgetPassScreens.clickOnEmail();
-        forgetPassScreens.typeEmail("rawanmostafa401@gmail.com");
+        forgetPassScreens.typeEmail("areegm32@gmail.com");
         driver.hideKeyboard();
         forgetPassScreens.clickOnNext();
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(120));
