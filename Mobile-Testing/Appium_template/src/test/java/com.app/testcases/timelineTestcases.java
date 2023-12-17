@@ -142,4 +142,19 @@ public class timelineTestcases extends base {
         Assert.assertNotNull(timelinepage.showedReply);
 
     }
+    @Test
+    public void EmptyReply() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+        timelinepage.tweet.click();
+        timelinepage.addReplyInputField.click();
+        timelinepage.addReplyInputField.click();
+        timelinepage.addReplyInputField.sendKeys(" ");
+        timelinepage.addReplyInputButton.click();
+        Assert.assertTrue(timelinepage.addReplyInputButton.isDisplayed());
+    }
+
 }
