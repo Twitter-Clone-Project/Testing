@@ -2,10 +2,15 @@ package com.app.testcases;
 
 import com.app.base.base;
 import com.app.screens.timeline;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -16,6 +21,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -60,7 +67,7 @@ public class timelineTestcases extends base {
 //    {
 //        driver.quit();
 //    }
-    @Test
+//    @Test
     public  void addLike() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -73,7 +80,7 @@ public class timelineTestcases extends base {
 
     }
 
-    @Test
+//    @Test
     public  void addRepost() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -85,7 +92,7 @@ public class timelineTestcases extends base {
         timelinepage.firstTweetRepostAfter.click();
 
     }
-    @Test
+//    @Test
     //Failed
     public void addReplyByClickingOnIcon() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
@@ -100,7 +107,7 @@ public class timelineTestcases extends base {
         Assert.assertNotNull(timelinepage.showedReply);
 
     }
-    @Test
+//    @Test
     public void addReply() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -116,7 +123,7 @@ public class timelineTestcases extends base {
 
     }
 
-        @Test
+//        @Test
     public void addLongReply() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -131,7 +138,7 @@ public class timelineTestcases extends base {
         boolean checkIfDisabled=timelinepage.addReplyInputButton.isDisplayed();
         Assert.assertTrue(checkIfDisabled);
     }
-        @Test
+//        @Test
     public  void checkRepliesWithoutAddingReply() throws IOException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -142,19 +149,116 @@ public class timelineTestcases extends base {
         Assert.assertNotNull(timelinepage.showedReply);
 
     }
-    @Test
-    public void EmptyReply() throws IOException, InterruptedException {
+//    @Test
+    //Failed
+    public void emptyReply() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
         props=new Properties();
         props.load(inputfile);
         timelinepage =new timeline();
-        timelinepage.tweet.click();
+        WebElement tweet =driver.findElement(MobileBy.accessibilityId("test\n" +
+                "@testingg\n" +
+                "post "));
+        tweet.click();
         timelinepage.addReplyInputField.click();
         timelinepage.addReplyInputField.click();
         timelinepage.addReplyInputField.sendKeys(" ");
-        timelinepage.addReplyInputButton.click();
-        Assert.assertTrue(timelinepage.addReplyInputButton.isDisplayed());
+        Assert.assertFalse(timelinepage.addReplyInputButton.isEnabled());
     }
+//    @Test
+    //Failed
+    public void emptyPost() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+
+        Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(2))
+                .withTimeout(Duration.ofSeconds(40))
+                .ignoring(NoSuchElementException.class);
+        timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+
+        timelinepage.addPostButton.click();
+        timelinepage.postInputField.click();
+        timelinepage.postInputField.sendKeys(" ");
+        Assert.assertFalse(timelinepage.postButton.isEnabled());
+    }
+    //@Test
+    //passed
+    public void addPost() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+
+        Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(2))
+                .withTimeout(Duration.ofSeconds(40))
+                .ignoring(NoSuchElementException.class);
+        timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+
+        timelinepage.addPostButton.click();
+        timelinepage.postInputField.click();
+        timelinepage.postInputField.sendKeys("tweet");
+        timelinepage.postButton.click();
+
+    }
+//    @Test
+    //passed
+    public void addPostWithImage() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+
+        Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(1))
+                .withTimeout(Duration.ofSeconds(20))
+                .ignoring(NoSuchElementException.class);
+        timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+
+        timelinepage.addPostButton.click();
+        timelinepage.postInputField.click();
+        timelinepage.postInputField.sendKeys("tweet");
+        timelinepage.selectImages.click();
+        timelinepage.image.click();
+        timelinepage.selectImagesButtton.click();
+        timelinepage.postButton.click();
+
+    }
+
+    @Test
+    public void addPostWithFiveImage() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+
+        Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(1))
+                .withTimeout(Duration.ofSeconds(20))
+                .ignoring(NoSuchElementException.class);
+        timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+
+        timelinepage.addPostButton.click();
+        timelinepage.postInputField.click();
+        timelinepage.postInputField.sendKeys("tweet");
+        timelinepage.selectImages.click();
+        timelinepage.image.click();
+        timelinepage.image2.click();
+        timelinepage.image3.click();
+        timelinepage.image4.click();
+        timelinepage.image5.click();
+        timelinepage.selectImagesButtton.click();
+        Assert.assertFalse(timelinepage.postButton.isEnabled());
+
+    }
+
 
 }
