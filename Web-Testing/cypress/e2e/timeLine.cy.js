@@ -220,6 +220,20 @@ describe("Time Line", () => {
     });
   });
 
+  //Failed-->BUG
+  it.only("add more than 60 emoji", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.AddEmojiButton).click();
+      for (let index = 0; index < 70; index++) {
+        cy.get(selectors.emojiPicker).click();
+        if (index == 59) {
+          cy.get(selectors.postButton).should("be.disabled");
+          break;
+        }
+      }
+    });
+  });
+
   //==============================================================add reply
   //Failed -->BUG
   it("Add reply", () => {
@@ -304,14 +318,34 @@ describe("Time Line", () => {
     });
   });
   //it passed but not always working
-  it.only("DropDown List of reply", () => {
+  it("DropDown List of reply", () => {
     //I have tried the drop down but the dark mode no and it is bug.  //  dark mode but dropdown is light ?
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
-        cy.get(selectors.tweet).click();
-        cy.get(selectors.menueReplyDeleteLabel).click();
-        cy.get(selectors.deleteButtonDropDown).should("be.visible");
-        cy.get(selectors.deleteButtonDropDown).should("have.class","dark:hover:bg-[#080808]");
+        cy.get("@selectors").then((selectors) => {
+          cy.get("@timeLineData").then((Data) => {
+            cy.intercept(
+              "POST",
+              "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+            ).as("addTweet");
+
+            cy.get(selectors.postInputField).type(Data.repostText);
+            cy.get(selectors.postButton).click();
+
+            cy.wait("@addTweet").then((interception) => {
+              const tweetId = interception.response.body.data.id;
+              cy.get(`[data-testid=${tweetId}reply]`).click();
+              cy.get(selectors.replyInputField).type(Data.replyText);
+              cy.get(selectors.AddReplyButton).click();
+              cy.wait(8000);
+              cy.get(`[data-testid=${tweetId}menubtn]`).should("be.visible");
+              cy.get(`[data-testid=${tweetId}menubtn]`).should(
+                "have.class",
+                "dark:hover:bg-[#080808]"
+              );
+            });
+          });
+        });
       });
     });
   });
@@ -579,7 +613,7 @@ describe("Time Line", () => {
       });
     });
   });
-  it.only("Repost-->delete repost -->like", () => {
+  it("Repost-->delete repost -->like", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.intercept(
@@ -588,7 +622,6 @@ describe("Time Line", () => {
         ).as("addTweet");
         cy.get(selectors.postInputField).type(Data.deleteText);
         cy.get(selectors.postButton).click();
-        cy.contains(Data.postText).should("be.visible");
 
         cy.wait("@addTweet").then((interception) => {
           const tweetId = parseInt(interception.response.body.data.id, 10);
@@ -604,9 +637,14 @@ describe("Time Line", () => {
       });
     });
   });
+  it("Opening a new tab", () => {
+    cy.window().then((win) => {
+      win.open("https://twitter-clone.onthewifi.com");
+    });
+  });
   //=====================================================List of likers
   //Failed -->BUG
-  it.only("List of likers", () => {
+  it("List of likers", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.get(selectors.tweet).click();
@@ -693,13 +731,13 @@ describe("Time Line smaller view port", () => {
     });
   });
 
-  it.only("Add emoji in mobile view port", () => {
+  it("Add emoji in mobile view port", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.AddEmojiButton).click();
       cy.get("[title='Frequently used']").should("be.visible");
     });
   });
-  it.only("delete post from mobile view port", () => {
+  it("delete post from mobile view port", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get("@timeLineData").then((Data) => {
         cy.intercept(
@@ -709,13 +747,13 @@ describe("Time Line smaller view port", () => {
 
         cy.get(selectors.postInputField).type(Data.deleteText);
         cy.get(selectors.postButton).click();
-        cy.contains(Data.postText).should("be.visible");
 
         cy.wait("@addTweet").then((interception) => {
           const tweetId = interception.response.body.data.id;
           cy.get(`[data-testid=${tweetId}menubtn]`).click();
           cy.wait(5000);
           cy.get(selectors.deleteOption).should("be.visible");
+          cy.get(selectors.deleteOption).should("have.text", "Delete");
           cy.get(selectors.deleteOption).click();
         });
       });
