@@ -143,7 +143,44 @@ describe("Time Line", () => {
       });
     });
   });
+  //Failed===> invalid
+  it.only("adding new line", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.intercept(
+        "POST",
+        "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+      ).as("addTweet");
+      cy.get(selectors.postInputField).type("m");
 
+      for (let index = 0; index < 50; index++) {
+        cy.get(selectors.postInputField).type("{enter}");
+      }
+      cy.get(selectors.postButton).click();
+      cy.wait("@addTweet").then((interception) => {
+        const status = interception.response.body.status;
+        expect(status).to.equal("true");
+      });
+    });
+  });
+  //Failed --> Invalid
+  it.only("new line character number", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.intercept(
+        "POST",
+        "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+      ).as("addTweet");
+      cy.get(selectors.postInputField).type("m");
+
+      for (let index = 0; index < 3; index++) {
+        cy.get(selectors.postInputField).type("{enter}");
+      }
+      cy.get(selectors.postButton).click();
+      cy.wait("@addTweet").then((interception) => {
+        const tweetText = interception.response.body.data.text;
+        expect(tweetText.length).to.equal(5);
+      });
+    });
+  });
   //==============================================================add media
   it("Add  4 images in a tweet", () => {
     cy.get("@selectors").then((selectors) => {
