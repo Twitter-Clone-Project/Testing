@@ -144,7 +144,7 @@ describe("Time Line", () => {
     });
   });
   //Failed===> invalid
-  it.only("adding new line", () => {
+  it("adding new line", () => {
     cy.get("@selectors").then((selectors) => {
       cy.intercept(
         "POST",
@@ -163,7 +163,7 @@ describe("Time Line", () => {
     });
   });
   //Failed --> Invalid
-  it.only("new line character number", () => {
+  it("new line character number", () => {
     cy.get("@selectors").then((selectors) => {
       cy.intercept(
         "POST",
@@ -252,13 +252,13 @@ describe("Time Line", () => {
   });
   it("add video", () => {
     cy.get("@selectors").then((selectors) => {
-      cy.get(selectors.uploadImageSelector).attachFile("Sample Video.mp4");
+      cy.get(selectors.uploadImageSelector).selectFile("Sample Video.mp4");
       cy.get("video").should("be.visible");
     });
   });
 
   //Failed-->BUG
-  it.only("add more than 60 emoji", () => {
+  it("add more than 60 emoji", () => {
     cy.get("@selectors").then((selectors) => {
       cy.get(selectors.AddEmojiButton).click();
       for (let index = 0; index < 70; index++) {
@@ -270,7 +270,15 @@ describe("Time Line", () => {
       }
     });
   });
-
+  //passed because of wide viewport
+  it("emoji picker in add tweet card", () => {
+    cy.viewport("macbook-16");
+    cy.get("@selectors").then((selectors) => {
+      cy.get(selectors.postButtonTimeLine).click();
+      cy.get(selectors.AddEmojiButton).first().click({ force: true });
+      cy.get(selectors.emojiPicker).should("be.visible");
+    });
+  });
   //==============================================================add reply
   //Failed -->BUG
   it("Add reply", () => {
@@ -631,6 +639,36 @@ describe("Time Line", () => {
     });
   });
 
+  //Failed -->invalid
+  it("Check Arabic text is from right to left in tweet ", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.get("@timeLineData").then((Data) => {
+        cy.intercept(
+          "POST",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+        ).as("addTweet");
+
+        cy.intercept(
+          "GET",
+          "https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline"
+        ).as("timeline");
+        cy.wait("@timeline").then(() => {
+          cy.get(selectors.postInputField).type(Data.arabicData);
+          cy.get(selectors.postButton).click();
+          cy.get(selectors.postInputField).should(
+            "not.have.text",
+            Data.arabicData
+          );
+        });
+
+        cy.wait("@addTweet").then((interception) => {
+          const tweetId = interception.response.body.data.id;
+          cy.get(`[data-testid=${tweetId}]`).click();
+          cy.get(`[data-testid=${tweetId}]`).should("have.attr", "dir", "rtl");
+        });
+      });
+    });
+  });
   //=====================================================General testcases
   //Passed
   it("Log out testcase", () => {
@@ -674,9 +712,53 @@ describe("Time Line", () => {
       });
     });
   });
-  it("Opening a new tab", () => {
-    cy.window().then((win) => {
-      win.open("https://twitter-clone.onthewifi.com");
+  // it.only("Opening a new tab", () => {
+  //   cy.window().then((win) => {
+  //     win.open("https://twitter-clone.onthewifi.com/");
+  //     cy.get("@selectors").then((selectors) => {
+  //       cy.get(selectors.userButton).click();
+  //       cy.get("[data-testid='nav-logout-btn']").click();
+  //       cy.get(selectors.logOutButton).click();
+  //       cy.wait(3000);
+  //       cy.get(selectors.signInButton).click({ force: true });
+  //       cy.get(selectors.emailInputField).type("menna.ibrahim02@eng-st.cu.edu.eg");
+  //       cy.get(selectors.passwordInputField).type("147258369");
+  //       cy.get(selectors.logInButton).click();
+  //       cy.get(selectors.postInputField).type("post from tab2");
+  //       cy.get(selectors.postButton).click();
+  //     });
+  //   });
+  // });
+//Passed
+  it.only("hover on the user image is the user card info shown", () => {
+    cy.get("@selectors").then((selectors) => {
+      cy.intercept(
+        "GET",
+        "https://twitter-clone.onthewifi.com:2023/api/v1//users/1/timeline"
+      ).as("timeline");
+
+      cy.intercept(
+        "POST",
+        "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+      ).as("addTweet");
+
+      //add tweet
+      cy.get("@timeLineData").then((Data) => {
+        cy.get(selectors.postInputField).type(Data.repostText);
+        cy.get(selectors.postButton).click();
+
+        cy.wait("@timeline").then(() => {
+          cy.wait("@addTweet").then((interception) => {
+            const tweetId = interception.response.body.data.id;
+            cy.get(`[data-testid="profileImage${tweetId}"]`).click();
+            cy.wait(2000);
+            const userName = Data.userName;
+            cy.get(`[data-testid='PopoverUserCard_${userName}_0']`).should(
+              "be.visible"
+            );
+          });
+        });
+      });
     });
   });
   //=====================================================List of likers

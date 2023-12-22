@@ -1,0 +1,1583 @@
+<body>
+    <div id="root">
+        <div class="flex h-full min-h-screen w-full overflow-auto bg-white dark:bg-pure-black">
+            <div class="min-h-full w-full">
+                <div class="layout flex h-full w-full min-w-[250px] flex-1">
+                    <div class="relative ml-auto">
+                        <div data-testid="nav-bar"
+                            class="mx-auto flex w-0 items-start justify-center dark:bg-pure-black sm:mt-auto sm:h-full sm:w-[76px] mlg:w-[280px]">
+                            <div data-testid="mobile-top-nav" class="fixed left-0  z-20 top-0 flex w-full justify-center border-b-2 border-border-gray
+      bg-opacity-75 px-4 py-1
+      transition-all duration-[600ms] dark:bg-pure-black dark:bg-opacity-75 
+      dark:text-white sm:hidden">
+                                <div
+                                    class="absolute left-0 top-1/2 my-auto ml-1 flex -translate-y-1/2  items-center justify-center p-1 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout hover:dark:bg-hover-layout">
+                                    <button data-testid="drawer-btn" type="submit"
+                                        class="peer relative flex flex-1 items-center justify-between font-semibold">
+                                        <div class="flex items-center justify-center"><img
+                                                class="flex h-8 w-8 rounded-full"
+                                                src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                alt="test photo}"></div>
+                                    </button></div>
+                                <div class="xs:grid-cols-[5fr_2fr] fixed bottom-0 left-0 right-0 top-0 
+          z-[30000] grid h-screen w-full 
+          -translate-x-[200vw]
+          grid-cols-[1fr] duration-300 ">
+                                    <div
+                                        class="flex w-full flex-col items-start justify-between bg-white dark:bg-pure-black dark:text-white">
+                                        <div class="flex flex-col items-start">
+                                            <div role="button" data-testid="close-drawer-btn" tabindex="-6"
+                                                class="flex h-10 w-10 items-center justify-center p-2 text-xl text-pure-black hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout dark:text-white hover:dark:bg-hover-layout">
+                                                <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                                                    <path class="fill-pure-black dark:fill-white"
+                                                        d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"></path>
+                                                    <path class="fill-pure-black dark:fill-white"
+                                                        d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z">
+                                                    </path>
+                                                </svg></div>
+                                            <div
+                                                class="cursor-auto bg-white bg-opacity-100 p-4 text-black dark:bg-pure-black dark:text-white">
+                                                <div class="flex w-full flex-row justify-between"><a
+                                                        class="hover:no-underline" href="/app/testingg"><img
+                                                            id="popoverImg"
+                                                            src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                            alt="" class=" h-12 w-12 rounded-full"></a></div>
+                                                <div class=" mt-2">
+                                                    <div class="flex h-[41.5px] flex-col"><a class="hover:no-underline"
+                                                            href="/app/testingg"><label for="popoverImg"
+                                                                class="cursor-pointer text-[15px] font-bold text-pure-black hover:underline dark:text-white">test</label>
+                                                            <div class="flex h-5 flex-row items-center"><span
+                                                                    class=" w-min cursor-pointer text-light-thin">@testingg</span>
+                                                            </div>
+                                                        </a></div>
+                                                </div>
+                                                <div class="mt-3 flex flex-row flex-wrap text-sm">
+                                                    <div role="button" tabindex="-6" data-testid="following-btn"><span
+                                                            class="mr-2 cursor-pointer text-pure-black hover:underline dark:text-white">11<span
+                                                                class="text-light-thin"> Following</span></span></div>
+                                                    <div role="button" data-testid="followers-btn" tabindex="-6"><span
+                                                            class="mr-5  cursor-pointer text-pure-black hover:underline dark:text-white">21<span
+                                                                class="text-light-thin"> Followers</span></span></div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                                <a data-testid="Profile"
+                                                    class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                    href="/app/testingg">
+                                                    <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                            viewBox="0 0 24 24">
+                                                            <g>
+                                                                <path class="outlined fill-pure-black dark:fill-white"
+                                                                    d="M5.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C15.318 13.65 13.838 13 12 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zM12 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM8 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4z">
+                                                                </path>
+                                                                <path class="filled fill-pure-black dark:fill-white"
+                                                                    d="M17.863 13.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44zM12 2C9.791 2 8 3.79 8 6s1.791 4 4 4 4-1.79 4-4-1.791-4-4-4z">
+                                                                </path>
+                                                            </g>
+                                                        </svg></div>
+                                                    <div data-testid="Profile-text">
+                                                        <p class="px-8 flex max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Profile</p>
+                                                    </div>
+                                                </a></div>
+                                            <div
+                                                class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                                <a data-testid="Settings"
+                                                    class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                    href="/app/settings">
+                                                    <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                            viewBox="0 0 24 24">
+                                                            <g>
+                                                                <path class="outlined fill-pure-black dark:fill-white"
+                                                                    d="M10.54 1.75h2.92l1.57 2.36c.11.17.32.25.53.21l2.53-.59 2.17 2.17-.58 2.54c-.05.2.04.41.21.53l2.36 1.57v2.92l-2.36 1.57c-.17.12-.26.33-.21.53l.58 2.54-2.17 2.17-2.53-.59c-.21-.04-.42.04-.53.21l-1.57 2.36h-2.92l-1.58-2.36c-.11-.17-.32-.25-.52-.21l-2.54.59-2.17-2.17.58-2.54c.05-.2-.03-.41-.21-.53l-2.35-1.57v-2.92L4.1 8.97c.18-.12.26-.33.21-.53L3.73 5.9 5.9 3.73l2.54.59c.2.04.41-.04.52-.21l1.58-2.36zm1.07 2l-.98 1.47C10.05 6.08 9 6.5 7.99 6.27l-1.46-.34-.6.6.33 1.46c.24 1.01-.18 2.07-1.05 2.64l-1.46.98v.78l1.46.98c.87.57 1.29 1.63 1.05 2.64l-.33 1.46.6.6 1.46-.34c1.01-.23 2.06.19 2.64 1.05l.98 1.47h.78l.97-1.47c.58-.86 1.63-1.28 2.65-1.05l1.45.34.61-.6-.34-1.46c-.23-1.01.18-2.07 1.05-2.64l1.47-.98v-.78l-1.47-.98c-.87-.57-1.28-1.63-1.05-2.64l.34-1.46-.61-.6-1.45.34c-1.02.23-2.07-.19-2.65-1.05l-.97-1.47h-.78zM12 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5c.82 0 1.5-.67 1.5-1.5s-.68-1.5-1.5-1.5zM8.5 12c0-1.93 1.56-3.5 3.5-3.5 1.93 0 3.5 1.57 3.5 3.5s-1.57 3.5-3.5 3.5c-1.94 0-3.5-1.57-3.5-3.5z">
+                                                                </path>
+                                                                <path class="filled fill-pure-black dark:fill-white"
+                                                                    d="M 10.54 1.75 h 2.92 l 1.57 2.36 c 0.11 0.17 0.32 0.25 0.53 0.21 l 2.53 -0.59 l 2.17 2.17 l -0.58 2.54 c -0.05 0.2 0.04 0.41 0.21 0.53 l 2.36 1.57 v 2.92 l -2.36 1.57 c -0.17 0.12 -0.26 0.33 -0.21 0.53 l 0.58 2.54 l -2.17 2.17 l -2.53 -0.59 c -0.21 -0.04 -0.42 0.04 -0.53 0.21 l -1.57 2.36 h -2.92 l -1.58 -2.36 c -0.11 -0.17 -0.32 -0.25 -0.52 -0.21 l -2.54 0.59 l -2.17 -2.17 l 0.58 -2.54 c 0.05 -0.2 -0.03 -0.41 -0.21 -0.53 l -2.35 -1.57 v -2.92 L 4.1 8.97 c 0.18 -0.12 0.26 -0.33 0.21 -0.53 L 3.73 5.9 L 5.9 3.73 l 2.54 0.59 c 0.2 0.04 0.41 -0.04 0.52 -0.21 l 1.58 -2.36 m 1.07 2 z m 0.39 6.25 C 11 10 10 11 10.025 11.933 s 0.975 2.067 1.968 2.058 c 1.007 0.009 2.007 -0.991 1.968 -2.058 S 13 10 12 10 z">
+                                                                </path>
+                                                            </g>
+                                                        </svg></div>
+                                                    <div data-testid="Settings-text">
+                                                        <p class="px-8 flex max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Settings</p>
+                                                    </div>
+                                                </a></div>
+                                        </div><button data-testid="darwer-logout-btn" type="button"
+                                            class="my-6 flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <div
+                                                class="flex flex-1 items-center justify-start font-semibold hover:no-underline">
+                                                <div class="relative"><svg width="1.75rem" height="1.75rem"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M14.9453 1.25C13.5778 1.24998 12.4754 1.24996 11.6085 1.36652C10.7084 1.48754 9.95048 1.74643 9.34857 2.34835C8.82363 2.87328 8.55839 3.51836 8.41916 4.27635C8.28387 5.01291 8.25799 5.9143 8.25196 6.99583C8.24966 7.41003 8.58357 7.74768 8.99778 7.74999C9.41199 7.7523 9.74964 7.41838 9.75194 7.00418C9.75803 5.91068 9.78643 5.1356 9.89448 4.54735C9.99859 3.98054 10.1658 3.65246 10.4092 3.40901C10.686 3.13225 11.0746 2.9518 11.8083 2.85315C12.5637 2.75159 13.5648 2.75 15.0002 2.75H16.0002C17.4356 2.75 18.4367 2.75159 19.1921 2.85315C19.9259 2.9518 20.3144 3.13225 20.5912 3.40901C20.868 3.68577 21.0484 4.07435 21.1471 4.80812C21.2486 5.56347 21.2502 6.56459 21.2502 8V16C21.2502 17.4354 21.2486 18.4365 21.1471 19.1919C21.0484 19.9257 20.868 20.3142 20.5912 20.591C20.3144 20.8678 19.9259 21.0482 19.1921 21.1469C18.4367 21.2484 17.4356 21.25 16.0002 21.25H15.0002C13.5648 21.25 12.5637 21.2484 11.8083 21.1469C11.0746 21.0482 10.686 20.8678 10.4092 20.591C10.1658 20.3475 9.99859 20.0195 9.89448 19.4527C9.78643 18.8644 9.75803 18.0893 9.75194 16.9958C9.74964 16.5816 9.41199 16.2477 8.99778 16.25C8.58357 16.2523 8.24966 16.59 8.25196 17.0042C8.25799 18.0857 8.28387 18.9871 8.41916 19.7236C8.55839 20.4816 8.82363 21.1267 9.34857 21.6517C9.95048 22.2536 10.7084 22.5125 11.6085 22.6335C12.4754 22.75 13.5778 22.75 14.9453 22.75H16.0551C17.4227 22.75 18.525 22.75 19.392 22.6335C20.2921 22.5125 21.0499 22.2536 21.6519 21.6517C22.2538 21.0497 22.5127 20.2919 22.6337 19.3918C22.7503 18.5248 22.7502 17.4225 22.7502 16.0549V7.94513C22.7502 6.57754 22.7503 5.47522 22.6337 4.60825C22.5127 3.70814 22.2538 2.95027 21.6519 2.34835C21.0499 1.74643 20.2921 1.48754 19.392 1.36652C18.525 1.24996 17.4227 1.24998 16.0551 1.25H14.9453Z"
+                                                            class="fill-pure-black dark:fill-white"></path>
+                                                        <path
+                                                            d="M15 11.25C15.4142 11.25 15.75 11.5858 15.75 12C15.75 12.4142 15.4142 12.75 15 12.75H4.02744L5.98809 14.4306C6.30259 14.7001 6.33901 15.1736 6.06944 15.4881C5.79988 15.8026 5.3264 15.839 5.01191 15.5694L1.51191 12.5694C1.34567 12.427 1.25 12.2189 1.25 12C1.25 11.7811 1.34567 11.573 1.51191 11.4306L5.01191 8.43056C5.3264 8.16099 5.79988 8.19741 6.06944 8.51191C6.33901 8.8264 6.30259 9.29988 5.98809 9.56944L4.02744 11.25H15Z"
+                                                            class="fill-pure-black dark:fill-white"></path>
+                                                    </svg></div>
+                                                <p
+                                                    class="flex px-8 text-xl capitalize tracking-wide text-pure-black dark:text-white lg:flex">
+                                                    Log Out</p>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="bg-dark-layout xs:flex hidden bg-opacity-60 transition-colors duration-300"
+                                        data-testid="drawer-overlay"></div>
+                                </div>
+                                <div
+                                    class="mx-auto p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout hover:dark:bg-hover-layout sm:hidden">
+                                    <a href="/"><svg class="inline-block w-[1.6rem] fill-pure-black dark:fill-white"
+                                            viewBox="0 0 24 24">
+                                            <g>
+                                                <path class="fill-pure-black dark:fill-white" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99
+                21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161
+                17.52h1.833L7.084 4.126H5.117z"> </path>
+                                            </g>
+                                        </svg></a></div>
+                            </div>
+                            <div
+                                class="relative h-full w-full overflow-auto text-start transition-colors duration-200 sm:border-0 mlg:min-w-[230px] mlg:max-w-[230px]">
+                                <div class="fixed bottom-0 left-0 z-10
+          flex w-full justify-between
+          border-t-[0.5px] border-border-gray
+          bg-white p-2 dark:bg-pure-black sm:left-auto
+          sm:mt-0 sm:h-full sm:w-auto sm:flex-col
+          sm:items-start sm:justify-between sm:gap-1 sm:border-0 sm:px-2 
+          ">
+                                    <div
+                                        class="mb-4 hidden max-w-[230px] p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout hover:dark:bg-hover-layout sm:flex">
+                                        <a href="/"><svg class="inline-block w-[1.9rem] fill-pure-black dark:fill-white"
+                                                viewBox="0 0 24 24">
+                                                <g>
+                                                    <path class="fill-pure-black dark:fill-white" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99
+                21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161
+                17.52h1.833L7.084 4.126H5.117z"> </path>
+                                                </g>
+                                            </svg></a></div>
+                                    <div class="hidden max-w-[230px] sm:contents">
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Home" aria-current="page"
+                                                class="filled flex flex-1 items-center justify-start font-semibold hover:no-underline"
+                                                href="/app/home">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M21.591 7.146L12.52 1.157c-.316-.21-.724-.21-1.04 0l-9.071 5.99c-.26.173-.409.456-.409.757v13.183c0 .502.418.913.929.913h6.638c.511 0 .929-.41.929-.913v-7.075h3.008v7.075c0 .502.418.913.929.913h6.639c.51 0 .928-.41.928-.913V7.904c0-.301-.158-.584-.408-.758zM20 20l-4.5.01.011-7.097c0-.502-.418-.913-.928-.913H9.44c-.511 0-.929.41-.929.913L8.5 20H4V8.773l8.011-5.342L20 8.764z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M21.591 7.146L12.52 1.157c-.316-.21-.724-.21-1.04 0l-9.071 5.99c-.26.173-.409.456-.409.757v13.183c0 .502.418.913.929.913H9.14c.51 0 .929-.41.929-.913v-7.075h3.909v7.075c0 .502.417.913.928.913h6.165c.511 0 .929-.41.929-.913V7.904c0-.301-.158-.584-.408-.758z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Home-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Home</p>
+                                                </div>
+                                            </a></div>
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Notifications"
+                                                class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                href="/app/notifications">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M19.993 9.042C19.48 5.017 16.054 2 11.996 2s-7.49 3.021-7.999 7.051L2.866 18H7.1c.463 2.282 2.481 4 4.9 4s4.437-1.718 4.9-4h4.236l-1.143-8.958zM12 20c-1.306 0-2.417-.835-2.829-2h5.658c-.412 1.165-1.523 2-2.829 2zm-6.866-4l.847-6.698C6.364 6.272 8.941 4 11.996 4s5.627 2.268 6.013 5.295L18.864 16H5.134z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M11.996 2c-4.062 0-7.49 3.021-7.999 7.051L2.866 18H7.1c.463 2.282 2.481 4 4.9 4s4.437-1.718 4.9-4h4.236l-1.143-8.958C19.48 5.017 16.054 2 11.996 2zM9.171 18h5.658c-.412 1.165-1.523 2-2.829 2s-2.417-.835-2.829-2z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Notifications-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Notifications</p>
+                                                </div>
+                                            </a></div>
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Messages"
+                                                class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                href="/app/messages">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5v13c0 1.381-1.119 2.5-2.5 2.5h-15c-1.381 0-2.5-1.119-2.5-2.5v-13zm2.5-.5c-.276 0-.5.224-.5.5v2.764l8 3.638 8-3.636V5.5c0-.276-.224-.5-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5v-8.037z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M1.998 4.499c0-.828.671-1.499 1.5-1.499h17c.828 0 1.5.671 1.5 1.499v2.858l-10 4.545-10-4.547V4.499zm0 5.053V19.5c0 .828.671 1.5 1.5 1.5h17c.828 0 1.5-.672 1.5-1.5V9.554l-10 4.545-10-4.547z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Messages-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Messages</p>
+                                                </div>
+                                            </a></div>
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Profile"
+                                                class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                href="/app/testingg">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M5.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C15.318 13.65 13.838 13 12 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zM12 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM8 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M17.863 13.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44zM12 2C9.791 2 8 3.79 8 6s1.791 4 4 4 4-1.79 4-4-1.791-4-4-4z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Profile-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Profile</p>
+                                                </div>
+                                            </a></div>
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Settings"
+                                                class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                href="/app/settings">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M10.54 1.75h2.92l1.57 2.36c.11.17.32.25.53.21l2.53-.59 2.17 2.17-.58 2.54c-.05.2.04.41.21.53l2.36 1.57v2.92l-2.36 1.57c-.17.12-.26.33-.21.53l.58 2.54-2.17 2.17-2.53-.59c-.21-.04-.42.04-.53.21l-1.57 2.36h-2.92l-1.58-2.36c-.11-.17-.32-.25-.52-.21l-2.54.59-2.17-2.17.58-2.54c.05-.2-.03-.41-.21-.53l-2.35-1.57v-2.92L4.1 8.97c.18-.12.26-.33.21-.53L3.73 5.9 5.9 3.73l2.54.59c.2.04.41-.04.52-.21l1.58-2.36zm1.07 2l-.98 1.47C10.05 6.08 9 6.5 7.99 6.27l-1.46-.34-.6.6.33 1.46c.24 1.01-.18 2.07-1.05 2.64l-1.46.98v.78l1.46.98c.87.57 1.29 1.63 1.05 2.64l-.33 1.46.6.6 1.46-.34c1.01-.23 2.06.19 2.64 1.05l.98 1.47h.78l.97-1.47c.58-.86 1.63-1.28 2.65-1.05l1.45.34.61-.6-.34-1.46c-.23-1.01.18-2.07 1.05-2.64l1.47-.98v-.78l-1.47-.98c-.87-.57-1.28-1.63-1.05-2.64l.34-1.46-.61-.6-1.45.34c-1.02.23-2.07-.19-2.65-1.05l-.97-1.47h-.78zM12 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5c.82 0 1.5-.67 1.5-1.5s-.68-1.5-1.5-1.5zM8.5 12c0-1.93 1.56-3.5 3.5-3.5 1.93 0 3.5 1.57 3.5 3.5s-1.57 3.5-3.5 3.5c-1.94 0-3.5-1.57-3.5-3.5z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M 10.54 1.75 h 2.92 l 1.57 2.36 c 0.11 0.17 0.32 0.25 0.53 0.21 l 2.53 -0.59 l 2.17 2.17 l -0.58 2.54 c -0.05 0.2 0.04 0.41 0.21 0.53 l 2.36 1.57 v 2.92 l -2.36 1.57 c -0.17 0.12 -0.26 0.33 -0.21 0.53 l 0.58 2.54 l -2.17 2.17 l -2.53 -0.59 c -0.21 -0.04 -0.42 0.04 -0.53 0.21 l -1.57 2.36 h -2.92 l -1.58 -2.36 c -0.11 -0.17 -0.32 -0.25 -0.52 -0.21 l -2.54 0.59 l -2.17 -2.17 l 0.58 -2.54 c 0.05 -0.2 -0.03 -0.41 -0.21 -0.53 l -2.35 -1.57 v -2.92 L 4.1 8.97 c 0.18 -0.12 0.26 -0.33 0.21 -0.53 L 3.73 5.9 L 5.9 3.73 l 2.54 0.59 c 0.2 0.04 0.41 -0.04 0.52 -0.21 l 1.58 -2.36 m 1.07 2 z m 0.39 6.25 C 11 10 10 11 10.025 11.933 s 0.975 2.067 1.968 2.058 c 1.007 0.009 2.007 -0.991 1.968 -2.058 S 13 10 12 10 z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Settings-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Settings</p>
+                                                </div>
+                                            </a></div>
+                                    </div>
+                                    <div class="contents max-w-[230px] sm:hidden">
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Home" aria-current="page"
+                                                class="filled flex flex-1 items-center justify-start font-semibold hover:no-underline"
+                                                href="/app/home">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M21.591 7.146L12.52 1.157c-.316-.21-.724-.21-1.04 0l-9.071 5.99c-.26.173-.409.456-.409.757v13.183c0 .502.418.913.929.913h6.638c.511 0 .929-.41.929-.913v-7.075h3.008v7.075c0 .502.418.913.929.913h6.639c.51 0 .928-.41.928-.913V7.904c0-.301-.158-.584-.408-.758zM20 20l-4.5.01.011-7.097c0-.502-.418-.913-.928-.913H9.44c-.511 0-.929.41-.929.913L8.5 20H4V8.773l8.011-5.342L20 8.764z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M21.591 7.146L12.52 1.157c-.316-.21-.724-.21-1.04 0l-9.071 5.99c-.26.173-.409.456-.409.757v13.183c0 .502.418.913.929.913H9.14c.51 0 .929-.41.929-.913v-7.075h3.909v7.075c0 .502.417.913.928.913h6.165c.511 0 .929-.41.929-.913V7.904c0-.301-.158-.584-.408-.758z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Home-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Home</p>
+                                                </div>
+                                            </a></div>
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Search"
+                                                class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                href="/app/search">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M10.25 3.75c-3.59 0-6.5 2.91-6.5 6.5s2.91 6.5 6.5 6.5c1.795 0 3.419-.726 4.596-1.904 1.178-1.177 1.904-2.801 1.904-4.596 0-3.59-2.91-6.5-6.5-6.5zm-8.5 6.5c0-4.694 3.806-8.5 8.5-8.5s8.5 3.806 8.5 8.5c0 1.986-.682 3.815-1.824 5.262l4.781 4.781-1.414 1.414-4.781-4.781c-1.447 1.142-3.276 1.824-5.262 1.824-4.694 0-8.5-3.806-8.5-8.5z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M10.25 4.25c-3.314 0-6 2.686-6 6s2.686 6 6 6c1.657 0 3.155-.67 4.243-1.757 1.087-1.088 1.757-2.586 1.757-4.243 0-3.314-2.686-6-6-6zm-9 6c0-4.971 4.029-9 9-9s9 4.029 9 9c0 1.943-.617 3.744-1.664 5.215l4.475 4.474-2.122 2.122-4.474-4.475c-1.471 1.047-3.272 1.664-5.215 1.664-4.971 0-9-4.029-9-9z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Search-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Search</p>
+                                                </div>
+                                            </a></div>
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Notifications"
+                                                class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                href="/app/notifications">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M19.993 9.042C19.48 5.017 16.054 2 11.996 2s-7.49 3.021-7.999 7.051L2.866 18H7.1c.463 2.282 2.481 4 4.9 4s4.437-1.718 4.9-4h4.236l-1.143-8.958zM12 20c-1.306 0-2.417-.835-2.829-2h5.658c-.412 1.165-1.523 2-2.829 2zm-6.866-4l.847-6.698C6.364 6.272 8.941 4 11.996 4s5.627 2.268 6.013 5.295L18.864 16H5.134z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M11.996 2c-4.062 0-7.49 3.021-7.999 7.051L2.866 18H7.1c.463 2.282 2.481 4 4.9 4s4.437-1.718 4.9-4h4.236l-1.143-8.958C19.48 5.017 16.054 2 11.996 2zM9.171 18h5.658c-.412 1.165-1.523 2-2.829 2s-2.417-.835-2.829-2z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Notifications-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Notifications</p>
+                                                </div>
+                                            </a></div>
+                                        <div
+                                            class="flex content-start items-start justify-between p-3 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                            <a data-testid="Messages"
+                                                class="outlined flex flex-1 items-center justify-start font-medium hover:no-underline"
+                                                href="/app/messages">
+                                                <div class="relative"><svg class="inline-block w-[1.75rem]"
+                                                        viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path class="outlined fill-pure-black dark:fill-white"
+                                                                d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5v13c0 1.381-1.119 2.5-2.5 2.5h-15c-1.381 0-2.5-1.119-2.5-2.5v-13zm2.5-.5c-.276 0-.5.224-.5.5v2.764l8 3.638 8-3.636V5.5c0-.276-.224-.5-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5v-8.037z">
+                                                            </path>
+                                                            <path class="filled fill-pure-black dark:fill-white"
+                                                                d="M1.998 4.499c0-.828.671-1.499 1.5-1.499h17c.828 0 1.5.671 1.5 1.499v2.858l-10 4.545-10-4.547V4.499zm0 5.053V19.5c0 .828.671 1.5 1.5 1.5h17c.828 0 1.5-.672 1.5-1.5V9.554l-10 4.545-10-4.547z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div data-testid="Messages-text">
+                                                    <p class="px-4 hidden max-w-[150px] truncate text-xl capitalize
+          tracking-wide text-pure-black dark:text-white mlg:flex">Messages</p>
+                                                </div>
+                                            </a></div>
+                                    </div>
+                                    <div
+                                        class="absolute mx-auto hidden w-full  items-center justify-center rounded-full sm:relative mlg:flex">
+                                        <div class="relative h-[53px] w-full"><button type="submit" data-testid="Post"
+                                                class="absolute cursor-pointer rounded-full disabled:cursor-not-allowed bg-blue hover:bg-[#1a8cd8]          dark:bg-blue dark:hover:bg-[#1a8cd8]      
+        h-full w-full border       
+        border-none
+        
+        "></button>
+                                            <div
+                                                class="pointer-events-none absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 transform justify-center">
+                                                <span class="flex text-base  font-bold   text-white     
+              dark:text-white   
+            
+          items-start ">Post</span></div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-24 right-3  mt-3 flex w-[full] items-center justify-center rounded-full bg-blue p-4 hover:cursor-pointer hover:bg-opacity-90 sm:relative sm:bottom-0 sm:right-0 mlg:hidden">
+                                        <button type="submit" class="flex-1"><svg viewBox="0 0 24 24"
+                                                class="m-auto h-[24px] w-[24px]">
+                                                <g>
+                                                    <path class="fill-white"
+                                                        d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z">
+                                                    </path>
+                                                </g>
+                                            </svg></button></div>
+                                    <div
+                                        class="absolute bottom-24 right-0 mx-auto my-6 hidden w-full max-w-[230px] items-center justify-between justify-self-end p-2 hover:cursor-pointer hover:rounded-full hover:bg-light-hover-layout hover:dark:bg-hover-layout sm:relative sm:bottom-0 sm:right-0 sm:flex sm:items-start">
+                                        <button type="submit" data-testid="user-btn"
+                                            class="group relative mx-auto flex max-w-[2500px] items-center justify-between font-semibold">
+                                            <div class="flex items-center justify-center"><img
+                                                    class="flex h-8 w-8 rounded-full"
+                                                    src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                    alt="test photo}"></div>
+                                            <p class="
+                hidden max-w-[150px] truncate px-2
+              text-sm font-semibold tracking-wide dark:text-white lg:flex-1 lg:flex-col lg:items-start mlg:flex"><span
+                                                    class="name">test</span><span
+                                                    class="text-sm font-thin text-light-thin">@testingg</span></p><span
+                                                class="hidden items-center justify-center px-2 text-xs font-medium tracking-wider dark:text-white mlg:flex">•••</span>
+                                            <div
+                                                class="absolute bottom-0  left-0 top-0 z-50 hidden h-full w-full group-focus-within:flex dark:text-white  ">
+                                                <div
+                                                    class="absolute bottom-14 left-0 flex w-64 items-center justify-start rounded-2xl bg-white py-4 shadow-[rgba(100,100,100,0.5)_0px_0.5px_4px] dark:bg-pure-black dark:shadow-[rgba(100,100,100,0.7)_0px_0.5px_4px]">
+                                                    <div
+                                                        class="flex flex-1 justify-start px-3 hover:bg-light-hover-layout  hover:dark:bg-hover-layout">
+                                                        <div role="button" data-testid="nav-logout-btn" tabindex="-6"
+                                                            class="z-50 max-w-[230px] flex-1 truncate p-3 text-start">
+                                                            Log Out @testingg</div>
+                                                    </div>
+                                                    <div class=""><svg viewBox="0 0 24 24"
+                                                            class="absolute -bottom-3 left-5 h-5 w-5 rotate-180 drop-shadow-[rgba(150,150,150,0.1)_1px_-1px_1px] dark:drop-shadow-[rgba(100,100,100,0.5)_1px_-1px_1px] lg:left-1/2 lg:-translate-x-1/2 ">
+                                                            <g>
+                                                                <path d="M22 17H2L12 6l10 11z"
+                                                                    class="fill-white dark:fill-pure-black"></path>
+                                                            </g>
+                                                        </svg></div>
+                                                </div>
+                                            </div>
+                                        </button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <main
+                        class="flex h-full flex-1 justify-start  md:w-[600px] lg:w-[990px] 2xl:w-[1100px] mlg:w-[920]">
+                        <div class="flex gap-8">
+                            <div
+                                class="my-[60px] mb-20  min-h-[calc(100%-60px)] w-full border-border-gray dark:text-white sm:my-auto sm:min-h-full sm:border-x-[1px] md:w-auto ">
+                                <div class=" flex min-h-full w-full flex-col  ">
+                                    <div class="flex w-full items-center border-y-[0.5px] border-y-border-gray">
+                                        <div
+                                            class="tweet mt-[0.5px] grid w-full grid-cols-[auto_1fr] bg-white px-[16px] pt-[12px] dark:bg-pure-black dark:text-white dark:hover:bg-pure-black md:w-[598px]">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn mr-[12px] h-[40px] w-[40px] "><a
+                                                        href="/app/testingg"><img data-testid="profileImage"
+                                                            src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                            alt="profileImage"
+                                                            class=" h-[40px] w-[40px] rounded-full object-cover"></a>
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn h-auto">
+                                                <div class="peer max-w-full placeholder:text-light-thin">
+                                                    <div data-testid="textField" class="w-full max-w-full">
+                                                        <div class="DraftEditor-root">
+                                                            <div class="public-DraftEditorPlaceholder-root">
+                                                                <div class="public-DraftEditorPlaceholder-inner"
+                                                                    id="placeholder-stf7"
+                                                                    style="white-space: pre-wrap;">What is happening?!
+                                                                </div>
+                                                            </div>
+                                                            <div class="DraftEditor-editorContainer">
+                                                                <div class="notranslate public-DraftEditor-content"
+                                                                    contenteditable="true" role="textbox"
+                                                                    spellcheck="false"
+                                                                    style="outline: none; user-select: text; white-space: pre-wrap; overflow-wrap: break-word;"
+                                                                    aria-describedby="placeholder-stf7">
+                                                                    <div data-contents="true">
+                                                                        <div class="" data-block="true"
+                                                                            data-editor="stf7"
+                                                                            data-offset-key="co13t-0-0">
+                                                                            <div data-offset-key="co13t-0-0"
+                                                                                class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr">
+                                                                                <span data-offset-key="co13t-0-0"><br
+                                                                                        data-text="true"></span></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+            grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                <div
+                                                    class="mt-2 flex w-full items-center justify-between border-t-border-gray peer-focus-within:border-t-[0.5px]">
+                                                    <div class="media my-4 flex w-[18%] flex-row justify-between ">
+                                                        <label for="mediaUpload" class=" cursor-pointer"><svg
+                                                                viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px]  ">
+                                                                <path
+                                                                    d="M3 5.5C3 4.119 4.119 3 5.5 3h13C19.881 3 21 4.119 21 5.5v13c0 1.381-1.119 2.5-2.5 2.5h-13C4.119 21 3 19.881 3 18.5v-13zM5.5 5c-.276 0-.5.224-.5.5v9.086l3-3 3 3 5-5 3 3V5.5c0-.276-.224-.5-.5-.5h-13zM19 15.414l-3-3-5 5-3-3-3 3V18.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-3.086zM9.75 7C8.784 7 8 7.784 8 8.75s.784 1.75 1.75 1.75 1.75-.784 1.75-1.75S10.716 7 9.75 7z"
+                                                                    class=" fill-blue "></path>
+                                                            </svg></label><input class="hidden" type="file"
+                                                            accept="image/*, video/*" id="mediaUpload" multiple="">
+                                                        <div><button class="relative flex flex-col justify-start"
+                                                                type="button"><button type="submit"
+                                                                    data-testid="emojiBtn"><svg viewBox="0 0 24 24"
+                                                                        class="h-[18.75px] w-[18.75px] ">
+                                                                        <path
+                                                                            d="M8 9.5C8 8.119 8.672 7 9.5 7S11 8.119 11 9.5 10.328 12 9.5 12 8 10.881 8 9.5zm6.5 2.5c.828 0 1.5-1.119 1.5-2.5S15.328 7 14.5 7 13 8.119 13 9.5s.672 2.5 1.5 2.5zM12 16c-2.224 0-3.021-2.227-3.051-2.316l-1.897.633c.05.15 1.271 3.684 4.949 3.684s4.898-3.533 4.949-3.684l-1.896-.638c-.033.095-.83 2.322-3.053 2.322zm10.25-4.001c0 5.652-4.598 10.25-10.25 10.25S1.75 17.652 1.75 12 6.348 1.75 12 1.75 22.25 6.348 22.25 12zm-2 0c0-4.549-3.701-8.25-8.25-8.25S3.75 7.451 3.75 12s3.701 8.25 8.25 8.25 8.25-3.701 8.25-8.25z"
+                                                                            class=" fill-blue"></path>
+                                                                    </svg></button>
+                                                                <div
+                                                                    class="absolute  top-5  z-[100] flex scale-75 flex-row justify-center sm:scale-90 md:scale-100">
+                                                                </div>
+                                                            </button></div>
+                                                    </div><button type="submit" id="post" data-testid="post11"
+                                                        class="flex h-[36px] w-[66px] items-center justify-center rounded-3xl border-blue bg-blue font-bold  text-white disabled:opacity-50"
+                                                        disabled="">Post</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <div data-testid="497"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage497"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username497"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T23:45:59.000Z"
+                                                                    title="Friday, December 22, 2023 at 1:45:59 AM">2h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="497menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">توييت
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="497reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="497repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="497like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="496"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage496"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username496"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-22T01:44:31.000Z"
+                                                                    title="Friday, December 22, 2023 at 3:44:31 AM">2m</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="496menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">test </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="496reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="496repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="496like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="495"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage495"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username495"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-22T01:44:24.000Z"
+                                                                    title="Friday, December 22, 2023 at 3:44:24 AM">2m</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="495menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">test </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="495reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="495repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="495like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="485"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage485"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username485"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T19:57:59.000Z"
+                                                                    title="Thursday, December 21, 2023 at 9:57:59 PM">6h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="485menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="485reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="485repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="485like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="484"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage484"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username484"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T19:54:18.000Z"
+                                                                    title="Thursday, December 21, 2023 at 9:54:18 PM">6h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="484menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        testing </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="484reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="484repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="484like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="483"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage483"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username483"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T19:45:12.000Z"
+                                                                    title="Thursday, December 21, 2023 at 9:45:12 PM">6h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="483menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">testing in
+                                                        mobile
+
+
+
+
+
+
+
+                                                        testing </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="483reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="483repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="483like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="482"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage482"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username482"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T19:41:58.000Z"
+                                                                    title="Thursday, December 21, 2023 at 9:41:58 PM">6h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="482menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">
+                                                        m\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="482reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="482repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="482like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="481"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage481"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username481"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T19:40:43.000Z"
+                                                                    title="Thursday, December 21, 2023 at 9:40:43 PM">6h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="481menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="481reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="481repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="481like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="480"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage480"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username480"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T19:39:10.000Z"
+                                                                    title="Thursday, December 21, 2023 at 9:39:10 PM">6h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="480menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">tweetText:
+
+
+
+
+
+
+
+
+
+
+
+                                                        50 </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="480reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="480repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="480like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="479"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage479"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username479"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T19:28:42.000Z"
+                                                                    title="Thursday, December 21, 2023 at 9:28:42 PM">6h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="479menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">
+
+
+                                                        testing /n
+
+
+
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="479reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="479repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="479like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                        <div data-testid="478"
+                                            class="tweet mb-[0.5px] mt-[-0.5px] grid w-full border-collapse grid-cols-[auto_1fr]  border-y-[0.5px] border-y-border-gray bg-white px-3 pt-[12px] hover:cursor-pointer hover:bg-xx-light-gray dark:bg-pure-black dark:text-white dark:hover:bg-pure-black sm:px-[16px] lg:w-[598px] ">
+                                            <div class="leftColumn mr-[12px] h-[40px] w-[40px] ">
+                                                <div class="profileImage leftColumn absolute mr-[12px] h-[40px] w-[40px] "
+                                                    data-state="closed"><img data-testid="profileImage478"
+                                                        src="https://kady-twitter-images.s3.amazonaws.com/Screenshot%202023-12-15%20233302.jpg"
+                                                        alt="profileImage"
+                                                        class="  h-[40px] w-[40px] rounded-full object-cover transition-opacity">
+                                                </div>
+                                            </div>
+                                            <div class="rightColumn max-w-[95%]">
+                                                <div class="flex w-full justify-between">
+                                                    <div class="userInfo flex flex-wrap"><a class=" text-black"
+                                                            href="/app/testingg">
+                                                            <div data-testid="username478"
+                                                                class="name word max-w-[220px] truncate break-words text-[15px] font-bold dark:text-white"
+                                                                style="word-break: break-word;">test</div>
+                                                        </a>
+                                                        <div class="flex flex-wrap">
+                                                            <div
+                                                                class="userName max-w-[150px] overflow-hidden truncate break-words  text-[15px] text-dark-gray">
+                                                                 @<span>testingg</span></div>
+                                                            <div
+                                                                class="date overflow-hidden break-keep text-[15px] text-dark-gray">
+                                                                 . <time datetime="2023-12-21T19:28:24.000Z"
+                                                                    title="Thursday, December 21, 2023 at 9:28:24 PM">6h</time>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pl-2">
+                                                        <div class="dropdown relative flex "><button type="submit"
+                                                                data-testid="478menubtn"
+                                                                class="dropbtn group relative  rounded-full hover:bg-[#e1eef6] dark:hover:bg-[#0a171f]"><svg
+                                                                    viewBox="0 0 25 25"
+                                                                    class="relative h-[24px] w-[24px] ">
+                                                                    <path class="fill-dark-gray group-hover:fill-blue "
+                                                                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
+                                                                    </path>
+                                                                </svg></button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption max-w-[95%]">
+                                                    <p class="break-words" style="word-break: break-word;">
+
+
+                                                        testing
+
+
+
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div class="media4 grid max-h-[512px] max-w-[512px] grid-cols-2
+        grid-rows-0 gap-[2px] overflow-hidden rounded-xl"></div>
+                                                </div>
+                                                <div class="buttons flex h-[32px] flex-row  justify-between"><button
+                                                        data-testid="478reply" type="submit">
+                                                        <div class="Reply hover:text-blue 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"
+                                                                    class="fill-dark-gray group-hover:fill-blue"></path>
+                                                            </svg></div>
+                                                    </button><button data-testid="478repost" type="submit">
+                                                        <div class="Reply hover:text-[#00BA7C] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                                                    class="fill-dark-gray group-hover:fill-[#00BA7C]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button><button data-testid="478like" type="submit">
+                                                        <div class="Reply hover:text-[#F91880] 
+     group m-auto  flex h-[20px]
+      flex-row text-sm text-dark-gray hover:cursor-pointer"><svg viewBox="0 0 24 24" class="h-[18.75px] w-[18.75px] ">
+                                                                <path
+                                                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                                                    class="fill-dark-gray group-hover:fill-[#F91880]">
+                                                                </path>
+                                                            </svg></div>
+                                                    </button></div>
+                                            </div>
+                                            <div
+                                                style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
+                            </div>
+                            <div class="w-[350px] flex flex-col gap-3">
+                                <div class="flex h-auto w-full flex-col py-2" data-testid="search-bar">
+                                    <div>
+                                        <div class="relative w-full">
+                                            <div class="flex h-[42px] w-full items-center bg-[#f7f8f8] dark:bg-[#16181c]  rounded-full bg-[#f7f8f8] py-2 pl-2 pr-2"
+                                                data-testid="search-bar-field">
+                                                <div class="w-1/12 pr-1 sm:pr-0"><svg width="20" height="20"
+                                                        viewBox="0 0 20 20" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M9 3.5C5.96243 3.5 3.5 5.96243 3.5 9C3.5 12.0376 5.96243 14.5 9 14.5C10.519 14.5 11.893 13.8852 12.8891 12.8891C13.8852 11.893 14.5 10.519 14.5 9C14.5 5.96243 12.0376 3.5 9 3.5ZM2 9C2 5.13401 5.13401 2 9 2C12.866 2 16 5.13401 16 9C16 10.6625 15.4197 12.1906 14.4517 13.3911L17.7803 16.7197C18.0732 17.0126 18.0732 17.4874 17.7803 17.7803C17.4874 18.0732 17.0126 18.0732 16.7197 17.7803L13.3911 14.4517C12.1906 15.4197 10.6625 16 9 16C5.13401 16 2 12.866 2 9Z"
+                                                            fill="#AAB8C2"></path>
+                                                    </svg></div>
+                                                <div class="w-10/12"><input
+                                                        class="w-full border-none bg-[#f7f8f8] pl-2 placeholder-light-gray focus:outline-none dark:bg-[#16181c] sm:pl-0  dark:text-white"
+                                                        placeholder="Search" type="text"
+                                                        data-testid="search-bar-textfield" value=""></div>
+                                            </div>
+                                            <div class="px-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="rou flex flex-col rounded-2xl bg-[#f7f8f8] text-black hover:rounded-2xl dark:bg-[#16181c] dark:text-white ">
+                                    <div class="w-full px-4 py-3 text-[20px] font-bold">What’s happening</div>
+                                    <div class="flex w-full  flex-col "><a
+                                            class="text-black hover:no-underline dark:text-white "
+                                            href="/app/search/trend10">
+                                            <div class=" px-4 py-3 text-[15px]
+                     hover:bg-[#edf0f0]  dark:hover:bg-[#1d1e21]">
+                                                <div class="font-bold">#trend10</div>
+                                                <div class="mt-1 text-dark-gray">28 posts</div>
+                                            </div>
+                                        </a><a class="text-black hover:no-underline dark:text-white "
+                                            href="/app/search/trend11">
+                                            <div class=" px-4 py-3 text-[15px]
+                     hover:bg-[#edf0f0]  dark:hover:bg-[#1d1e21]">
+                                                <div class="font-bold">#trend11</div>
+                                                <div class="mt-1 text-dark-gray">28 posts</div>
+                                            </div>
+                                        </a><a class="text-black hover:no-underline dark:text-white "
+                                            href="/app/search/#searching">
+                                            <div class=" px-4 py-3 text-[15px]
+                     hover:bg-[#edf0f0]  dark:hover:bg-[#1d1e21]">
+                                                <div class="font-bold">##searching</div>
+                                                <div class="mt-1 text-dark-gray">11 posts</div>
+                                            </div>
+                                        </a><a class="text-black hover:no-underline dark:text-white "
+                                            href="/app/search/#Test1">
+                                            <div class=" px-4 py-3 text-[15px]
+                     hover:bg-[#edf0f0]  dark:hover:bg-[#1d1e21]">
+                                                <div class="font-bold">##Test1</div>
+                                                <div class="mt-1 text-dark-gray">1 posts</div>
+                                            </div>
+                                        </a><a class="text-black hover:no-underline dark:text-white "
+                                            href="/app/search/#ana_mazakertsh_haga">
+                                            <div class=" px-4 py-3 text-[15px]
+                     hover:bg-[#edf0f0]  dark:hover:bg-[#1d1e21]">
+                                                <div class="font-bold">##ana_mazakertsh_haga</div>
+                                                <div class="mt-1 text-dark-gray">1 posts</div>
+                                            </div>
+                                        </a><a class="text-black hover:no-underline dark:text-white "
+                                            href="/app/search/#Test2">
+                                            <div class=" px-4 py-3 text-[15px]
+                     hover:bg-[#edf0f0]  dark:hover:bg-[#1d1e21]">
+                                                <div class="font-bold">##Test2</div>
+                                                <div class="mt-1 text-dark-gray">1 posts</div>
+                                            </div>
+                                        </a></div><a class="text-black hover:no-underline dark:text-white "
+                                        href="/app/explore">
+                                        <div
+                                            class=" w-full px-4  py-3 text-[15px] text-blue hover:bg-[#edf0f0]  dark:hover:bg-[#1d1e21]  ">
+                                            Show more</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+        const global = globalThis;
+    </script>
+
+
+    <script src="https://accounts.google.com/gsi/client" async="" defer=""></script>
+</body>
