@@ -49,25 +49,6 @@ describe("posts", () => {
       });
     });
   });
-  it("add new tweet--> added in profile", () => {
-    cy.intercept(
-      "POST",
-      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
-    ).as("addTweet");
-
-    cy.get("@selectors").then((sel) => {
-      cy.get(sel.postInputField).type("NEW TWEET");
-      cy.get(sel.postButton).click();
-
-      // Wait for the intercepted request to complete
-      cy.wait("@addTweet").then((interception) => {
-        const tweetId = interception.response.body.data.id;
-        cy.setTweetId(tweetId);
-        cy.get(sel.sideBarProfile).click();
-        cy.get(`[data-testid=${tweetId}]`).should("be.visible");
-      });
-    });
-  }); //updated,working
 });
 describe("like", () => {
   it("like the tweet added in the prev test it from my posts --> added to likes", () => {

@@ -8,32 +8,58 @@ public class homeScreen extends base {
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Home\n" +
             "Tab 1 of 4\"]")
     public WebElement assertionElement;
-    @AndroidFindBy(xpath = "//(android.widget.Button)[1]")
+    @AndroidFindBy(xpath = "//(android.widget.Button)[2]")
     private WebElement addTweetBtn;
     @AndroidFindBy(className = "android.widget.EditText")
     private WebElement tweetInput;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Post\"]")
     private WebElement postBtn;
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"r\"]")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]")
     private WebElement profileCircle;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"rawan\n" +
-            "@rawann\n" +
-            "flutter tweet test script \"])[1]")
-    public WebElement assertionTweet;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Profile\"]")
+    private WebElement profileBtn;
 
-    public void clickOnAddTweet(){
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'test') and contains(@content-desc, '@testingg')]")
+    private WebElement latestTweet;
+
+
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"2\"])[1]")
+    private WebElement latestTweetLikeBtn;
+
+
+    public void clickOnAddTweet() {
         addTweetBtn.click();
     }
-    public void typeTweet(String tweetText){
+
+    public void typeTweet(String tweetText) {
         tweetInput.sendKeys(tweetText);
     }
-    public void clickOnTweetInput(){
+
+    public void clickOnTweetInput() {
         tweetInput.click();
     }
-    public void clickOnpost(){
+
+    public void clickOnpost() {
         postBtn.click();
     }
-    public void clickOnprofileCircle(){
+
+    public void clickOnProfile() {
+        profileBtn.click();
+    }
+
+    public void clickOnprofileCircle() {
         profileCircle.click();
     }
+
+    public String clickOnLatestTweetLikeBtn() {
+        String latestTweetContent = latestTweet.getAttribute("content-desc");
+        System.out.println(latestTweetContent);
+        // Click on the like button of the latest tweet
+        latestTweetLikeBtn.click();
+
+        return latestTweetContent;
+
+    }
+
+
 }

@@ -11,7 +11,7 @@
         <classes>
             <class name="com.twitter.testcases.profile">
                 <methods>
-                    <include name="addTweet_addedInProfile"></include>
+                    <include name="unlikeFromLikes_removedFromLikes"></include>
                 </methods>
             </class>
         </classes>
