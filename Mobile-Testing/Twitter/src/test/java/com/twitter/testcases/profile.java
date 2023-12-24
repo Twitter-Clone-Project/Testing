@@ -29,20 +29,25 @@ public class profile extends base{
         loginInputsScreen.clickOnPassInput();
         loginInputsScreen.typePass("test1234");
         loginInputsScreen.clickOnLogin();
-        Assert.assertTrue(homeScreen.assertionElement.isDisplayed(), "Element is not displayed.");
+        Assert.assertTrue(homeScreen.addTweetBtn.isDisplayed(), "Element is not displayed.");
     }
     @Test
     public void addTweet_addedInProfile() throws InterruptedException {
+        addTweet_addedInProfile("flutter test tweet");
+    }
+
+    public void addTweet_addedInProfile(String tweet) throws InterruptedException {
         correctLogin();
-        profileScreen=new profileScreen();
+        profileScreen = new profileScreen();
         homeScreen.clickOnAddTweet();
         homeScreen.clickOnTweetInput();
-        homeScreen.typeTweet("flutter tweet test script");
+        homeScreen.typeTweet(tweet);
         homeScreen.clickOnpost();
         homeScreen.clickOnprofileCircle();
         homeScreen.clickOnProfile();
-        Assert.assertTrue(profileScreen.assertionTweet.isDisplayed(), "Element is not displayed.");
+        Assert.assertTrue(driver.findElement(By.xpath("(//android.view.View[contains(@content-desc, '" + tweet + "')])[1]")).isDisplayed(), "Element is not displayed.");
     }
+
 
     @Test
     public void addLikeFromHome_addedInLikes() throws InterruptedException {
@@ -80,6 +85,28 @@ public class profile extends base{
         } catch (NoSuchElementException e) {
             // If NoSuchElementException is caught, it means the element is not present
             System.out.println("Tweet is not present in likes, which is the expected behavior.");
+        }
+    }
+    @Test
+    public void deleteTweet_deletedFromProfile() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        addTweet_addedInProfile("unique tweet3");
+//        profileScreen=new profileScreen();
+//        homeScreen.clickOnprofileCircle();
+//        homeScreen.clickOnprofileCircle();
+//        homeScreen.clickOnProfile();
+        profileScreen.refresh();
+        Thread.sleep(2000);
+        String content=profileScreen.clickOnTweetOptions();
+        profileScreen.clickOnDeletePost();
+        profileScreen.refresh();
+        try {
+            WebElement element = driver.findElement(By.xpath("(//android.view.View[@content-desc=\"" + content + "\"])"));
+            Assert.assertFalse(element.isDisplayed(), "Tweet is displayed in profile, but it shouldn't be.");
+        } catch (NoSuchElementException e) {
+            System.out.println("Tweet is not present in profile, which is the expected behavior.");
         }
     }
 }

@@ -8,18 +8,18 @@ public class homeScreen extends base {
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Home\n" +
             "Tab 1 of 4\"]")
     public WebElement assertionElement;
-    @AndroidFindBy(xpath = "//(android.widget.Button)[2]")
-    private WebElement addTweetBtn;
+    @AndroidFindBy(xpath = "//hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[2]")
+    public WebElement addTweetBtn;
     @AndroidFindBy(className = "android.widget.EditText")
     private WebElement tweetInput;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Post\"]")
     private WebElement postBtn;
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView[1]")
     private WebElement profileCircle;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Profile\"]")
     private WebElement profileBtn;
 
-    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'test') and contains(@content-desc, '@testingg')]")
+    @AndroidFindBy(xpath = "//(android.view.View[contains(@content-desc, 'test') and contains(@content-desc, '@testingg')])[1]")
     private WebElement latestTweet;
 
 

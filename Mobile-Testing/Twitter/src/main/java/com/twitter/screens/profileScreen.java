@@ -28,6 +28,10 @@ public class profileScreen extends base {
     private WebElement refreshElement;
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"1\"])[1]")
     public WebElement latestTweetInLikes;
+    @AndroidFindBy(xpath = "//(android.view.View[contains(@content-desc, 'rawan') and contains(@content-desc, '@rawann')])[2]/android.view.View[2]")
+    private WebElement latestTweetOptions;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Delete Post\"]")
+    private WebElement deletePostBtn;
 
     public void clickOnLikesTab() {
         likesTab.click();
@@ -59,5 +63,13 @@ public class profileScreen extends base {
         } else {
             System.out.println("Content-desc attribute is null for the refresh element.");
         }
+    }
+    public String clickOnTweetOptions(){
+        String latestTweetContent = latestTweet.getAttribute("content-desc");
+        latestTweetOptions.click();
+        return latestTweetContent;
+    }
+    public void clickOnDeletePost(){
+        deletePostBtn.click();
     }
 }
