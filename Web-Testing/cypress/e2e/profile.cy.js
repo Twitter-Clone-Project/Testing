@@ -378,6 +378,7 @@ describe("followers&following", () => {
 });
 //bug-->FIXED
 describe("block", () => {
+  //done- working
   it("block user from following-->home shouldn't have tweets from this user", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile, { timeout: 6000 })
@@ -391,8 +392,12 @@ describe("block", () => {
                 .click()
                 .invoke("text")
                 .then((text) => {
-                  cy.get(sel.userActions).click();
-                  cy.get(sel.blockUser).click();
+                  cy.get(
+                    `[data-testid="${text.substring(1)}-UserActions-2"]`
+                  ).click(); //user actions
+                  cy.get(
+                    `[data-testid="${text.substring(1)}-UserActions-6"]`
+                  ).click(); //block
                   cy.get(sel.sideBarHome, { timeout: 60000 })
                     .click()
                     .then(() => {
@@ -407,7 +412,7 @@ describe("block", () => {
         });
     });
   });
-  it("block user from following-->user removed from followers", () => {
+  it.only("block user from following-->user removed from followers", () => {
     //login-profile-following-click on latest username-click on user actions-block-profile-followers-user shouldn't be found
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile, { timeout: 6000 })
@@ -420,10 +425,14 @@ describe("block", () => {
             .click()
             .invoke("text")
             .then((text) => {
-              cy.get(sel.userActions).click();
-              cy.get(sel.blockUser).click();
-              cy.get(sel.sideBarProfile, { timeout: 6000 }).click();
-              cy.get(sel.sideBarProfile, { timeout: 6000 }).click();
+              cy.get(
+                `[data-testid="${text.substring(1)}-UserActions-2"]`
+              ).click();
+              cy.get(
+                `[data-testid="${text.substring(1)}-UserActions-6"]`
+              ).click();
+              cy.get(sel.sideBarProfile).click();
+              cy.get(sel.sideBarProfile).click();
               cy.get(sel.sideBarProfile, { timeout: 6000 })
                 .click()
                 .then(() => {
@@ -445,6 +454,7 @@ describe("block", () => {
     });
   });
 });
+//mute not done
 describe("Mute", () => {
   it("user1 Mute user2->logout->login to user2->add new tweet->logout->login to user1->check that it didn't appear", () => {
     cy.get("@selectors").then((sel) => {
