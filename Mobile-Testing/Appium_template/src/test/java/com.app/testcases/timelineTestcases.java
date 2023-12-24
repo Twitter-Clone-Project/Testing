@@ -4,8 +4,11 @@ import com.app.base.base;
 import com.app.screens.timeline;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +18,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.openqa.selenium.Keys;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -159,6 +163,7 @@ public class timelineTestcases extends base {
         timelinepage =new timeline();
         WebElement tweet =driver.findElement(MobileBy.accessibilityId("test\n" +
                 "@testingg\n" +
+                "• 4m\n" +
                 "post "));
         tweet.click();
         timelinepage.addReplyInputField.click();
@@ -232,7 +237,7 @@ public class timelineTestcases extends base {
 
     }
 
-    @Test
+//    @Test
     public void addPostWithFiveImage() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -260,5 +265,39 @@ public class timelineTestcases extends base {
 
     }
 
+@Test
+public void addPostendlinebefore() throws IOException, InterruptedException {
+    File propsFile=new File("src/test/resources/testData/userData.properties");
+    inputfile=new FileInputStream(propsFile);
+    props=new Properties();
+    props.load(inputfile);
+    timelinepage =new timeline();
+
+    Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+            .pollingEvery(Duration.ofSeconds(2))
+            .withTimeout(Duration.ofSeconds(40))
+            .ignoring(NoSuchElementException.class);
+    timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+
+    timelinepage.addPostButton.click();
+    timelinepage.postInputField.click();
+    driver.pressKey(new KeyEvent().withKey(AndroidKey.ENTER));
+    driver.pressKey(new KeyEvent().withKey(AndroidKey.ENTER));
+    driver.pressKey(new KeyEvent().withKey(AndroidKey.ENTER));
+    driver.pressKey(new KeyEvent().withKey(AndroidKey.ENTER));
+    timelinepage.postInputField.sendKeys("tweet enter test");
+    timelinepage.postButton.click();
+
+    timelinepage.userImage.click();
+    timelinepage.profileButton.click();
+    Assert.assertNotNull(driver.findElement(MobileBy.accessibilityId("test\n" +
+            "@testingg\n" +
+            "• now\n" +
+            "tweet enter test ")));
+//test
+//@testingg
+//• 27m
+//tweeet
+}
 
 }

@@ -73,5 +73,11 @@ public class timeline extends base {
     @AndroidFindBy (id = "com.google.android.documentsui:id/action_menu_select")
     public WebElement selectImagesButtton;
 
+    @AndroidFindBy (xpath = "(//android.widget.ImageView)[1]")
+    public WebElement userImage;
+
+    @AndroidFindBy(accessibility = "Profile")
+    public WebElement profileButton;
+
 
 }
