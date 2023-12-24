@@ -299,5 +299,24 @@ public void addPostendlinebefore() throws IOException, InterruptedException {
 //• 27m
 //tweeet
 }
+@Test
+    public void addLongPost() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+
+        Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(2))
+                .withTimeout(Duration.ofSeconds(40))
+                .ignoring(NoSuchElementException.class);
+        timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+
+        timelinepage.addPostButton.click();
+        timelinepage.postInputField.click();
+        timelinepage.postInputField.sendKeys("tweetttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+        Assert.assertFalse(timelinepage.postButton.isEnabled());
+    }
 
 }
