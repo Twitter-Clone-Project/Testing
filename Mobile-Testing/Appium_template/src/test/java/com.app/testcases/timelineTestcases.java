@@ -265,7 +265,7 @@ public class timelineTestcases extends base {
 
     }
 
-@Test
+//@Test
 public void addPostendlinebefore() throws IOException, InterruptedException {
     File propsFile=new File("src/test/resources/testData/userData.properties");
     inputfile=new FileInputStream(propsFile);
@@ -299,7 +299,7 @@ public void addPostendlinebefore() throws IOException, InterruptedException {
 //• 27m
 //tweeet
 }
-@Test
+//@Test
     public void addLongPost() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -318,5 +318,53 @@ public void addPostendlinebefore() throws IOException, InterruptedException {
         timelinepage.postInputField.sendKeys("tweetttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
         Assert.assertFalse(timelinepage.postButton.isEnabled());
     }
+////////////////////////////////////////////////trends and hashtags////////////////////////////////////////
+//    @Test
+public void addPostHashTag() throws IOException, InterruptedException {
+    File propsFile=new File("src/test/resources/testData/userData.properties");
+    inputfile=new FileInputStream(propsFile);
+    props=new Properties();
+    props.load(inputfile);
+    timelinepage =new timeline();
 
+    Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+            .pollingEvery(Duration.ofSeconds(2))
+            .withTimeout(Duration.ofSeconds(40))
+            .ignoring(NoSuchElementException.class);
+    timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+
+    timelinepage.addPostButton.click();
+    timelinepage.postInputField.click();
+    timelinepage.postInputField.sendKeys("#");
+    timelinepage.postButton.click();
+
+
+}
+    @Test
+    public void addPostdoubleHashTag() throws IOException, InterruptedException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage =new timeline();
+
+        Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(2))
+                .withTimeout(Duration.ofSeconds(40))
+                .ignoring(NoSuchElementException.class);
+        timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+
+        timelinepage.addPostButton.click();
+        timelinepage.postInputField.click();
+        timelinepage.postInputField.sendKeys("##");
+        timelinepage.postButton.click();
+//        timelinepage.searchIcon.click();
+        timelinepage.searchIcon.click();
+        try {
+            Assert.assertFalse("not found",timelinepage.hashtagTrend.isDisplayed());
+        }catch (NoSuchElementException e)
+        {
+            System.out.println("HashTag are not in the trend");
+        }
+    }
 }

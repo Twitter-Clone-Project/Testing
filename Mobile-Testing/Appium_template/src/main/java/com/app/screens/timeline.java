@@ -79,5 +79,13 @@ public class timeline extends base {
     @AndroidFindBy(accessibility = "Profile")
     public WebElement profileButton;
 
+    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Search\n" +
+            "Tab 2 of 4\"]")
+    public WebElement searchIcon;
+
+    @AndroidFindBy(accessibility = "3. Trending\n" +
+            "#")
+    public WebElement hashtagTrend;
+
 
 }
