@@ -50,7 +50,7 @@ describe("Time Line", () => {
       ).as("addTweet");
 
       cy.get(selectors.postButtonTimeLine).click();
-      cy.get(selectors.postInputField).type(Data.postText);
+      cy.get(selectors.postInputField).type("tweet");
       cy.get(selectors.postButtonCard).click();
       cy.wait("@addTweet").then((interception) => {
         const tweetId = interception.response.body.data.id;
@@ -252,7 +252,9 @@ describe("Time Line", () => {
   });
   it("add video", () => {
     cy.get("@selectors").then((selectors) => {
-      cy.get(selectors.uploadImageSelector).selectFile("Sample Video.mp4");
+      cy.get(selectors.uploadImageSelector).selectFile("Sample Video.mp4", {
+        force: true
+      });
       cy.get("video").should("be.visible");
     });
   });
@@ -712,25 +714,8 @@ describe("Time Line", () => {
       });
     });
   });
-  // it.only("Opening a new tab", () => {
-  //   cy.window().then((win) => {
-  //     win.open("https://twitter-clone.onthewifi.com/");
-  //     cy.get("@selectors").then((selectors) => {
-  //       cy.get(selectors.userButton).click();
-  //       cy.get("[data-testid='nav-logout-btn']").click();
-  //       cy.get(selectors.logOutButton).click();
-  //       cy.wait(3000);
-  //       cy.get(selectors.signInButton).click({ force: true });
-  //       cy.get(selectors.emailInputField).type("menna.ibrahim02@eng-st.cu.edu.eg");
-  //       cy.get(selectors.passwordInputField).type("147258369");
-  //       cy.get(selectors.logInButton).click();
-  //       cy.get(selectors.postInputField).type("post from tab2");
-  //       cy.get(selectors.postButton).click();
-  //     });
-  //   });
-  // });
-//Passed
-  it.only("hover on the user image is the user card info shown", () => {
+  //Passed
+  it("hover on the user image is the user card info shown", () => {
     cy.get("@selectors").then((selectors) => {
       cy.intercept(
         "GET",
