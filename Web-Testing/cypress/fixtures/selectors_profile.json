@@ -41,6 +41,7 @@
   "followingListBtn": "[data-testid='following-btn']",
   "followingLatestUserBtn": "[data-testid='FollowingList_2'] > :nth-child(1)",
   "followLatestUserBtn": "[data-testid='Follow']",
+  "followBtn": "[data-testid='Follow']",
   "followLatestUserInFollowersList": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Follow']",
   "unfollowLatestUserInFollowingList": "[data-testid='UserItem_0_2'] > .relative > [data-testid='Following']",
   "followersFromInside": ".text-light-thin > .relative > span",
@@ -58,7 +59,10 @@
   "logOutStep2": "[data-testid='Log Out']",
   "searchBar": "[data-testid='search-bar-textfield']",
   "rawantest1Search": "[data-testid='search-result-58']",
+  "gotorawantest1": "[data-testid='search-bar-gotorawantest1']",
+  "gotorawann": "[data-testid='search-bar-gotorawann']",
   "rawantest1UserActions": "[data-testid='rawantest1-UserActions-2']",
   "rawantest1Mute": "[data-testid='rawantest1-UserActions-4']",
-  "rawantest1Block": "[data-testid='rawantest1-UserActions-6']"
+  "rawantest1Block": "[data-testid='rawantest1-UserActions-6']",
+  "rawantest1Tweet": "[data-testid='702']"
 }

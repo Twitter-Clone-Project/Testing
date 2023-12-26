@@ -30,3 +30,10 @@ Cypress.Commands.add("setTweetId", (value) => {
 Cypress.Commands.add("getTweetId", () => {
   return Cypress.myTweetId;
 });
+Cypress.Commands.add("setBlockedUsername", (value) => {
+  Cypress.blockedUsername = value;
+});
+
+Cypress.Commands.add("getBlockedUsername", () => {
+  return Cypress.blockedUsername;
+});

@@ -340,264 +340,278 @@ describe("edit profile", () => {
       );
     });
   }); //updated,working
+});
 
-  describe("followers&following", () => {
-    it("following list-->unfollow-->following count should decrement", () => {
-      cy.get("@selectors").then((sel) => {
-        cy.get(sel.sideBarProfile).click();
-        cy.get(sel.followingCount)
-          .invoke("text")
-          .then((count) => {
-            cy.get(sel.followingListBtn).click();
-            cy.get(sel.latestfollowingUsername)
-              .contains("@")
-              .invoke("text")
-              .then((username) => {
-                cy.get(sel.unfollowLatestUserInFollowingList).click(); //unfollow
-                cy.get(sel.sideBarProfile).click();
-                cy.get(sel.followingCount).should(
-                  "contain",
-                  `${parseInt(count) - 1}`
-                );
-                // cy.get(sel.followersListBtn).click();
-                // cy.get("[data-testid='FollowingList_2']")
-                //   .children()
-                //   .contains(username)
-                //   .get("button")
-                //   .click();
-              });
-          });
-      });
-    });
-    it("followers list-->follow-->check on it in following list", () => {
-      cy.get("@selectors").then((sel) => {
-        cy.get(sel.sideBarProfile, { timeout: 6000 })
-          .click()
-          .then(() => {
-            cy.get(sel.followersListBtn).click();
-            cy.get(sel.followLatestUserInFollowersList, { timeout: 6000 })
-              .click()
-              .then(() => {
-                cy.get(sel.latestFollowerUsername)
-                  .invoke("attr", "href")
-                  .then((href) => {
-                    cy.get(sel.followingFromInside, { timeout: 10000 })
-                      .click()
-                      .then(() => {
-                        cy.wait(3000);
-                        cy.get(sel.latestfollowingUsername)
-                          .invoke("attr", "href")
-                          .then((href2) => {
-                            cy.log(href, href2);
-                            expect(href).to.eq(href2);
-                          });
-                      });
-                  });
-              });
-          });
-      });
-    });
-    it("click on user in following-->go to user profile", () => {
-      cy.get("@selectors").then((sel) => {
-        cy.get(sel.sideBarProfile, { timeout: 6000 })
-          .click()
-          .then(() => {
-            cy.get(sel.followingListBtn, { timeout: 6000 })
-              .click()
-              .then(() => {
-                cy.get(sel.latestfollowingUsername, { timeout: 6000 })
-                  .contains("@")
-                  .click()
-                  .invoke("text")
-                  .then((text) => {
-                    cy.url().should("contain", text.slice(1));
-                  });
-              });
-          });
-      });
+describe("followers&following", () => {
+  it("following list-->unfollow-->following count should decrement", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.followingCount)
+        .invoke("text")
+        .then((count) => {
+          cy.get(sel.followingListBtn).click();
+          cy.get(sel.latestfollowingUsername)
+            .contains("@")
+            .invoke("text")
+            .then((username) => {
+              cy.get(sel.unfollowLatestUserInFollowingList).click(); //unfollow
+              cy.get(sel.sideBarProfile).click();
+              cy.get(sel.followingCount).should(
+                "contain",
+                `${parseInt(count) - 1}`
+              );
+              // cy.get(sel.followersListBtn).click();
+              // cy.get("[data-testid='FollowingList_2']")
+              //   .children()
+              //   .contains(username)
+              //   .get("button")
+              //   .click();
+            });
+        });
     });
   });
-  //bug-->FIXED
-  describe("block", () => {
-    //done- working
-    it("block user from following-->home shouldn't have tweets from this user", () => {
-      cy.get("@selectors").then((sel) => {
-        cy.get(sel.sideBarProfile, { timeout: 6000 })
-          .click()
-          .then(() => {
-            cy.get(sel.followingListBtn, { timeout: 6000 })
-              .click()
-              .then(() => {
-                cy.get(sel.latestfollowingUsername, { timeout: 6000 })
-                  .contains("@")
-                  .click()
-                  .invoke("text")
-                  .then((text) => {
-                    cy.get(
-                      `[data-testid="${text.substring(1)}-UserActions-2"]`
-                    ).click(); //user actions
-                    cy.get(
-                      `[data-testid="${text.substring(1)}-UserActions-6"]`
-                    ).click(); //block
-                    cy.get(sel.sideBarHome, { timeout: 60000 })
-                      .click()
-                      .then(() => {
-                        cy.get(sel.lastestTweetContent, { timeout: 600000 }) //just to wait until the page loads
-                          .invoke("text")
-                          .then((txt) => {
-                            cy.get("span").should("not.contain", text);
-                          });
-                      });
-                  });
-              });
-          });
-      });
-    });
-    it("block user from following-->user removed from followers", () => {
-      //login-profile-following-click on latest username-click on user actions-block-profile-followers-user shouldn't be found
-      cy.get("@selectors").then((sel) => {
-        cy.get(sel.sideBarProfile, { timeout: 6000 })
-          .click()
-          .then(() => {
-            cy.get(sel.followingListBtn, { timeout: 6000 }).click();
-            // .then(() => {
-            cy.get(sel.latestfollowingUsername, { timeout: 6000 })
-              .contains("@")
-              .click()
-              .invoke("text")
-              .then((text) => {
-                cy.get(
-                  `[data-testid="${text.substring(1)}-UserActions-2"]`
-                ).click();
-                cy.get(
-                  `[data-testid="${text.substring(1)}-UserActions-6"]`
-                ).click();
-                cy.get(sel.sideBarProfile).click();
-                cy.get(sel.sideBarProfile).click();
-                cy.get(sel.sideBarProfile, { timeout: 6000 })
-                  .click()
-                  .then(() => {
-                    cy.get(sel.followersListBtn, { timeout: 6000 })
-                      .click()
-                      .then(() => {
-                        cy.get(sel.latestFollowerUsername, {
-                          timeout: 600000,
-                        }) //just to wait until the page loads
-                          .invoke("text")
-                          .then((txt) => {
-                            cy.get("span").should("not.contain", text);
-                          });
-                        // });
-                      });
-                  });
-              });
-          });
-      });
+  it("followers list-->follow-->check on it in following list", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile, { timeout: 6000 })
+        .click()
+        .then(() => {
+          cy.get(sel.followersListBtn).click();
+          cy.get(sel.followLatestUserInFollowersList, { timeout: 6000 })
+            .click()
+            .then(() => {
+              cy.get(sel.latestFollowerUsername)
+                .invoke("attr", "href")
+                .then((href) => {
+                  cy.get(sel.followingFromInside, { timeout: 10000 })
+                    .click()
+                    .then(() => {
+                      cy.wait(3000);
+                      cy.get(sel.latestfollowingUsername)
+                        .invoke("attr", "href")
+                        .then((href2) => {
+                          cy.log(href, href2);
+                          expect(href).to.eq(href2);
+                        });
+                    });
+                });
+            });
+        });
     });
   });
-  //done and working
-  describe("Mute", () => {
-    it("user1 Mute user2->logout->login to user2->add new tweet->logout->login to user1->check that it didn't appear", () => {
-      cy.get("@selectors").then((sel) => {
-        cy.get(sel.searchBar).type("rawantest1");
-        cy.get(sel.rawantest1Search).click();
-        cy.get(sel.rawantest1UserActions).click();
-        cy.get(sel.rawantest1Mute).click();
+  it("click on user in following-->go to user profile", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile, { timeout: 6000 })
+        .click()
+        .then(() => {
+          cy.get(sel.followingListBtn, { timeout: 6000 })
+            .click()
+            .then(() => {
+              cy.get(sel.latestfollowingUsername, { timeout: 6000 })
+                .contains("@")
+                .click()
+                .invoke("text")
+                .then((text) => {
+                  cy.url().should("contain", text.slice(1));
+                });
+            });
+        });
+    });
+  });
+});
+//bug-->FIXED
+describe("block", () => {
+  it.only("block user -->home shouldn't have tweets from this user", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.rawantest1Search).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Block).click();
+      cy.get(sel.sideBarHome).click();
+      cy.get(sel.lastestTweetContent, { timeout: 600000 }) //just to wait until the page loads
+        .then(() => {
+          cy.get("span").should("not.contain", "rawantest1");
+        });
+    });
+  });
+  it.only("unblock user-->follow user-->home should have tweets from this user", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.gotorawantest1).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Block).click(); //unblock
+      //follow
+      cy.get(sel.searchBar).clear();
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.gotorawantest1).click();
+      cy.get(sel.followBtn).click();
+      cy.get(sel.sideBarHome).click();
+      //check
+      cy.get(sel.lastestTweetContent, { timeout: 600000 }) //just to wait until the page loads
+        .then(() => {
+          cy.get(sel.rawantest1Tweet).scrollIntoView().should("be.visible");
+        });
+    });
+  });
+
+  it.only("block user-->user removed from followers", () => {
+    cy.get("@selectors").then((sel) => {
+      //first make this user follow me to check on the followers then
+      cy.get(sel.userBtn).click();
+      cy.get(sel.logOutBtn).click();
+      cy.get(sel.logOutStep2).click();
+      cy.get("@credentials").then((cred) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.email2);
+        cy.get(sel.loginPassInput).type(cred.password123);
+        cy.get(sel.loginBtn).click();
+      });
+      cy.get(sel.searchBar).type("rawann");
+      cy.get(sel.gotorawann).click();
+      cy.get(sel.followBtn).click();
+      //////back to my account
+      cy.get(sel.userBtn).click();
+      cy.get(sel.logOutBtn).click();
+      cy.get(sel.logOutStep2).click();
+      cy.get("@credentials").then((cred) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.email1);
+        cy.get(sel.loginPassInput).type(cred.password123);
+        cy.get(sel.loginBtn).click();
+      });
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.gotorawantest1).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Block).click();
+      ///check
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.followersListBtn).click();
+      cy.get("span").should("not.contain", "rawantest1");
+    });
+  });
+  it.only("unblock user-->follow user-->home should have tweets from this user", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.gotorawantest1).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Block).click(); //unblock
+      //follow
+      cy.get(sel.searchBar).clear();
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.gotorawantest1).click();
+      cy.get(sel.followBtn).click();
+      cy.get(sel.sideBarHome).click();
+      //check
+      cy.get(sel.lastestTweetContent, { timeout: 600000 }) //just to wait until the page loads
+        .then(() => {
+          cy.get(sel.rawantest1Tweet).scrollIntoView().should("be.visible");
+        });
+    });
+  });
+});
+//done and working
+describe("Mute", () => {
+  it("user1 Mute user2->logout->login to user2->add new tweet->logout->login to user1->check that it didn't appear", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.rawantest1Search).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Mute).click();
+      cy.get(sel.userBtn).click();
+      cy.get(sel.logOutBtn).click();
+      cy.get(sel.logOutStep2).click();
+      cy.get("@credentials").then((cred) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.email2);
+        cy.get(sel.loginPassInput).type(cred.password123);
+        cy.get(sel.loginBtn).click();
+      });
+      cy.intercept(
+        "POST",
+        "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+      ).as("addTweet");
+
+      cy.get(sel.postInputField).type(
+        "Muted user new tweet, this tweet shouldn't be visible"
+      );
+      cy.get(sel.postButton).click();
+
+      // Wait for the intercepted request to complete
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.setTweetId(tweetId);
         cy.get(sel.userBtn).click();
         cy.get(sel.logOutBtn).click();
         cy.get(sel.logOutStep2).click();
         cy.get("@credentials").then((cred) => {
           cy.get(sel.startScreenLoginBtn).click({ force: true });
-          cy.get(sel.loginEmailInput).type(cred.email2);
+          cy.get(sel.loginEmailInput).type(cred.email1);
           cy.get(sel.loginPassInput).type(cred.password123);
           cy.get(sel.loginBtn).click();
         });
-        cy.intercept(
-          "POST",
-          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
-        ).as("addTweet");
-
-        cy.get(sel.postInputField).type(
-          "Muted user new tweet, this tweet shouldn't be visible"
-        );
-        cy.get(sel.postButton).click();
-
-        // Wait for the intercepted request to complete
-        cy.wait("@addTweet").then((interception) => {
-          const tweetId = interception.response.body.data.id;
-          cy.setTweetId(tweetId);
-          cy.get(sel.userBtn).click();
-          cy.get(sel.logOutBtn).click();
-          cy.get(sel.logOutStep2).click();
-          cy.get("@credentials").then((cred) => {
-            cy.get(sel.startScreenLoginBtn).click({ force: true });
-            cy.get(sel.loginEmailInput).type(cred.email1);
-            cy.get(sel.loginPassInput).type(cred.password123);
-            cy.get(sel.loginBtn).click();
-          });
-          cy.wait(2000);
-          cy.get(`[data-testid=${tweetId}]`).should("not.exist");
-        });
+        cy.wait(2000);
+        cy.get(`[data-testid=${tweetId}]`).should("not.exist");
       });
     });
-    it("user1 unMute user2->logout->login to user2->add new tweet->logout->login to user1->check that it appears in home", () => {
-      cy.get("@selectors").then((sel) => {
-        cy.get(sel.searchBar).type("rawantest1");
-        cy.get(sel.rawantest1Search).click();
-        cy.get(sel.rawantest1UserActions).click();
-        cy.get(sel.rawantest1Mute).click(); //unmute
+  });
+  it("user1 unMute user2->logout->login to user2->add new tweet->logout->login to user1->check that it appears in home", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.rawantest1Search).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Mute).click(); //unmute
+      cy.get(sel.userBtn).click();
+      cy.get(sel.logOutBtn).click();
+      cy.get(sel.logOutStep2).click();
+      cy.get("@credentials").then((cred) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.email2);
+        cy.get(sel.loginPassInput).type(cred.password123);
+        cy.get(sel.loginBtn).click();
+      });
+      cy.intercept(
+        "POST",
+        "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+      ).as("addTweet");
+
+      cy.get(sel.postInputField).type(
+        "unMuted user new tweet, this tweet be visible"
+      );
+      cy.get(sel.postButton).click();
+
+      // Wait for the intercepted request to complete
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.setTweetId(tweetId);
         cy.get(sel.userBtn).click();
         cy.get(sel.logOutBtn).click();
         cy.get(sel.logOutStep2).click();
         cy.get("@credentials").then((cred) => {
           cy.get(sel.startScreenLoginBtn).click({ force: true });
-          cy.get(sel.loginEmailInput).type(cred.email2);
+          cy.get(sel.loginEmailInput).type(cred.email1);
           cy.get(sel.loginPassInput).type(cred.password123);
           cy.get(sel.loginBtn).click();
         });
-        cy.intercept(
-          "POST",
-          "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
-        ).as("addTweet");
-
-        cy.get(sel.postInputField).type(
-          "unMuted user new tweet, this tweet be visible"
-        );
-        cy.get(sel.postButton).click();
-
-        // Wait for the intercepted request to complete
-        cy.wait("@addTweet").then((interception) => {
-          const tweetId = interception.response.body.data.id;
-          cy.setTweetId(tweetId);
-          cy.get(sel.userBtn).click();
-          cy.get(sel.logOutBtn).click();
-          cy.get(sel.logOutStep2).click();
-          cy.get("@credentials").then((cred) => {
-            cy.get(sel.startScreenLoginBtn).click({ force: true });
-            cy.get(sel.loginEmailInput).type(cred.email1);
-            cy.get(sel.loginPassInput).type(cred.password123);
-            cy.get(sel.loginBtn).click();
-          });
-          cy.wait(2000);
-          cy.get(`[data-testid=${tweetId}]`).should("be.visible");
-        });
+        cy.wait(2000);
+        cy.get(`[data-testid=${tweetId}]`).should("be.visible");
       });
     });
-    it("user1 Mute user2->check that their tweets don't appear", () => {
-      cy.get("@selectors").then((sel) => {
-        cy.get(sel.searchBar).type("rawantest1");
-        cy.get(sel.rawantest1Search).click();
-        cy.get(sel.rawantest1UserActions).click();
-        cy.get(sel.rawantest1Mute).click();
-        cy.get(sel.sideBarHome, { timeout: 60000 })
-          .click()
-          .then(() => {
-            cy.get(sel.lastestTweetContent, { timeout: 600000 }) //just to wait until the page loads
-              .then(() => {
-                cy.get("span").should("not.contain", "rawantest1");
-              });
-          });
-      });
+  });
+  it("user1 Mute user2->check that their tweets don't appear", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.rawantest1Search).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Mute).click();
+      cy.get(sel.sideBarHome, { timeout: 60000 })
+        .click()
+        .then(() => {
+          cy.get(sel.lastestTweetContent, { timeout: 600000 }) //just to wait until the page loads
+            .then(() => {
+              cy.get("span").should("not.contain", "rawantest1");
+            });
+        });
     });
   });
 });
