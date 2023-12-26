@@ -28,6 +28,7 @@
   "userBio": "[data-testid='user-bio']",
   "userPhoto": "[data-testid='user-photo']",
   "userCover": "[data-testid='user-cover']",
+  "removeCover": "div[data-testid='Remove photo'] > [data-testid='Remove photo']",
   "userBd": "[data-testid='dob']",
   "x": ".justify-between > .flex > .text-base",
   "discardBtn": "[data-testid='Discard']",
