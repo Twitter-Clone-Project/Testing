@@ -249,7 +249,7 @@ describe("edit profile", () => {
       );
     });
   });
-  //bug
+  //bug--fixed
   it("check on input sizes", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
@@ -296,6 +296,34 @@ describe("edit profile", () => {
       cy.get(sel.editProfile).click();
       cy.get(sel.editName).clear().type("666");
       cy.get(sel.saveEdits).should("be.disabled");
+    });
+  });
+  it("future birthdate in edit profile", () => {
+    /////////////////BUG
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.editProfile).click();
+      cy.get(sel.editBd).click();
+      cy.get(sel.month).select("December");
+      cy.get(sel.day).select("31");
+      cy.get(sel.year).select("2023");
+      cy.get(sel.saveEdits).click();
+      cy.wait(2000);
+      cy.get(sel.userBd).should("not.contain.text", "Born December 31, 2023");
+    });
+  });
+  it("very young birthdate in edit profile", () => {
+    /////////////////BUG
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.editProfile).click();
+      cy.get(sel.editBd).click();
+      cy.get(sel.month).select("December");
+      cy.get(sel.day).select("31");
+      cy.get(sel.year).select("2020");
+      cy.get(sel.saveEdits).click();
+      cy.wait(2000);
+      cy.get(sel.userBd).should("not.contain.text", "Born December 31, 2023");
     });
   });
 }); //updated,working
@@ -412,7 +440,7 @@ describe("block", () => {
         });
     });
   });
-  it.only("block user from following-->user removed from followers", () => {
+  it("block user from following-->user removed from followers", () => {
     //login-profile-following-click on latest username-click on user actions-block-profile-followers-user shouldn't be found
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile, { timeout: 6000 })
@@ -456,24 +484,47 @@ describe("block", () => {
 });
 //mute not done
 describe("Mute", () => {
-  it("user1 Mute user2->logout->login to user2->add new tweet->logout->login to user1->check that it didn't appear", () => {
+  it.only("user1 Mute user2->logout->login to user2->add new tweet->logout->login to user1->check that it didn't appear", () => {
     cy.get("@selectors").then((sel) => {
-      cy.get(sel.sideBarProfile, { timeout: 6000 })
-        .click()
-        .then(() => {
-          cy.get(sel.followingListBtn, { timeout: 6000 })
-            .click()
-            .then(() => {
-              cy.get(sel.latestfollowingUsername, { timeout: 6000 })
-                .contains("@")
-                .click()
-                .invoke("text")
-                .then((text) => {
-                  cy.get(sel.userActions).click();
-                  cy.get(sel.muteUser).click();
-                });
-            });
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.rawantest1Search).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Mute).click();
+      cy.get(sel.userBtn).click();
+      cy.get(sel.logOutBtn).click();
+      cy.get(sel.logOutStep2).click();
+      cy.get("@credentials").then((cred) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.email2);
+        cy.get(sel.loginPassInput).type(cred.password123);
+        cy.get(sel.loginBtn).click();
+      });
+      cy.intercept(
+        "POST",
+        "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+      ).as("addTweet");
+
+      cy.get(sel.postInputField).type(
+        "Muted user new tweet, this tweet shouldn't be visible"
+      );
+      cy.get(sel.postButton).click();
+
+      // Wait for the intercepted request to complete
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.setTweetId(tweetId);
+        cy.get(sel.userBtn).click();
+        cy.get(sel.logOutBtn).click();
+        cy.get(sel.logOutStep2).click();
+        cy.get("@credentials").then((cred) => {
+          cy.get(sel.startScreenLoginBtn).click({ force: true });
+          cy.get(sel.loginEmailInput).type(cred.email1);
+          cy.get(sel.loginPassInput).type(cred.password123);
+          cy.get(sel.loginBtn).click();
         });
+        cy.wait(2000);
+        cy.get(`[data-testid=${tweetId}]`).should("not.exist");
+      });
     });
   });
 });

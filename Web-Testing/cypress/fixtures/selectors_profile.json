@@ -21,7 +21,7 @@
   "editBio": "[data-testid='Bio']",
   "editLocation": "[data-testid='Location']",
   "editWebsite": "[data-testid='Website']",
-  "editBd": ".text-blue",
+  "editBd": "[data-testid='edit-dob'] > .text-blue",
   "saveEdits": "[data-testid='Save']",
   "userWebsite": "[data-testid='user-website']",
   "userLocation": "[data-testid='user-location']",
@@ -52,5 +52,12 @@
   "followersCount": "[data-testid='folllowers-count']",
   "followingCount": "[data-testid='following-count']",
   "postsList": "[data-testid='posts-list']",
-  "logOutBtn": "[data-testid='Log Out']"
+  "userBtn": "[data-testid='user-btn'] > .text-xs",
+  "logOutBtn": "[data-testid='nav-logout-btn']",
+  "logOutStep2": "[data-testid='Log Out']",
+  "searchBar": "[data-testid='search-bar-textfield']",
+  "rawantest1Search": "[data-testid='search-result-58']",
+  "rawantest1UserActions": "[data-testid='rawantest1-UserActions-2']",
+  "rawantest1Mute": "[data-testid='rawantest1-UserActions-4']",
+  "rawantest1Block": "[data-testid='rawantest1-UserActions-6']"
 }
