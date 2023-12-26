@@ -484,7 +484,7 @@ describe("block", () => {
 });
 //mute not done
 describe("Mute", () => {
-  it.only("user1 Mute user2->logout->login to user2->add new tweet->logout->login to user1->check that it didn't appear", () => {
+  it("user1 Mute user2->logout->login to user2->add new tweet->logout->login to user1->check that it didn't appear", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.searchBar).type("rawantest1");
       cy.get(sel.rawantest1Search).click();
@@ -525,6 +525,65 @@ describe("Mute", () => {
         cy.wait(2000);
         cy.get(`[data-testid=${tweetId}]`).should("not.exist");
       });
+    });
+  });
+  it("user1 unMute user2->logout->login to user2->add new tweet->logout->login to user1->check that it appears in home", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.rawantest1Search).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Mute).click(); //unmute
+      cy.get(sel.userBtn).click();
+      cy.get(sel.logOutBtn).click();
+      cy.get(sel.logOutStep2).click();
+      cy.get("@credentials").then((cred) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.email2);
+        cy.get(sel.loginPassInput).type(cred.password123);
+        cy.get(sel.loginBtn).click();
+      });
+      cy.intercept(
+        "POST",
+        "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+      ).as("addTweet");
+
+      cy.get(sel.postInputField).type(
+        "unMuted user new tweet, this tweet be visible"
+      );
+      cy.get(sel.postButton).click();
+
+      // Wait for the intercepted request to complete
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.setTweetId(tweetId);
+        cy.get(sel.userBtn).click();
+        cy.get(sel.logOutBtn).click();
+        cy.get(sel.logOutStep2).click();
+        cy.get("@credentials").then((cred) => {
+          cy.get(sel.startScreenLoginBtn).click({ force: true });
+          cy.get(sel.loginEmailInput).type(cred.email1);
+          cy.get(sel.loginPassInput).type(cred.password123);
+          cy.get(sel.loginBtn).click();
+        });
+        cy.wait(2000);
+        cy.get(`[data-testid=${tweetId}]`).should("be.visible");
+      });
+    });
+  });
+  it.only("user1 Mute user2->check that their tweets don't appear", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.rawantest1Search).click();
+      cy.get(sel.rawantest1UserActions).click();
+      cy.get(sel.rawantest1Mute).click();
+      cy.get(sel.sideBarHome, { timeout: 60000 })
+        .click()
+        .then(() => {
+          cy.get(sel.lastestTweetContent, { timeout: 600000 }) //just to wait until the page loads
+            .then(() => {
+              cy.get("span").should("not.contain", "rawantest1");
+            });
+        });
     });
   });
 });
