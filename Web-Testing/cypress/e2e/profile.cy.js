@@ -15,6 +15,7 @@ beforeEach(() => {
   });
   cy.viewport("macbook-16");
 });
+//done and working
 describe("posts", () => {
   it("add new tweet--> added in profile", () => {
     cy.intercept(
@@ -34,8 +35,8 @@ describe("posts", () => {
         cy.get(`[data-testid=${tweetId}]`).should("be.visible");
       });
     });
-  }); //updated,working
-  it("delete tweet", () => {
+  });
+  it("delete tweet--> deleted from profile", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
       cy.getTweetId().then((Id) => {
@@ -49,7 +50,27 @@ describe("posts", () => {
       });
     });
   });
+  it("add new tweet--> added in profile", () => {
+    cy.intercept(
+      "POST",
+      "https://twitter-clone.onthewifi.com:2023/api/v1/tweets/add "
+    ).as("addTweet");
+
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.postInputField).type("NEW TWEET");
+      cy.get(sel.postButton).click();
+
+      // Wait for the intercepted request to complete
+      cy.wait("@addTweet").then((interception) => {
+        const tweetId = interception.response.body.data.id;
+        cy.setTweetId(tweetId);
+        cy.get(sel.sideBarProfile).click();
+        cy.get(`[data-testid=${tweetId}]`).should("be.visible");
+      });
+    });
+  });
 });
+//done and working
 describe("like", () => {
   it("like the tweet added in the prev test it from my posts --> added to likes", () => {
     cy.get("@selectors").then((sel) => {
@@ -58,6 +79,7 @@ describe("like", () => {
 
       cy.get(sel.sideBarProfile).click();
       cy.getTweetId().then((Id) => {
+        cy.log(Id);
         cy.get(`[data-testid=${Id}like]`).click(); //like the new tweet
 
         cy.get(sel.likesBtn).click();
@@ -65,7 +87,7 @@ describe("like", () => {
         cy.get(`[data-testid=${Id}]`).should("be.visible"); //check if it's present in likes
       });
     });
-  }); //updated,working
+  });
 
   it("unlike some tweet from my likes --> removed likes", () => {
     cy.get("@selectors").then((sel) => {
@@ -83,7 +105,7 @@ describe("like", () => {
     });
   }); //updated,working
 });
-describe("edit profile", () => {
+describe.only("edit profile", () => {
   it("edit profile", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
@@ -95,12 +117,16 @@ describe("edit profile", () => {
         .last()
         .selectFile("cypress/fixtures/user.png", { force: true });
       cy.get(sel.editBio).clear().type("Computer Engineering"); //bio limit
-      cy.get(sel.editLocation).clear().type("Mokattam");
-      cy.get(sel.editWebsite).clear().type("www.");
+      cy.get(sel.editLocation).clear().type("Mokattamm");
+      cy.get(sel.editWebsite)
+        .clear()
+        .type("https://twitter-clone.onthewifi.com/");
       cy.get(sel.saveEdits).click();
-
-      cy.get(sel.userLocation).should("be.visible").and("contain", "Mokattam");
-      cy.get(sel.userWebsite).should("be.visible").and("contain", "www.");
+      cy.wait(1000);
+      cy.get(sel.userLocation).should("be.visible").and("contain", "Mokattamm");
+      cy.get(sel.userWebsite)
+        .should("be.visible")
+        .and("contain", "https://twitter-clone.onthewifi.com/");
       cy.get(sel.userBio)
         .should("be.visible")
         .and("contain", "Computer Engineering");
@@ -128,12 +154,16 @@ describe("edit profile", () => {
         .selectFile("cypress/fixtures/cover.png", { force: true });
       cy.get(sel.editBio).clear().type("Computer Engineering1"); //bio limit
       cy.get(sel.editLocation).clear().type("Mokattam1");
-      cy.get(sel.editWebsite).clear().type("www.1");
+      cy.get(sel.editWebsite)
+        .clear()
+        .type("https://twitter-clone.onthewifi.com/");
       cy.get(sel.x).click();
       cy.get(sel.discardBtn).click();
 
       cy.get(sel.userLocation).should("be.visible").and("contain", "Mokattam");
-      cy.get(sel.userWebsite).should("be.visible").and("contain", "www.");
+      cy.get(sel.userWebsite)
+        .should("be.visible")
+        .and("contain", "https://twitter-clone.onthewifi.com/");
       cy.get(sel.userBio)
         .should("be.visible")
         .and("contain", "Computer Engineering");
@@ -163,11 +193,15 @@ describe("edit profile", () => {
       cy.get(sel.x).click();
       cy.get(sel.cancelBtn).click();
       cy.get(sel.editLocation).clear().type("Mokattam");
-      cy.get(sel.editWebsite).clear().type("www.");
+      cy.get(sel.editWebsite)
+        .clear()
+        .type("https://twitter-clone.onthewifi.com/");
       cy.get(sel.saveEdits).click();
       cy.wait(2000);
       cy.get(sel.userLocation).should("be.visible").and("contain", "Mokattam");
-      cy.get(sel.userWebsite).should("be.visible").and("contain", "www.");
+      cy.get(sel.userWebsite)
+        .should("be.visible")
+        .and("contain", "https://twitter-clone.onthewifi.com/");
       cy.get(sel.userBio)
         .should("be.visible")
         .and("contain", "Computer Engineeringg");
@@ -187,12 +221,13 @@ describe("edit profile", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
       cy.get(sel.editProfile).click();
-      cy.get(sel.editName).clear().type("rawannn");
+      cy.get(sel.editName).clear().type("rawannnn");
       cy.get(sel.saveEdits).click();
       cy.wait(2000);
       cy.get("span").contains("rawannn").should("be.visible");
     });
   });
+  //bug-->fixed
   it("name size check", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();
@@ -200,14 +235,24 @@ describe("edit profile", () => {
       cy.get(sel.editName)
         .clear()
         .type(
-          "rW7zDl2uVHgNp0Oc9Jy1e8xL3qFfSsBbAaXwKkYyZzRrMmGgIiNnEeDdHhUuTtCcWv6Qq8Pp4"
+          "rWazDlauVHgNpaOaJy1eaxLlqFfSsBbAaXwKkYyZzRrMmGgIiNnEeDdHhUuTtCcWv6Qq8Pp4"
         );
       cy.get(sel.saveEdits).click();
       cy.wait(2000);
       cy.get("span")
-        .contains("rW7zDl2uVHgNp0Oc9Jy1e8xL3qFfSsBbAaXwKkYyZzRrMmGgIi")
+        .contains("rWazDlauVHgNpaOaJy1eaxLlqFfSsBbAaXwKkYyZzRrMmGgIi")
         .should("be.visible")
         .and("not.contain", "NnEeDdHhUuTtCcWv6Qq8Pp4");
+    });
+  });
+  //bug-->fixed
+  it("name format check", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.sideBarProfile).click();
+      cy.get(sel.editProfile).click();
+      cy.get(sel.editName).clear().type("rWazDlauVHgNpaOaJy1eaxLlqFfSsBb658");
+      cy.get(sel.saveEdits).should("be.disabled");
+      cy.get(sel.nameError).should("be.visible");
     });
   });
   it("edit bd", () => {
@@ -298,6 +343,7 @@ describe("edit profile", () => {
       cy.get(sel.saveEdits).should("be.disabled");
     });
   });
+  //bug
   it("future birthdate in edit profile", () => {
     /////////////////BUG
     cy.get("@selectors").then((sel) => {
@@ -312,6 +358,7 @@ describe("edit profile", () => {
       cy.get(sel.userBd).should("not.contain.text", "Born December 31, 2023");
     });
   });
+  //bug
   it("very young birthdate in edit profile", () => {
     /////////////////BUG
     cy.get("@selectors").then((sel) => {
@@ -339,7 +386,7 @@ describe("edit profile", () => {
         "https://kady-twitter-images.s3.amazonaws.com/DefaultBanner.png"
       );
     });
-  }); //updated,working
+  });
 });
 
 describe("followers&following", () => {
@@ -419,8 +466,9 @@ describe("followers&following", () => {
   });
 });
 //bug-->FIXED
+//done and working
 describe("block", () => {
-  it.only("block user -->home shouldn't have tweets from this user", () => {
+  it("block user -->home shouldn't have tweets from this user", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.searchBar).type("rawantest1");
       cy.get(sel.rawantest1Search).click();
@@ -433,7 +481,7 @@ describe("block", () => {
         });
     });
   });
-  it.only("unblock user-->follow user-->home should have tweets from this user", () => {
+  it("unblock user-->follow user-->home should have tweets from this user", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.searchBar).type("rawantest1");
       cy.get(sel.gotorawantest1).click();
@@ -453,7 +501,7 @@ describe("block", () => {
     });
   });
 
-  it.only("block user-->user removed from followers", () => {
+  it("block user-->user removed from followers", () => {
     cy.get("@selectors").then((sel) => {
       //first make this user follow me to check on the followers then
       cy.get(sel.userBtn).click();
@@ -490,7 +538,7 @@ describe("block", () => {
       cy.get("span").should("not.contain", "rawantest1");
     });
   });
-  it.only("unblock user-->follow user-->home should have tweets from this user", () => {
+  it("unblock user-->follow user-->home should have tweets from this user", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.searchBar).type("rawantest1");
       cy.get(sel.gotorawantest1).click();

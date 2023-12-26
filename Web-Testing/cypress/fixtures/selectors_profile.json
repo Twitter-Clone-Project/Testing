@@ -19,6 +19,7 @@
   "addPhoto": "[data-testid='Add photo']",
   "editName": "[data-testid='Name']",
   "editBio": "[data-testid='Bio']",
+  "nameError": "[data-testid='Name-err']",
   "editLocation": "[data-testid='Location']",
   "editWebsite": "[data-testid='Website']",
   "editBd": "[data-testid='edit-dob'] > .text-blue",
