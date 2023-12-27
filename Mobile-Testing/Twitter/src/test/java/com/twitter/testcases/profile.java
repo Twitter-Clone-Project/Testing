@@ -109,4 +109,51 @@ public class profile extends base{
             System.out.println("Tweet is not present in profile, which is the expected behavior.");
         }
     }
+    @Test
+    public void edit_profile() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        correctLogin();
+        profileScreen=new profileScreen();
+        homeScreen.clickOnprofileCircle();
+        homeScreen.clickOnProfile();
+        profileScreen.clickOnEditProfile();
+        profileScreen.clickOnName();
+        profileScreen.clearName();
+        profileScreen.typeName("rawanl");
+        profileScreen.clickOnBio();
+        profileScreen.clearBio();
+        profileScreen.typeBio("bioooooooooooo");
+        profileScreen.clickOnLoc();
+        profileScreen.clearLoc();
+        profileScreen.typeLoc("mokattammm");
+        profileScreen.clickOnWeb();
+        profileScreen.clearWeb();
+        profileScreen.typeWeb("https://chat.openai.com/");
+//        profileScreen.clickOnDob();
+//        profileScreen.typeDob("12/27/2002");
+        profileScreen.clickOnSave();
+        Assert.assertTrue(profileScreen.editProfileAssertion.isDisplayed(), "edit profile hadn't updated");
+
+    }
+    @Test
+    public void follow() throws InterruptedException {
+        synchronized (driver) {
+            driver.wait(10000);
+        }
+        correctLogin();
+        profileScreen=new profileScreen();
+       homeScreen.clickOnSearch();
+       homeScreen.clickOnSearchInput();
+       homeScreen.typeSearch("rawantest1");
+       homeScreen.clickOnrawantest1();
+       profileScreen.clickOnFollow();
+       driver.navigate().back();
+       driver.navigate().back();
+
+    }
+
+
+
 }

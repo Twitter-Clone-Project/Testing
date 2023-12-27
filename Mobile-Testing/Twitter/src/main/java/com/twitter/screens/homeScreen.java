@@ -12,7 +12,7 @@ public class homeScreen extends base {
     public WebElement addTweetBtn;
     @AndroidFindBy(className = "android.widget.EditText")
     private WebElement tweetInput;
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Post\"]")
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"Post\"]")
     private WebElement postBtn;
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView[1]")
     private WebElement profileCircle;
@@ -25,6 +25,14 @@ public class homeScreen extends base {
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"2\"])[1]")
     private WebElement latestTweetLikeBtn;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Search\n" +
+            "Tab 2 of 4\"]")
+    private WebElement searchBtn;
+    @AndroidFindBy(className = "android.widget.EditText")
+    private WebElement searchInput;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"rawantest\n" +
+            "@rawantest1\"]")
+    private WebElement rawantest1SearchRes;
 
 
     public void clickOnAddTweet() {
@@ -60,6 +68,17 @@ public class homeScreen extends base {
         return latestTweetContent;
 
     }
-
+    public void clickOnSearch(){
+        searchBtn.click();
+    }
+    public void clickOnSearchInput(){
+        searchInput.click();
+    }
+    public void typeSearch(String search){
+        searchInput.sendKeys(search);
+    }
+    public void clickOnrawantest1(){
+        rawantest1SearchRes.click();
+    }
 
 }

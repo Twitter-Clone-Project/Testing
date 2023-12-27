@@ -30,8 +30,35 @@ public class profileScreen extends base {
     public WebElement latestTweetInLikes;
     @AndroidFindBy(xpath = "//(android.view.View[contains(@content-desc, 'rawan') and contains(@content-desc, '@rawann')])[2]/android.view.View[2]")
     private WebElement latestTweetOptions;
+    @AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Select date')]")
+    private WebElement editDate;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Delete Post\"]")
     private WebElement deletePostBtn;
+    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Edit Profile\"]")
+    private WebElement editProfile;
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[2]/android.widget.EditText[1]")
+    private WebElement nameField;
+    @AndroidFindBy (xpath="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[2]/android.widget.EditText[2]")
+    private WebElement bioField;
+    @AndroidFindBy (xpath="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[2]/android.widget.EditText[3]")
+    private WebElement locField;
+    @AndroidFindBy (xpath="//(android.widget.EditText)[4]")
+    private WebElement webField;
+    @AndroidFindBy (xpath="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText")
+    private WebElement dobField;
+
+    @AndroidFindBy (xpath="//android.view.View[@content-desc=\"Save\"]")
+    private WebElement saveBtn;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"rawanl\n" +
+            "@rawann\n" +
+            "bioooooooooooo\n" +
+            " mokattammm\n" +
+            " Born December 31, 2020\n" +
+            " Joined December 2023\"]")
+    public WebElement editProfileAssertion;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Follow\"]")
+    private WebElement followBtn;
+
 
     public void clickOnLikesTab() {
         likesTab.click();
@@ -72,4 +99,39 @@ public class profileScreen extends base {
     public void clickOnDeletePost(){
         deletePostBtn.click();
     }
+    public void clickOnEditProfile(){editProfile.click();}
+    public void clickOnName(){nameField.click();}
+    public void clickOnBio(){bioField.click();}
+    public void clickOnLoc(){locField.click();}
+    public void clickOnWeb(){webField.click();}
+    public void clickOnDob(){dobField.click();}
+    public void clearName(){nameField.clear();}
+    public void clearBio(){bioField.clear();}
+    public void clearLoc(){locField.clear();}
+    public void clearWeb(){webField.clear();}
+    public void clearDob(){dobField.clear();}
+
+    public void typeName(String name){
+        nameField.sendKeys(name);
+    }
+        public void typeBio(String name){
+        bioField.sendKeys(name);
+    }
+        public void typeLoc(String name){
+        locField.sendKeys(name);
+    }
+        public void typeWeb(String name){
+        webField.sendKeys(name);
+    }
+        public void typeDob(String name){
+        dobField.sendKeys(name);
+    }
+
+    public void clickOnSave(){saveBtn.click();}
+
+    public void clickOnEditDate(){editDate.click();}
+
+    public void clickOnFollow(){followBtn.click();}
+
+
 }
