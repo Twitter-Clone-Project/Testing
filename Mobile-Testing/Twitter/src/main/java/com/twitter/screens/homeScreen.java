@@ -36,6 +36,9 @@ public class homeScreen extends base {
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Home\n" +
             "Tab 1 of 4\"]")
     private WebElement homeBtn;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Messages\n" +
+            "Tab 4 of 4\"]")
+    private WebElement chatBtn;
 
 
     public void clickOnAddTweet() {
@@ -85,6 +88,10 @@ public class homeScreen extends base {
     }
     public void clickOnHome(){
         homeBtn.click();
+    }
+    public void clickOnChat()
+    {
+        chatBtn.click();
     }
 
 }

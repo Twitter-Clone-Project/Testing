@@ -9,9 +9,9 @@
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="platformVersion" value="12"></parameter>
         <classes>
-            <class name="com.twitter.testcases.profile">
+            <class name="com.twitter.testcases.messages">
                 <methods>
-                    <include name="follow"></include>
+                    <include name="messageConstraints"></include>
                 </methods>
             </class>
         </classes>
