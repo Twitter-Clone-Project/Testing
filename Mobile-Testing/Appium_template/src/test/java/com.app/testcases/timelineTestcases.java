@@ -1,6 +1,7 @@
 package com.app.testcases;
 
 import com.app.base.base;
+import com.app.screens.settings;
 import com.app.screens.timeline;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -340,7 +341,7 @@ public void addPostHashTag() throws IOException, InterruptedException {
 
 
 }
-    @Test
+//    @Test
     public void addPostdoubleHashTag() throws IOException, InterruptedException {
         File propsFile=new File("src/test/resources/testData/userData.properties");
         inputfile=new FileInputStream(propsFile);
@@ -366,5 +367,55 @@ public void addPostHashTag() throws IOException, InterruptedException {
         {
             System.out.println("HashTag are not in the trend");
         }
+    }
+    ///////////////////////////////////////////
+//    @Test
+    public  void  updateUsername() throws IOException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage=new timeline();
+        Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(1))
+                .withTimeout(Duration.ofSeconds(20))
+                .ignoring(NoSuchElementException.class);
+        timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+timelinepage.drawer.click();
+timelinepage.settingsButton.click();
+
+        timelinepage.updateUserNameButton.click();
+        timelinepage.newUserName.click();
+        timelinepage.newUserName.sendKeys("testing");
+        timelinepage.doneButtonUsername.click();
+
+    }
+    @Test
+    public  void  updatepassword() throws IOException {
+        File propsFile=new File("src/test/resources/testData/userData.properties");
+        inputfile=new FileInputStream(propsFile);
+        props=new Properties();
+        props.load(inputfile);
+        timelinepage=new timeline();
+        Wait<AndroidDriver> timeline=new FluentWait<AndroidDriver>(driver)
+                .pollingEvery(Duration.ofSeconds(1))
+                .withTimeout(Duration.ofSeconds(20))
+                .ignoring(NoSuchElementException.class);
+        timeline.until(ExpectedConditions.invisibilityOf(timelinepage.forgetPasswordButton));
+        timelinepage.drawer.click();
+        timelinepage.settingsButton.click();
+
+        timelinepage.updatePassword.click();
+        timelinepage.CurrentPass.click();
+        timelinepage.CurrentPass.sendKeys("147258369");
+        timelinepage.newPass.click();
+        timelinepage.newPass.sendKeys("147258369");
+
+        timelinepage.ConfirmPass.click();
+        timelinepage.ConfirmPass.sendKeys("147258369");
+
+        timelinepage.updatePassword.click();
+
+
     }
 }

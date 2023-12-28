@@ -86,6 +86,33 @@ public class timeline extends base {
     @AndroidFindBy(accessibility = "3. Trending\n" +
             "#")
     public WebElement hashtagTrend;
+    @AndroidFindBy (xpath = "(//android.widget.ImageView)[1]")
+    public WebElement drawer;
 
+    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Settings\"]")
+    public WebElement settingsButton;
 
+    @AndroidFindBy (accessibility = "Username\n" +
+            "@testing")
+    public WebElement updateUserNameButton;
+
+    @AndroidFindBy (accessibility = "Change your password\n" +
+            "Change your password at any time.")
+    public WebElement updatePassword;
+
+    @AndroidFindBy (xpath = "(//android.widget.EditText)[1]")
+    public WebElement newUserName;
+
+    @AndroidFindBy (accessibility = "Done")
+    public WebElement doneButtonUsername;
+
+    @AndroidFindBy (xpath = "(//android.widget.EditText)[1]")
+    public WebElement CurrentPass;
+    @AndroidFindBy (xpath = "(//android.widget.EditText)[2]")
+    public WebElement newPass;
+    @AndroidFindBy (xpath = "(//android.widget.EditText)[3]")
+    public WebElement ConfirmPass;
+
+    @AndroidFindBy (accessibility = "Update Password")
+    public WebElement UpdatePassButton;
 }

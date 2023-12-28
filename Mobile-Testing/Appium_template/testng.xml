@@ -15,9 +15,10 @@
             <!--TODO put classes of testcases-->
 
            <!-- <class name="com.app.testcases.signUpTestcases"></class> -->
-            <class name="com.app.testcases.timelineTestcases"></class>
+               <class name="com.app.testcases.timelineTestcases"></class>
+            <!--    <class name="com.app.testcases.settingsTestcases"></class>-->
 
-        </classes>
+          </classes>
 
-    </test>
-</suite>
+      </test>
+  </suite>
