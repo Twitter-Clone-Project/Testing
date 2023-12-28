@@ -105,7 +105,7 @@ describe("like", () => {
     });
   }); //updated,working
 });
-describe.only("edit profile", () => {
+describe("edit profile", () => {
   it("edit profile", () => {
     cy.get("@selectors").then((sel) => {
       cy.get(sel.sideBarProfile).click();

@@ -9,9 +9,9 @@
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="platformVersion" value="12"></parameter>
         <classes>
-            <class name="com.twitter.testcases.messages">
+            <class name="com.twitter.testcases.notifications">
                 <methods>
-                    <include name="sendMsg"></include>
+                    <include name="unfollowNotify"></include>
                 </methods>
             </class>
         </classes>
