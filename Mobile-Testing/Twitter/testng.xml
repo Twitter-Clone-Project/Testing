@@ -11,7 +11,7 @@
         <classes>
             <class name="com.twitter.testcases.messages">
                 <methods>
-                    <include name="messageConstraints"></include>
+                    <include name="sendMsg"></include>
                 </methods>
             </class>
         </classes>

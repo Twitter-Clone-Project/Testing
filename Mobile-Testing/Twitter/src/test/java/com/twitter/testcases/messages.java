@@ -51,8 +51,9 @@ public class messages extends base {
         homeScreen.clickOnChat();
         chatScreen.clickOnrawantest1Chat();
         chatScreen.clickOnMsgInput();
-        chatScreen.typeMsg("neww");
-
+        chatScreen.typeMsg("neww msgg");
+        chatScreen.clickOnSend();
+        Assert.assertTrue(chatScreen.newMsg.isDisplayed(), "new msg is not displayed");
     }
 }
 

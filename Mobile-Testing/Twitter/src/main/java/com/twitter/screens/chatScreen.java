@@ -14,6 +14,8 @@ public class chatScreen extends base {
 
     @AndroidFindBy(xpath = "//(android.widget.Button)[2]")
     public WebElement sendBtn;
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'neww msgg')]")
+    public WebElement newMsg;
 
     public void clickOnChatSearch() {
         chatSearch.click();
