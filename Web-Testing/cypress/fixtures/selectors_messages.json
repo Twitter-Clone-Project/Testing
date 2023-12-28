@@ -1,0 +1,16 @@
+{
+  "startScreenLoginBtn": "[href='/login']",
+  "loginEmailInput": "[data-testid='Email']",
+  "loginPassInput": "[data-testid='Password']",
+  "loginBtn": "[data-testid='Log in']",
+  "sideBarMsgs": ":nth-child(3) > [data-testid='Messages'] > [data-testid='Messages-text'] > .px-4",
+  "msgsSearchBar": "[data-testid='conversation-search-bar-input-field']",
+  "msgsSearchrawantest1": "[data-testid='23-search-card-main']",
+  "msgsInput": "[data-testid='input-messages-input-field']",
+  "sendBtn": "[data-testid='input-messages-input-field-second']",
+  "msgsCount": ":nth-child(3) > [data-testid='Messages'] > .relative > .absolute",
+  "convHistory": "[data-testid='conversationshistory']",
+  "userBtn": "[data-testid='user-btn'] > .text-xs",
+  "logOutBtn": "[data-testid='nav-logout-btn']",
+  "logOutStep2": "[data-testid='Log Out']"
+}
