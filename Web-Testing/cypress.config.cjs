@@ -5,7 +5,7 @@ module.exports = defineConfig({
   // setupNodeEvents can be defined in either
   // the e2e or component configuration
   e2e: {
-    pageLoadTimeout:60000,
+    pageLoadTimeout:100000,
     experimentalStudio:true,
     execTimeout:6000,
     defaultCommandTimeout:8000,

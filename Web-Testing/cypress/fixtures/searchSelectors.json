@@ -1,0 +1,4 @@
+{
+    "searchInputField":"[data-testid='search-bar-field']",
+    "eraseInputField":"[data-testid='search-bar-textfield-erase']"
+}
