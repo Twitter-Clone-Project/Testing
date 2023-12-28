@@ -44,5 +44,15 @@ public class messages extends base {
         Assert.assertFalse(chatScreen.sendBtn.isEnabled(), "button is not disabled!!!");
 
     }
+    @Test
+    public void sendMsg() throws InterruptedException {
+        correctLogin();
+        chatScreen=new chatScreen();
+        homeScreen.clickOnChat();
+        chatScreen.clickOnrawantest1Chat();
+        chatScreen.clickOnMsgInput();
+        chatScreen.typeMsg("neww");
+
+    }
 }
 
