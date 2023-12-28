@@ -58,8 +58,10 @@ public class profileScreen extends base {
     public WebElement editProfileAssertion;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Follow\"]")
     private WebElement followBtn;
-
-
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Following')]")
+    private WebElement following;
+    @AndroidFindBy(xpath="//android.widget.ImageView[conatins(@content-desc, '@rawantest1')]")
+    public WebElement rawantest1InFollowing;
     public void clickOnLikesTab() {
         likesTab.click();
     }
@@ -132,6 +134,8 @@ public class profileScreen extends base {
     public void clickOnEditDate(){editDate.click();}
 
     public void clickOnFollow(){followBtn.click();}
+    public void clickOnFollowing(){following.click();}
+    public void clickOnrawantest1InFollowing(){rawantest1InFollowing.click();}
 
 
 }

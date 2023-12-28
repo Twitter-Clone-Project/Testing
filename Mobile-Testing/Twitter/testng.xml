@@ -11,7 +11,7 @@
         <classes>
             <class name="com.twitter.testcases.profile">
                 <methods>
-                    <include name="edit_profile"></include>
+                    <include name="follow"></include>
                 </methods>
             </class>
         </classes>
