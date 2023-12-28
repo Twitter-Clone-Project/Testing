@@ -1,0 +1,14 @@
+{
+  "sideBarNotif": ":nth-child(2) > [data-testid='Notifications'] > [data-testid='Notifications-text'] > .px-4",
+  "gotorawantest1": "[data-testid='search-bar-gotorawantest1']",
+  "searchBar": "[data-testid='search-bar-textfield']",
+  "unfollow": "[data-testid='Following']",
+  "userBtn": "[data-testid='user-btn'] > .text-xs",
+  "logOutBtn": "[data-testid='nav-logout-btn']",
+  "logOutStep2": "[data-testid='Log Out']",
+  "startScreenLoginBtn": "[href='/login']",
+  "loginEmailInput": "[data-testid='Email']",
+  "loginPassInput": "[data-testid='Password']",
+  "loginBtn": "[data-testid='Log in']",
+  "notifList": "[data-testid='all-page']"
+}
