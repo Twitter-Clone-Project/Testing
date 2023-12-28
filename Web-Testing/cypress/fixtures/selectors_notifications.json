@@ -10,5 +10,7 @@
   "loginEmailInput": "[data-testid='Email']",
   "loginPassInput": "[data-testid='Password']",
   "loginBtn": "[data-testid='Log in']",
-  "notifList": "[data-testid='all-page']"
+  "notifList": "[data-testid='all-page']",
+  "follow": "[data-testid='Follow']",
+  "notifCount": ":nth-child(2) > [data-testid='Notifications'] > .relative > .absolute"
 }

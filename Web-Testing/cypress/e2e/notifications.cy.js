@@ -40,4 +40,54 @@ describe("follow notifications", () => {
       });
     });
   });
+  it("follow user--> show in other user notification", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.gotorawantest1).click();
+      cy.get(sel.follow).click();
+      //logout
+      cy.get(sel.userBtn).click();
+      cy.get(sel.logOutBtn).click();
+      cy.get(sel.logOutStep2).click();
+      //login to the other user
+      cy.get("@credentials").then((cred) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.email2);
+        cy.get(sel.loginPassInput).type(cred.password123);
+        cy.get(sel.loginBtn).click();
+        cy.get(sel.sideBarNotif).click();
+        cy.get(sel.notifList)
+          .children()
+          .first()
+          .should("have.attr", "href", "/app/rawann/posts");
+      });
+    });
+  });
+  it("unfollow--> notif counter increased in other user chat", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.gotorawantest1).click();
+      cy.get(sel.unfollow).click();
+      //logout
+      cy.get(sel.userBtn).click();
+      cy.get(sel.logOutBtn).click();
+      cy.get(sel.logOutStep2).click();
+      //login to the other user
+      cy.get("@credentials").then((cred) => {
+        cy.get(sel.startScreenLoginBtn).click({ force: true });
+        cy.get(sel.loginEmailInput).type(cred.email2);
+        cy.get(sel.loginPassInput).type(cred.password123);
+        cy.get(sel.loginBtn).click();
+      });
+      cy.wait(2000);
+      cy.get(sel.notifCount).should("have.text", "1");
+    });
+  });
+  it("follow user--> show in other user notification", () => {
+    cy.get("@selectors").then((sel) => {
+      cy.get(sel.searchBar).type("rawantest1");
+      cy.get(sel.gotorawantest1).click();
+      cy.get(sel.follow).click();
+    });
+  });
 });
