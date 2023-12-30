@@ -1,0 +1,19 @@
+{
+  "startScreenLoginBtn": "[href='/login']",
+  "loginEmailInput": "[data-testid='Email']",
+  "loginPassInput": "[data-testid='Password']",
+  "loginBtn": "[data-testid='Log in']",
+  "forgotPassBtn": "[href='/forgot-password']",
+  "nextBtn": "[data-testid='Next']",
+  "newPassInput": "[data-testid='Enter a new password']",
+  "confirmPassInput": "[data-testid='Confirm your password']",
+  "changePassBtn": "[data-testid='Change password']",
+  "resendOtpBtn": "[data-testid='resend-code']",
+  "otpInput": "[data-testid='Code']",
+  "showPass": "[data-testid='Password-showIcon']",
+  "hidePass": "[data-testid='Password-hideIcon']",
+  "showPassNew": "[data-testid='Enter a new password-showIcon']",
+  "showPassConfirm": "[data-testid='Confirm your password-showIcon']",
+  "hidePassNew": "[data-testid='Enter a new password-hideIcon']",
+  "hidePassConfirm": "[data-testid='Confirm your password-hideIcon']"
+}
