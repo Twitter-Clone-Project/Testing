@@ -23,30 +23,54 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">21.43% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>3/14</span>
+=======
+                <span class="strong">85.71% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>12/14</span>
+>>>>>>> timeline
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/11</span>
+=======
+                <span class="strong">54.54% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>6/11</span>
+>>>>>>> timeline
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/2</span>
+=======
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>2/2</span>
+>>>>>>> timeline
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">25% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>3/12</span>
+=======
+                <span class="strong">83.33% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>10/12</span>
+>>>>>>> timeline
             </div>
         
             
@@ -61,7 +85,11 @@
             </div>
         </template>
     </div>
+<<<<<<< HEAD
     <div class='status-line low'></div>
+=======
+    <div class='status-line high'></div>
+>>>>>>> timeline
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -139,6 +167,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,6 +180,20 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">460x</span>
+<span class="cline-any cline-yes">460x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">460x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">460x</span>
+>>>>>>> timeline
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -202,14 +245,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
+=======
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+>>>>>>> timeline
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 &nbsp;
 // eslint-disable-next-line no-unused-vars
 &nbsp;
+<<<<<<< HEAD
 function <span class="fstat-no" title="function not covered" >NameInput(</span>{ title, error, setError, Name, setName, maxLength }) <span class="cstat-no" title="statement not covered" >{</span>
   const [max, setMax] = <span class="cstat-no" title="statement not covered" >useState(0);</span>
 &nbsp;
@@ -222,6 +272,20 @@ function <span class="fstat-no" title="function not covered" >NameInput(</span>{
     } else <span class="cstat-no" title="statement not covered" >setError('');</span>
   };
 <span class="cstat-no" title="statement not covered" >  return (</span>
+=======
+function NameInput({ title, error, setError, Name, setName, maxLength }) {
+  const [max, setMax] = useState(0);
+&nbsp;
+  const handleInputChange = (event) =&gt; {
+    setName(event.target.value);
+    if (max &lt; event.target.value.length) setMax(event.target.value.length);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (event.target.value.length === 0 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >max !== 0) {</span>
+      const errorMessage = `<span class="cstat-no" title="statement not covered" >What's your  ${title.toLowerCase()}?`;</span>
+<span class="cstat-no" title="statement not covered" >      setError(errorMessage);</span>
+    } else setError('');
+  };
+  return (
+>>>>>>> timeline
     &lt;div className="relative h-[56.44px] w-full items-center justify-center  bg-white dark:bg-black"&gt;
       &lt;input
         data-testid={title}
@@ -239,7 +303,11 @@ function <span class="fstat-no" title="function not covered" >NameInput(</span>{
         dark:text-white
         ${
           error !== ''
+<<<<<<< HEAD
             ? 'outline-warning focus:outline-warning'
+=======
+            ? <span class="branch-0 cbranch-no" title="branch not covered" >'outline-warning focus:outline-warning'</span>
+>>>>>>> timeline
             : 'outline-light-gray focus:outline-blue '
         }`}
       /&gt;
@@ -254,7 +322,11 @@ function <span class="fstat-no" title="function not covered" >NameInput(</span>{
         peer-[:not(:placeholder-shown)]:text-xs 
           ${
             error !== ''
+<<<<<<< HEAD
               ? 'text-warning peer-focus:text-warning'
+=======
+              ? <span class="branch-0 cbranch-no" title="branch not covered" >'text-warning peer-focus:text-warning'</span>
+>>>>>>> timeline
               : 'text-dark-gray peer-focus:text-blue'
           }`}
       &gt;
@@ -264,7 +336,11 @@ function <span class="fstat-no" title="function not covered" >NameInput(</span>{
         {Name.length} / {maxLength}
       &lt;/span&gt;
       {error !== '' &amp;&amp; (
+<<<<<<< HEAD
         &lt;span
+=======
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;span</span>
+>>>>>>> timeline
           data-testid={`${title}-err`}
           className=" absolute left-2 top-14 text-sm text-warning"
         &gt;
@@ -283,7 +359,11 @@ export default NameInput;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2023-11-16T20:33:26.338Z
+=======
+                at 2023-11-23T22:40:10.729Z
+>>>>>>> timeline
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -1,0 +1,11 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1703763774252,1209,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,1209,0,331
+1703763775462,675,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,675,0,0
+1703763776138,642,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,642,0,0
+1703763776781,701,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,701,0,0
+1703763777484,658,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,658,0,0
+1703763778143,647,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,647,0,0
+1703763778791,735,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,735,0,0
+1703763779527,724,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,723,0,0
+1703763780251,751,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,751,0,0
+1703763781003,667,Time line,200,OK,Thread Group 1-1,text,true,,6329,332,1,1,https://twitter-clone.onthewifi.com:2023/api/v1/users/1/timeline?pageNum=1,667,0,0

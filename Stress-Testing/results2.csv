@@ -1,0 +1,4 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1701564102884,392,Resend Confirm Request,500,Internal Server Error,Thread Group 1-1,text,false,,1238,258,1,1,http://52.1.162.17:2023/api/v1/auth/resendConfirmEmail,392,0,194
+1701564103282,3922,Sign Up Request,500,Internal Server Error,Thread Group 1-1,text,false,,1050,470,1,1,http://127.0.0.1:2023/api/v1/auth/signup,3922,0,3
+1701564107205,788,Forget Password Request,200,OK,Thread Group 1-1,text,true,,1230,315,1,1,http://52.1.162.17:2023/api/v1/auth/forgetPassword,788,0,168
