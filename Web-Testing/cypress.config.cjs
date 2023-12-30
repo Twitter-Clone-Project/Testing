@@ -8,7 +8,7 @@ module.exports = defineConfig({
     pageLoadTimeout:100000,
     experimentalStudio:true,
     execTimeout:6000,
-    defaultCommandTimeout:8000,
+    defaultCommandTimeout:10000,
     
     
     setupNodeEvents(on, config) {

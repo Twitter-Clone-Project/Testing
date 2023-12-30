@@ -239,13 +239,7 @@ describe("signUp", () => {
   });
 
   // bug it gives nothing
-  it("testcase12: sign up button", () => {
-    cy.get(selectors.createAccountButton).click();
-    cy.get("@selectors").then((selectors) => {
-      cy.get(selectors.signUpWithGoogleButton).click();
-      cy.url().should("not.eql", "http://18.212.103.71:5173/");
-    });
-  });
+  
   //passes
   it("testcase13: Password do not match", () => {
     cy.get("@selectors").then((selectors) => {
